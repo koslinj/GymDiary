@@ -1,12 +1,12 @@
 {
   "expo": {
     "name": "GymDiary",
-    "scheme": "gym_diary",
+    "scheme": "gymdiary",
     "slug": "gym_diary",
-    "version": "1.0.0",
+    "version": "1.0.3",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -19,13 +19,23 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.koslinj.gym_diary"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
       "expo-router"
-    ]
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "deb50495-0a91-4d84-a5f9-6ccf266ecc70"
+      }
+    },
+    "owner": "koslinj"
   }
 }

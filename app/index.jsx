@@ -1,4 +1,4 @@
-import { ActivityIndicator, View } from 'react-native'
+import { ActivityIndicator, Text, View } from 'react-native'
 
 const StartPage = () => {
   return (

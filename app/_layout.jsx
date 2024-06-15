@@ -3,9 +3,6 @@ import { AuthContextProvider, useAuth } from "../context/authContext"
 import { useEffect } from "react"
 import { useFonts } from "expo-font";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import * as SplashScreen from 'expo-splash-screen';
-
-SplashScreen.preventAutoHideAsync();
 
 const MainLayout = () => {
   const { isAuthenticated } = useAuth()
@@ -18,25 +15,14 @@ const MainLayout = () => {
   });
 
   useEffect(() => {
-    if (error) throw error
-    if (fontsLoaded) SplashScreen.hideAsync()
-  }, [fontsLoaded, error]);
-
-  useEffect(() => {
-    if (fontsLoaded) {
-      if (typeof isAuthenticated == 'undefined') return
-      const inApp = segments[0] == '(app)'
-      if (isAuthenticated && !inApp) {
-        router.replace('(app)')
-      } else if (isAuthenticated == false) {
-        router.replace('signIn')
-      }
+    if (typeof isAuthenticated == 'undefined') return
+    const inApp = segments[0] == '(app)'
+    if (isAuthenticated && !inApp) {
+      router.replace('(app)')
+    } else if (isAuthenticated == false) {
+      router.replace('signIn')
     }
-  }, [isAuthenticated, fontsLoaded])
-
-  if (!fontsLoaded && !error) {
-    return null;
-  }
+  }, [isAuthenticated])
 
   return <Slot />
 }

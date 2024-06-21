@@ -3,7 +3,7 @@
     "name": "GymDiary",
     "scheme": "gymdiary",
     "slug": "gym_diary",
-    "version": "1.0.3",
+    "version": "1.1.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",

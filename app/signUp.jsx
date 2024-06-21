@@ -1,64 +1,69 @@
-import { View, Text, Alert, TextInput, TouchableOpacity } from 'react-native'
+import { Alert, TextInput, TouchableOpacity, useColorScheme } from 'react-native'
 import React, { useState } from 'react'
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { useAuth } from '../context/authContext';
-import { ThemedView } from '../components/ThemedComponents';
+import { ThemedText, ThemedView } from '../components/ThemedComponents';
+import { ConfirmButton } from '../components/auth/ConfirmButton';
 
 const SignUp = () => {
+  let isDark = useColorScheme() === 'dark' ? true : false;
   const insets = useSafeAreaInsets();
   const router = useRouter()
-  const { login } = useAuth()
+  const { register } = useAuth()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
 
-  const handleLogin = async () => {
+  const handleRegister = async () => {
     if (password === '' || email === '') {
-      Alert.alert('Sign In', 'You need to provide email and password!')
+      Alert.alert('Sign Up', 'You need to provide email and password!')
       return
     }
 
     setLoading(true)
-    const res = await login(email, password)
+    const res = await register(email, password)
     setLoading(false)
     if (!res.success) {
-      Alert.alert('Sign In', res.msg)
+      Alert.alert('Sign Up', res.msg)
     }
   }
 
   return (
-    <ThemedView style={{ paddingTop: insets.top }} lightClassName='bg-slate-200' className="flex-1 justify-center px-8">
+    <ThemedView style={{ paddingTop: insets.top }} className="flex-1 justify-center px-8">
+      <ThemedText
+        className='py-2 text-5xl font-poppinsBold text-center -translate-y-12'
+      >
+        GymDiary
+      </ThemedText>
+      <ThemedText
+        className='py-2 text-3xl font-poppinsBold text-center'
+      >
+        Join Us!
+      </ThemedText>
       <TextInput
-      className="p-2 border-2 rounded-md mb-3"
+        className="p-3 text-lg border-2 rounded-md mb-3 dark:border-white dark:text-white"
+        placeholderTextColor={isDark ? '#d0d0d0' : '#828282'}
         value={email}
         placeholder='Email'
         autoCapitalize='none'
         onChangeText={(text) => setEmail(text)} />
       <TextInput
-      className="p-2 border-2 rounded-md mb-3"
+        className="p-3 text-lg border-2 rounded-md mb-3 dark:border-white dark:text-white"
+        placeholderTextColor={isDark ? '#d0d0d0' : '#828282'}
         value={password}
         secureTextEntry={true}
         placeholder='Password'
         autoCapitalize='none'
         onChangeText={(text) => setPassword(text)} />
 
-      <View>
-        {
-          loading ? (
-            <View style={{ alignItems: 'center' }}>
-              <Text>Loading...</Text>
-            </View>
-          ) : (
-            <TouchableOpacity className="bg-secondary p-3 rounded-md w-48 mx-auto" onPress={handleLogin}>
-              <Text className="text-xl font-poppinsBold text-center">Sign Up!</Text>
-            </TouchableOpacity>
-          )
-        }
-      </View>
+      <ConfirmButton loading={loading} label={'Sign Up!'} handlePress={handleRegister} />
 
-      <TouchableOpacity onPress={() => router.push('signIn')} className="bg-secondary/50 p-2 rounded-md mt-6 w-48 mx-auto">
-        <Text className="text-lg text-center">Sign in</Text>
+      <TouchableOpacity
+        onPress={() => router.push('signIn')}
+        className="bg-secondary-400/60 dark:bg-secondary-700/60 p-2 rounded-md mt-5 w-40 mx-auto"
+      >
+        <ThemedText className="text-lg text-center">Sign in</ThemedText>
       </TouchableOpacity>
 
     </ThemedView >

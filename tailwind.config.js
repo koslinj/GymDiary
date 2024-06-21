@@ -10,9 +10,10 @@ module.exports = {
       colors: {
         primary: "#161622",
         secondary: {
-          DEFAULT: "#FF9C01",
-          100: "#FF9001",
-          200: "#FF8E01",
+          400: "#ffbf1b",
+          500: "#ff9c01",
+          600: "#e27400",
+          700: "#bb4f02"
         },
         black: {
           DEFAULT: "#000",

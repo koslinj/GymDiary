@@ -76,7 +76,7 @@ const SignUp = () => {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
           <ThemedView style={styles.safeArea} className="p-8 flex-grow justify-center">
-            <ThemedText className="mt-2 py-2 text-5xl font-poppinsBold text-center">RunDiary</ThemedText>
+            <ThemedText className="mt-2 py-2 text-5xl font-poppinsBold text-center">GymDiary</ThemedText>
             <ThemedText className="py-2 text-3xl font-poppinsBold text-center">Join Us!</ThemedText>
 
             <AuthTextInput

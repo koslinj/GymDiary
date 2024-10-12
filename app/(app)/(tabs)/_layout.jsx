@@ -10,9 +10,9 @@ export default function TabLayout() {
   return (
     <Tabs screenOptions={{ headerShown: false }} tabBar={props => <TabBar {...props} />}>
       <Tabs.Screen
-        name="startRun"
+        name="start"
         options={{
-          title: "Start Run"
+          title: "Start"
         }}
       />
       <Tabs.Screen

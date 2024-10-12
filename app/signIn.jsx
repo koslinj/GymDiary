@@ -36,7 +36,7 @@ const SignIn = () => {
           <ThemedText
             className='mt-2 py-2 text-5xl font-poppinsBold text-center '
           >
-            RunDiary
+            GymDiary
           </ThemedText>
           <ThemedText
             className='py-2 text-3xl font-poppinsBold text-center'

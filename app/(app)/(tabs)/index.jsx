@@ -3,7 +3,7 @@ import { TouchableOpacity } from 'react-native';
 import { ThemedText, ThemedView } from '../../../components/ThemedComponents';
 import { useRouter } from 'expo-router';
 import { useGlobalStyles } from '@/hooks/useGlobalStyles';
-import { FontAwesome5, Ionicons } from '@expo/vector-icons';
+import { FontAwesome, FontAwesome5, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useColor } from '@/hooks/useColor';
 
 export default function HomeScreen() {
@@ -41,26 +41,14 @@ export default function HomeScreen() {
         </ThemedView>
       </ThemedView>
 
-      <ThemedView className="flex-row -mt-2">
-        <ThemedView className="flex-1 aspect-square pl-4 pr-2 pb-6">
-          <TouchableOpacity
-            onPress={() => { router.push("add"); }}
-            className="bg-slate-200 dark:bg-slate-700 flex-1 rounded-xl justify-center items-center"
-          >
-            <FontAwesome5 name="plus" size={70} color={iconColor} />
-            <ThemedText className="text-xl absolute bottom-1">Add run</ThemedText>
-          </TouchableOpacity>
-        </ThemedView>
-
-        <ThemedView className="flex-1 aspect-square pl-2 pr-4 pb-6">
-          <TouchableOpacity
-            onPress={() => { router.push("stats"); }}
-            className="bg-slate-200 dark:bg-slate-700 flex-1 rounded-xl justify-center items-center"
-          >
-            <Ionicons name="stats-chart" size={70} color={iconColor} />
-            <ThemedText className="text-xl absolute bottom-1">TODO</ThemedText>
-          </TouchableOpacity>
-        </ThemedView>
+      <ThemedView className="-mt-2 px-4">
+        <TouchableOpacity
+          onPress={() => { router.push("stats"); }}
+          className="bg-slate-200 dark:bg-slate-700 flex-row rounded-xl justify-between items-center p-8"
+        >
+          <MaterialCommunityIcons name="chart-line" size={90} color={iconColor} />
+          <ThemedText className="text-xl flex-1 text-center">Progress</ThemedText>
+        </TouchableOpacity>
       </ThemedView>
 
       <StatusBar style="auto" />

@@ -1,1 +1,1 @@
-type RouteName = "startRun" | "index" | "profile" | "social"
+type RouteName = "start" | "index" | "profile" | "social"

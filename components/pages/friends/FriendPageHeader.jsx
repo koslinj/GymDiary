@@ -11,7 +11,7 @@ export function FriendPageHeader({ id, theme, router }) {
   const { data: friend, isLoading, isError, error } = useQuery(
     {
       queryKey: ['friendInfo', id],
-      queryFn: () => fetchFriendInfo(id),
+      queryFn: () => fetchFriendInfo(parseInt(id)),
       enabled: !!id,
       refetchOnWindowFocus: false
     }

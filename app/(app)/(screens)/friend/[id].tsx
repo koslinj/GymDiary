@@ -11,7 +11,7 @@ export default function FriendDetail() {
   const { data: friend, isLoading, isError, error } = useQuery<FriendDetails>(
     {
       queryKey: ['friendInfo', id],
-      queryFn: () => fetchFriendInfo(id as string),
+      queryFn: () => fetchFriendInfo(parseInt(id as string)),
       enabled: !!id,
       refetchOnWindowFocus: false
     }

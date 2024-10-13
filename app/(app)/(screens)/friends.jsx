@@ -31,6 +31,11 @@ export default function Friends() {
 
   return (
     <ThemedView className="flex-1 px-1">
+
+      <TouchableOpacity className='bg-slate-200 dark:bg-slate-700 p-4 my-4 rounded-xl' onPress={() => {router.push('/(app)/(screens)/inviteUser')}}>
+        <ThemedText className='text-2xl text-center'>Invite users</ThemedText>
+      </TouchableOpacity>
+
       <ScrollView
         contentContainerStyle={{ flexGrow: 1 }}
         refreshControl={
@@ -46,7 +51,7 @@ export default function Friends() {
             <>
               <ThemedText className='text-2xl text-center mt-4'>You don't have any friends.</ThemedText>
               <TouchableOpacity
-                onPress={() => router.push('addFriends')}
+                onPress={() => router.push('/(app)/(screens)/inviteUser')}
               >
                 <ThemedText className='text-2xl text-center mt-4 font-poppinsBold underline'>You can add some here</ThemedText>
               </TouchableOpacity>

@@ -1,5 +1,6 @@
 {
   "expo": {
+    "backgroundColor": "#0F172A",
     "name": "GymDiary",
     "slug": "gymdiary",
     "version": "1.0.0",
@@ -10,7 +11,7 @@
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#000000"
+      "backgroundColor": "#0F172A"
     },
     "ios": {
       "supportsTablet": true
@@ -18,7 +19,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#000000"
+        "backgroundColor": "#0F172A"
       },
       "package": "com.koslinj.gymdiary",
       "config": {

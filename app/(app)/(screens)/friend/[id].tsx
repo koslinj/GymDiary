@@ -1,12 +1,18 @@
-import { fetchFriendInfo } from '@/api/friends';
+import { fetchFriendInfo, removeFriend } from '@/api/friends';
 import { FriendPageGeneralInfo } from '@/components/pages/friends/FriendPageGeneralInfo';
 import { ThemedText, ThemedView } from '@/components/ThemedComponents';
 import { useQuery } from '@tanstack/react-query';
-import { useLocalSearchParams } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { ActivityIndicator, ScrollView, TouchableOpacity, View } from 'react-native';
 
 export default function FriendDetail() {
+  const router = useRouter()
   const { id } = useLocalSearchParams();
+
+  const handleRemoveFriend = async () => {
+    await removeFriend(parseInt(id as string));
+    router.back()
+  };
 
   const { data: friend, isLoading, isError, error } = useQuery<FriendDetails>(
     {
@@ -41,6 +47,12 @@ export default function FriendDetail() {
           <ThemedText className='text-center font-poppinsBold text-5xl leading-[70px] -mb-4'>VS</ThemedText>
 
         </View>
+        <TouchableOpacity
+          onPress={handleRemoveFriend}
+          className="m-4 bg-red-500 rounded-xl p-3 justify-center items-center"
+        >
+          <ThemedText className="text-lg">Remove Friend</ThemedText>
+        </TouchableOpacity>
       </ScrollView>
     </ThemedView>
   );

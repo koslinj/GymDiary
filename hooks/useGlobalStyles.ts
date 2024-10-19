@@ -9,7 +9,7 @@ export const useGlobalStyles = () => {
       paddingTop: insets.top,
     },
     safeTabBar: {
-      paddingBottom: 50
+      paddingBottom: 74
     }
   });
 };

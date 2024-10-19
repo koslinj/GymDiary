@@ -21,8 +21,8 @@ export const MyPicker = ({ openModal, setOpenModal, title, options, setOption })
           <View className="w-[90%] p-4 rounded-lg bg-white dark:bg-slate-700">
             <ThemedText className='text-3xl font-poppinsBold text-center'>{title}</ThemedText>
             {options.map(it => (
-              <TouchableOpacity onPress={() => handlePressOption(it)} className="bg-slate-800 p-2 mt-4 rounded-md" key={it.run_category_id}>
-                <ThemedText className='text-xl'>{it.category_name}</ThemedText>
+              <TouchableOpacity onPress={() => handlePressOption(it)} className="bg-slate-800 p-2 mt-4 rounded-md" key={it}>
+                <ThemedText className='text-xl'>{it}</ThemedText>
               </TouchableOpacity>
             ))}
             <View className="flex-row justify-between mt-6">

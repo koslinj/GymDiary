@@ -27,11 +27,11 @@ export const ExerciseIcon: FC<Props> = ({ exercise }) => {
   const iconPath = icons[exercise.photo_exercise];
 
   return (
-    <ThemedView>
+    <ThemedView className='rounded-full overflow-hidden w-16 h-16'>
       <Image
-        src={iconPath}
+      className='w-full h-full'
+        source={iconPath}
         alt={`${exercise.name_exercise} icon`}
-        height={70} width={70}
       />
     </ThemedView>
   );

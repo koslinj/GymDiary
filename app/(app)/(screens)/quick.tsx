@@ -47,7 +47,7 @@ export default function Quick() {
 
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         {exercises.map(item => (
-          <ThemedView className="flex flex-row items-center space-x-4 mt-2">
+          <ThemedView key={item.gym_exercise_id} className="flex flex-row items-center space-x-4 mt-2">
             <ExerciseIcon exercise={item} />
             <ThemedText className="break-words text-xl flex-shrink">
               {item.name_exercise}

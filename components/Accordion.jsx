@@ -6,8 +6,9 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import { useGlobalStyles } from '@/hooks/useGlobalStyles'
 import { ThemedText, ThemedView } from './ThemedComponents';
+import { Feather } from '@expo/vector-icons';
+import { useBlackOrWhite } from '@/hooks/useBlackOrWhite';
 
 export function AccordionItem({
   isExpanded,
@@ -42,7 +43,6 @@ export function AccordionItem({
 }
 
 export function Accordion({ accordionData }) {
-  const styles = useGlobalStyles()
   const openState = accordionData.map(() => useSharedValue(false))
 
   const toggleAccordion = (index) => {
@@ -53,8 +53,9 @@ export function Accordion({ accordionData }) {
     <ThemedView className='space-y-3 bg-slate-200 dark:bg-slate-700'>
       {accordionData.map((item, index) => (
         <ThemedView className='bg-slate-200 dark:bg-slate-700' key={index}>
-          <TouchableOpacity onPress={() => toggleAccordion(index)}>
+          <TouchableOpacity className='flex-row items-center justify-between' onPress={() => toggleAccordion(index)}>
             {item.title}
+            <ChevronIcon isExpanded={openState[index]} />
           </TouchableOpacity>
           <AccordionItem isExpanded={openState[index]} viewKey={`Accordion-${index}`}>
             {item.content.map((text, idx) => (
@@ -65,8 +66,24 @@ export function Accordion({ accordionData }) {
       ))}
     </ThemedView>
   )
-
 }
+
+const ChevronIcon = ({ isExpanded }) => {
+  const iconColor = useBlackOrWhite()
+  const rotate = useDerivedValue(() =>
+    withTiming(isExpanded.value ? 180 : 0, { duration: 300 })
+  );
+
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [{ rotate: `${rotate.value}deg` }],
+  }));
+
+  return (
+    <Animated.View style={animatedStyle}>
+      <Feather name="chevron-down" size={40} color={iconColor} />
+    </Animated.View>
+  );
+};
 
 const styles = StyleSheet.create({
   wrapper: {

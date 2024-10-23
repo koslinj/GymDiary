@@ -3,7 +3,6 @@ import { ThemedText, ThemedView } from "@/components/ThemedComponents";
 import { ActivityIndicator, ScrollView, TouchableOpacity, Button } from 'react-native';
 import { fetchExercises } from '@/api/exercises';
 import { useQuery } from '@tanstack/react-query';
-import { ExerciseIcon } from '@/components/ExerciseIcon';
 import { CategorySelect } from "@/components/pages/quick/CategorySelect";
 import { AntDesign } from "@expo/vector-icons";
 import { useBlackOrWhite } from "@/hooks/useBlackOrWhite";

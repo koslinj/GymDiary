@@ -31,6 +31,7 @@ export const Colors = {
   slate900: "#0F172A",
   red400: "rgb(248 113 113)",
   red500: "rgb(239 68 68)",
+  red600: "rgb(220 38 38)",
   red700: "rgb(185 28 28)",
   green600: "rgb(22 163 74)",
   cyan600: "rgb(8 145 178)",

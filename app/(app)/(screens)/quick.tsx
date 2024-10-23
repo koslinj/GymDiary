@@ -8,6 +8,7 @@ import { CategorySelect } from "@/components/pages/quick/CategorySelect";
 import { AntDesign } from "@expo/vector-icons";
 import { useBlackOrWhite } from "@/hooks/useBlackOrWhite";
 import { useRouter } from 'expo-router';
+import { ExerciseItem } from '@/components/pages/quick/ExerciseItem';
 
 export default function Quick() {
   const iconColor = useBlackOrWhite();
@@ -74,21 +75,11 @@ export default function Quick() {
 
         <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
           {exercises.map((item) => (
-            <TouchableOpacity
-              key={item.gym_exercise_id}
-              onPress={() => toggleSelectExercise(item.name_exercise)}
-              className={`flex flex-row items-center space-x-4 mt-2 ${selectedExercises.includes(item.name_exercise) ? 'bg-gray-300' : ''
-                }`}>
-              <ExerciseIcon exercise={item} />
-              <ThemedText className="break-words text-xl flex-shrink">
-                {item.name_exercise}
-              </ThemedText>
-            </TouchableOpacity>
+            <ExerciseItem key={item.gym_exercise_id} exercise={item} toggleSelectExercise={toggleSelectExercise} selected={selectedExercises.includes(item.name_exercise)} />
           ))}
         </ScrollView>
-
       </ThemedView>
-      
+
       <TouchableOpacity className='bg-slate-300 dark:bg-slate-800' disabled={selectedExercises.length === 0} onPress={goToNextPage}>
         <ThemedText className={`text-2xl p-4 font-poppinsBold text-center ${selectedExercises.length === 0 && 'opacity-30'}`}>Next</ThemedText>
       </TouchableOpacity>

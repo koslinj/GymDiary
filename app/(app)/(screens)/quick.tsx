@@ -36,7 +36,7 @@ export default function Quick() {
   const goToNextPage = () => {
     const serializedExercises = JSON.stringify(selectedExercises);
     router.push({
-      pathname: '/(app)/(screens)/series',
+      pathname: '/(app)/(screens)/sets',
       params: { selectedExercises: serializedExercises },
     });
   };

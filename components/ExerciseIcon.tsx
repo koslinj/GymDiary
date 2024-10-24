@@ -27,7 +27,7 @@ export const ExerciseIcon: FC<Props> = ({ exercise }) => {
   const iconPath = icons[exercise.photo_exercise];
 
   return (
-    <ThemedView className='rounded-full overflow-hidden w-16 h-16'>
+    <ThemedView className='rounded-full overflow-hidden w-16 h-16 border-2 dark:border-white'>
       <Image
       className='w-full h-full'
         source={iconPath}

@@ -1,16 +1,21 @@
 import { ThemedView } from "@/components/ThemedComponents";
 import { useSets } from "@/hooks/useSets";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { SetInput } from "./SetInput";
 import { AddRemoveSets } from "./AddRemoveSets";
 
 export const SetScene: FC<{ routeKey: string }> = ({ routeKey }) => {
-  const { setsData, handleUpdateSet } = useSets();
-
+  const { setsData, handleUpdateSet, handleAddSet } = useSets();
   const numberOfSets = setsData[routeKey]?.length || 0;
 
+  useEffect(() => {
+    handleAddSet(routeKey)
+    handleAddSet(routeKey)
+    handleAddSet(routeKey)
+  }, [])
+
   return (
-    <ThemedView className="p-4">
+    <ThemedView className="p-2">
       {Array.from({ length: numberOfSets }).map((_, setIndex) => (
         <SetInput
           key={setIndex}

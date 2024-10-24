@@ -1,4 +1,3 @@
-// SetsContext.tsx
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 interface SetData {
@@ -7,7 +6,6 @@ interface SetData {
 }
 
 interface SetsContextType {
-  numberOfSets: { [key: string]: number };
   setsData: { [key: string]: SetData[] };
   handleAddSet: (routeKey: string) => void;
   handleRemoveSet: (routeKey: string) => void;
@@ -17,14 +15,9 @@ interface SetsContextType {
 const SetsContext = createContext<SetsContextType | undefined>(undefined);
 
 export const SetsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [numberOfSets, setNumberOfSets] = useState<{ [key: string]: number }>({});
   const [setsData, setSetsData] = useState<{ [key: string]: SetData[] }>({});
 
   const handleAddSet = (routeKey: string) => {
-    setNumberOfSets((prev) => ({
-      ...prev,
-      [routeKey]: (prev[routeKey] || 0) + 1,
-    }));
     setSetsData((prev) => ({
       ...prev,
       [routeKey]: [...(prev[routeKey] || []), { reps: '', weight: '' }],
@@ -32,10 +25,6 @@ export const SetsProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   };
 
   const handleRemoveSet = (routeKey: string) => {
-    setNumberOfSets((prev) => ({
-      ...prev,
-      [routeKey]: Math.max((prev[routeKey] || 1) - 1, 0),
-    }));
     setSetsData((prev) => ({
       ...prev,
       [routeKey]: (prev[routeKey] || []).slice(0, -1),
@@ -54,7 +43,7 @@ export const SetsProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   };
 
   return (
-    <SetsContext.Provider value={{ numberOfSets, setsData, handleAddSet, handleRemoveSet, handleUpdateSet }}>
+    <SetsContext.Provider value={{ setsData, handleAddSet, handleRemoveSet, handleUpdateSet }}>
       {children}
     </SetsContext.Provider>
   );

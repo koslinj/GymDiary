@@ -5,11 +5,13 @@ import { SetInput } from "./SetInput";
 import { AddRemoveSets } from "./AddRemoveSets";
 
 export const SetScene: FC<{ routeKey: string }> = ({ routeKey }) => {
-  const { numberOfSets, setsData, handleAddSet, handleRemoveSet, handleUpdateSet } = useSets();
+  const { setsData, handleUpdateSet } = useSets();
+
+  const numberOfSets = setsData[routeKey]?.length || 0;
 
   return (
     <ThemedView className="p-4">
-      {Array.from({ length: numberOfSets[routeKey] || 0 }).map((_, setIndex) => (
+      {Array.from({ length: numberOfSets }).map((_, setIndex) => (
         <SetInput
           key={setIndex}
           reps={setsData[routeKey]?.[setIndex]?.reps || ''}
@@ -19,11 +21,9 @@ export const SetScene: FC<{ routeKey: string }> = ({ routeKey }) => {
         />
       ))}
       <AddRemoveSets
-        length={numberOfSets[routeKey] || 0}
+        length={numberOfSets}
         routeKey={routeKey}
-        addSet={() => handleAddSet(routeKey)}
-        removeSet={() => handleRemoveSet(routeKey)}
       />
     </ThemedView>
   );
-}
+};

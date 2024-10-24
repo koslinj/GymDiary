@@ -11,7 +11,7 @@ export default function Sets() {
   ));
 
   return (
-    <SetsProvider exercises={parsedExercises}>
+    <SetsProvider>
       <SetsContainer routes={routes} />
     </SetsProvider>
   );

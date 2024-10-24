@@ -1,54 +1,60 @@
-import React, { createContext, useContext, useState } from 'react';
+// SetsContext.tsx
+import React, { createContext, useContext, useState, ReactNode } from 'react';
 
-interface Set {
+interface SetData {
   reps: string;
   weight: string;
 }
 
 interface SetsContextType {
-  sets: { [key: string]: Set[] };
-  addSet: (exercise: string) => void;
-  removeSet: (exercise: string) => void;
-  updateSet: (exercise: string, index: number, field: 'reps' | 'weight', value: string) => void;
+  numberOfSets: { [key: string]: number };
+  setsData: { [key: string]: SetData[] };
+  handleAddSet: (routeKey: string) => void;
+  handleRemoveSet: (routeKey: string) => void;
+  handleUpdateSet: (routeKey: string, setIndex: number, field: 'reps' | 'weight', value: string) => void;
 }
 
 const SetsContext = createContext<SetsContextType | undefined>(undefined);
 
-export const SetsProvider: React.FC<{ children: React.ReactNode; exercises: string[] }> = ({ children, exercises }) => {
-  const [sets, setSets] = useState<{ [key: string]: Set[] }>(
-    exercises.reduce((acc, name) => {
-      acc[name] = [{ reps: '', weight: '' }];
-      return acc;
-    }, {} as { [key: string]: Set[] })
-  );
+export const SetsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const [numberOfSets, setNumberOfSets] = useState<{ [key: string]: number }>({});
+  const [setsData, setSetsData] = useState<{ [key: string]: SetData[] }>({});
 
-  const addSet = (exercise: string) => {
-    setSets(prevSets => ({
-      ...prevSets,
-      [exercise]: [...prevSets[exercise], { reps: '', weight: '' }],
+  const handleAddSet = (routeKey: string) => {
+    setNumberOfSets((prev) => ({
+      ...prev,
+      [routeKey]: (prev[routeKey] || 0) + 1,
+    }));
+    setSetsData((prev) => ({
+      ...prev,
+      [routeKey]: [...(prev[routeKey] || []), { reps: '', weight: '' }],
     }));
   };
 
-  const removeSet = (exercise: string) => {
-    setSets(prevSets => ({
-      ...prevSets,
-      [exercise]: prevSets[exercise].slice(0, -1),
+  const handleRemoveSet = (routeKey: string) => {
+    setNumberOfSets((prev) => ({
+      ...prev,
+      [routeKey]: Math.max((prev[routeKey] || 1) - 1, 0),
+    }));
+    setSetsData((prev) => ({
+      ...prev,
+      [routeKey]: (prev[routeKey] || []).slice(0, -1),
     }));
   };
 
-  const updateSet = (exercise: string, index: number, field: 'reps' | 'weight', value: string) => {
-    setSets(prevSets => {
-      const updatedSets = [...prevSets[exercise]];
-      updatedSets[index][field] = value;
+  const handleUpdateSet = (routeKey: string, setIndex: number, field: 'reps' | 'weight', value: string) => {
+    setSetsData((prev) => {
+      const updatedSets = [...(prev[routeKey] || [])];
+      updatedSets[setIndex] = { ...updatedSets[setIndex], [field]: value };
       return {
-        ...prevSets,
-        [exercise]: updatedSets,
+        ...prev,
+        [routeKey]: updatedSets,
       };
     });
   };
 
   return (
-    <SetsContext.Provider value={{ sets, addSet, removeSet, updateSet }}>
+    <SetsContext.Provider value={{ numberOfSets, setsData, handleAddSet, handleRemoveSet, handleUpdateSet }}>
       {children}
     </SetsContext.Provider>
   );
@@ -57,7 +63,7 @@ export const SetsProvider: React.FC<{ children: React.ReactNode; exercises: stri
 export const useSets = () => {
   const context = useContext(SetsContext);
   if (!context) {
-    throw new Error('useSets must be used within an SetsProvider');
+    throw new Error('useSets must be used within a SetsProvider');
   }
   return context;
 };

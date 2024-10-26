@@ -80,6 +80,46 @@ export default function Profile() {
             Records
           </ThemedText>
         </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => { router.push("achievements") }}
+          className='bg-slate-200 dark:bg-slate-700 p-4 rounded-lg'
+        >
+          <ThemedText className='text-2xl text-center'>
+            Achievements
+          </ThemedText>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => { router.push("goals") }}
+          className='bg-slate-200 dark:bg-slate-700 p-4 rounded-lg'
+        >
+          <ThemedText className='text-2xl text-center'>
+            Goals
+          </ThemedText>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => { router.push("history") }}
+          className='bg-slate-200 dark:bg-slate-700 p-4 rounded-lg'
+        >
+          <ThemedText className='text-2xl text-center'>
+            History
+          </ThemedText>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => { router.push("stats") }}
+          className='bg-slate-200 dark:bg-slate-700 p-4 rounded-lg'
+        >
+          <ThemedText className='text-2xl text-center'>
+            Stats
+          </ThemedText>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => { router.push("settings") }}
+          className='bg-slate-200 dark:bg-slate-700 p-4 rounded-lg'
+        >
+          <ThemedText className='text-2xl text-center'>
+            Settings
+          </ThemedText>
+        </TouchableOpacity>
       </View>
     </ThemedView>
   );

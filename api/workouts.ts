@@ -9,6 +9,16 @@ export const fetchWorkouts = async (currentPage: number) => {
   return response.data.workouts;
 };
 
+export const fetchWorkoutsInfinite = async ({ pageParam = 1 }) => {
+  const response = await axios.get("/gym/workout/all/pageable", {
+    params: {
+      page: pageParam,
+    },
+  });
+
+  return response.data;
+};
+
 export const fetchWorkoutDetails = async (workoutId: number) => {
   const response = await axios.get(`/gym/workout/${workoutId}`)
   return response.data.workout;

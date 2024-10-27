@@ -15,7 +15,7 @@ export default function Start() {
 
   const { data: workouts, isLoading, isError, error } = useQuery<GymWorkoutSummary[]>(
     {
-      queryKey: ['workouts'],
+      queryKey: ['lastWorkout'],
       queryFn: () => fetchWorkouts(1),
       refetchOnWindowFocus: false
     }
@@ -44,7 +44,7 @@ export default function Start() {
   return (
     <ThemedView className='flex-1' style={[styles.safeArea, styles.safeTabBar]}>
       <ThemedView className='flex-1'>
-        <HistoryCard workout={latest} />
+        <HistoryCard workout={latest} isStartPage={true} />
       </ThemedView>
 
       <ThemedView className='flex-row mb-4 pt-4 border-t-2 dark:border-white justify-center'>

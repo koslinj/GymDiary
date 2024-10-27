@@ -10,9 +10,10 @@ import { DataPart } from "./post/DataPart";
 interface Props {
   post: Post
   isDetailsPage?: boolean
+  openComments: (post: Post) => void
 }
 
-export const Post: FC<Props> = ({ post, isDetailsPage = false }) => {
+export const Post: FC<Props> = ({ post, isDetailsPage = false, openComments }) => {
 
   const formattedDate = new Date(post.creation_time).toLocaleString('en-GB', {
     dateStyle: 'long',
@@ -21,7 +22,7 @@ export const Post: FC<Props> = ({ post, isDetailsPage = false }) => {
   const formattedTime = new Date(post.creation_time).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })
 
   return isDetailsPage ? (
-    <ThemedView className="bg-transparent rounded-xl p-2">
+    <ThemedView className="bg-transparent rounded-xl p-3">
       <View className="flex-row justify-center space-x-3">
         <ThemedText className="text-lg">{formattedDate}</ThemedText>
         <ThemedText className="text-lg opacity-60 text-center">{formattedTime}</ThemedText>
@@ -34,7 +35,7 @@ export const Post: FC<Props> = ({ post, isDetailsPage = false }) => {
       <RatingPart rating={post.workout.rating} />
     </ThemedView>
   ) : (
-    <ThemedView className="bg-slate-200 dark:bg-slate-700 rounded-xl p-2 mb-5">
+    <ThemedView className="bg-slate-200 dark:bg-slate-700 rounded-xl p-3 mb-5">
       <LinkPart post={post} />
       <View className="flex-row justify-center space-x-3">
         <ThemedText className="text-lg">{formattedDate}</ThemedText>
@@ -46,7 +47,7 @@ export const Post: FC<Props> = ({ post, isDetailsPage = false }) => {
       </View>
       <DataPart post={post} />
       <RatingPart rating={post.workout.rating} />
-      <IconsPart post={post} />
+      <IconsPart openComments={openComments} post={post} />
     </ThemedView>
   )
 };

@@ -4,8 +4,13 @@ import { getAllPosts } from '@/api/social';
 import { ThemedText, ThemedView } from '@/components/ThemedComponents';
 import { Post } from './Post';
 import { useGlobalStyles } from '@/hooks/useGlobalStyles';
+import { FC } from 'react';
 
-export const SocialPaginatedList = () => {
+interface Props {
+  openComments: (post: Post) => void
+}
+
+export const SocialPaginatedList: FC<Props> = ({ openComments }) => {
   const styles = useGlobalStyles()
 
   const { data: posts, isLoading, isError, error } = useQuery<Post[]>({
@@ -37,7 +42,7 @@ export const SocialPaginatedList = () => {
       contentContainerStyle={styles.safeTabBar}
       data={gymPosts}
       renderItem={({ item }) => (
-        <Post key={item.post_id} post={item} />
+        <Post key={item.post_id} post={item} openComments={openComments} />
       )}
       keyExtractor={(item) => item.post_id.toString()}
       ListFooterComponent={isLoading ? <ActivityIndicator size={'large'} /> : null}

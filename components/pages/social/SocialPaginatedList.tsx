@@ -1,41 +1,41 @@
-import { FlatList, ActivityIndicator, } from 'react-native';
-import { useQuery } from '@tanstack/react-query';
-import { getAllPosts } from '@/api/social';
-import { ThemedText, ThemedView } from '@/components/ThemedComponents';
+import { FlatList, ActivityIndicator } from 'react-native';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import { getAllPostsInfinite } from '@/api/social';
 import { Post } from './Post';
 import { useGlobalStyles } from '@/hooks/useGlobalStyles';
 import { FC } from 'react';
 
 interface Props {
-  openComments: (post: Post) => void
+  openComments: (post: Post) => void;
 }
 
 export const SocialPaginatedList: FC<Props> = ({ openComments }) => {
-  const styles = useGlobalStyles()
+  const styles = useGlobalStyles();
 
-  const { data: posts, isLoading, isError, error } = useQuery<Post[]>({
+  const {
+    data,
+    isLoading,
+    isFetchingNextPage,
+    hasNextPage,
+    fetchNextPage,
+  } = useInfiniteQuery({
+    initialPageParam: 1,
     queryKey: ['posts'],
-    queryFn: getAllPosts,
-    refetchOnWindowFocus: false
+    queryFn: getAllPostsInfinite,
+    getNextPageParam: (lastPage, allPages) => {
+      return lastPage.hasMore ? allPages.length + 1 : undefined;
+    },
   });
 
-  if (isLoading) {
-    return (
-      <ThemedView className='flex-1 justify-center items-center'>
-        <ActivityIndicator size="large" />
-      </ThemedView>
-    )
-  }
+  const handleLoadMore = () => {
+    if (hasNextPage && !isFetchingNextPage) {
+      fetchNextPage();
+    }
+  };
 
-  if (isError) {
-    return <ThemedText>Error fetching posts: {error.message}</ThemedText>
-  }
-
-  if (!posts) {
-    return <ThemedText>Error fetching posts</ThemedText>
-  }
-
-  const gymPosts = posts.filter((item) => item.type === 'gym')
+  const gymPosts = data?.pages.flatMap((page) => 
+    page.posts.filter((item: any) => item.type === 'gym')
+  );
 
   return (
     <FlatList
@@ -45,7 +45,9 @@ export const SocialPaginatedList: FC<Props> = ({ openComments }) => {
         <Post key={item.post_id} post={item} openComments={openComments} />
       )}
       keyExtractor={(item) => item.post_id.toString()}
-      ListFooterComponent={isLoading ? <ActivityIndicator size={'large'} /> : null}
+      onEndReached={handleLoadMore}
+      onEndReachedThreshold={0}
+      ListFooterComponent={(isLoading || isFetchingNextPage) ? <ActivityIndicator size="large" /> : null}
     />
   );
 };

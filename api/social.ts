@@ -1,7 +1,11 @@
 import axios from "@/config/axiosConfig";
 
-export const getAllPosts = async () => {
-  const response = await axios.get("/shared/post/getAll");
+export const getAllPostsInfinite = async ({ pageParam = 1 }) => {
+  const response = await axios.get("/shared/post/getAll", {
+    params: {
+      page: pageParam,
+    },
+  });
   return response.data
 };
 

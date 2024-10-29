@@ -1,4 +1,4 @@
-import { HistoryPaginatedList } from '@/components/HistoryPaginatedList';
+import { HistoryPaginatedList } from '@/components/pages/history/HistoryPaginatedList';
 import { ThemedView } from '../../../components/ThemedComponents';
 
 export default function History() {

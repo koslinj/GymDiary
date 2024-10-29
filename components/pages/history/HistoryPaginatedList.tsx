@@ -1,5 +1,5 @@
 import { FlatList, ActivityIndicator, TouchableOpacity } from 'react-native';
-import { HistoryCard } from './pages/history/HistoryCard';
+import { HistoryCard } from './HistoryCard';
 import { useRouter } from 'expo-router';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { fetchWorkouts, fetchWorkoutsInfinite } from '@/api/workouts';

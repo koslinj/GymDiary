@@ -6,7 +6,7 @@ import { ActivityIndicator, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
 import { fetchWorkouts } from '@/api/workouts';
 import { useQuery } from '@tanstack/react-query';
-import { HistoryCard } from '@/components/pages/history/HistoryCard';
+import { SimpleHistoryCard } from '@/components/pages/history/SimpleHistoryCard';
 
 export default function Start() {
   const router = useRouter()
@@ -44,7 +44,7 @@ export default function Start() {
   return (
     <ThemedView className='flex-1' style={[styles.safeArea, styles.safeTabBar]}>
       <ThemedView className='flex-1'>
-        <HistoryCard workout={latest} isStartPage={true} />
+        <SimpleHistoryCard workout={latest} isStartPage={true} />
       </ThemedView>
 
       <ThemedView className='flex-row mb-4 pt-4 border-t-2 dark:border-white justify-center'>

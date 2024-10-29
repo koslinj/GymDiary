@@ -8,7 +8,7 @@ interface Props {
   isStartPage?: boolean
 }
 
-export const HistoryCard: FC<Props> = ({ workout, isStartPage = false }) => {
+export const SimpleHistoryCard: FC<Props> = ({ workout, isStartPage = false }) => {
   const formattedDate = new Date(workout.date).toLocaleString('en-GB', {
     dateStyle: 'long',
     timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone

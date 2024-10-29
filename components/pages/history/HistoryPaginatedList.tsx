@@ -1,8 +1,8 @@
 import { FlatList, ActivityIndicator, TouchableOpacity } from 'react-native';
-import { SimpleHistoryCard } from './SimpleHistoryCard';
 import { useRouter } from 'expo-router';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { fetchWorkouts, fetchWorkoutsInfinite } from '@/api/workouts';
+import { HistoryCard } from './HistoryCard';
 
 export const HistoryPaginatedList = () => {
   const router = useRouter();
@@ -33,7 +33,7 @@ export const HistoryPaginatedList = () => {
       contentContainerStyle={{ paddingBottom: 40 }}
       data={data?.pages.flatMap((page) => page.workouts)}
       renderItem={({ item }) => (
-        <SimpleHistoryCard key={item.workoutId} workout={item} />
+        <HistoryCard key={item.workoutId} workout={item} />
       )}
       keyExtractor={(item) => item.workoutId.toString()}
       onEndReached={handleLoadMore}

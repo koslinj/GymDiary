@@ -1,6 +1,6 @@
 import { ThemedText, ThemedView } from "@/components/ThemedComponents"
 import { FC } from "react"
-import { WorkoutDetails } from "./WorkoutDetails";
+import { WorkoutDataAccordion } from "./WorkoutDataAccordion";
 import { ScrollView } from "react-native";
 
 interface Props {
@@ -23,7 +23,7 @@ export const SimpleHistoryCard: FC<Props> = ({ workout, isStartPage = false }) =
       </ThemedView>
       <ScrollView>
         <ThemedView className="bg-slate-200 dark:bg-slate-700 m-3 mt-0 p-3 rounded-xl">
-          <WorkoutDetails workoutId={workout.workoutId} />
+          <WorkoutDataAccordion workoutId={workout.workoutId} />
         </ThemedView>
       </ScrollView>
     </ThemedView>

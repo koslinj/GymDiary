@@ -25,7 +25,10 @@ type GymWorkout = {
   duration: string
   date: string
   note: string
+  planName: string
   rating: number
+  totalSets: number
+  totalVolume: number
   workoutData: GymWorkoutDetail[]
 }
 

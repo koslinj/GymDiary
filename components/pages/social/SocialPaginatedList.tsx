@@ -4,6 +4,7 @@ import { getAllPostsInfinite } from '@/api/social';
 import { Post } from './Post';
 import { useGlobalStyles } from '@/hooks/useGlobalStyles';
 import { FC } from 'react';
+import { ThemedView } from '@/components/ThemedComponents';
 
 interface Props {
   openComments: (post: Post) => void;
@@ -26,6 +27,14 @@ export const SocialPaginatedList: FC<Props> = ({ openComments }) => {
       return lastPage.hasMore ? allPages.length + 1 : undefined;
     },
   });
+
+  if (isLoading) {
+    return (
+      <ThemedView className="flex-1 justify-center items-center">
+        <ActivityIndicator size="large" />
+      </ThemedView>
+    );
+  }
 
   const handleLoadMore = () => {
     if (hasNextPage && !isFetchingNextPage) {

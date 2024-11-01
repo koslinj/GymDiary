@@ -1,9 +1,9 @@
-import { FlatList, ActivityIndicator } from 'react-native';
+import React, { FC, useState, useCallback } from 'react';
+import { FlatList, ActivityIndicator, RefreshControl } from 'react-native';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { getAllPostsInfinite } from '@/api/social';
 import { Post } from './Post';
 import { useGlobalStyles } from '@/hooks/useGlobalStyles';
-import { FC } from 'react';
 import { ThemedView } from '@/components/ThemedComponents';
 
 interface Props {
@@ -12,6 +12,7 @@ interface Props {
 
 export const SocialPaginatedList: FC<Props> = ({ openComments }) => {
   const styles = useGlobalStyles();
+  const [refreshing, setRefreshing] = useState(false);
 
   const {
     data,
@@ -19,6 +20,7 @@ export const SocialPaginatedList: FC<Props> = ({ openComments }) => {
     isFetchingNextPage,
     hasNextPage,
     fetchNextPage,
+    refetch,
   } = useInfiniteQuery({
     initialPageParam: 1,
     queryKey: ['posts'],
@@ -27,6 +29,12 @@ export const SocialPaginatedList: FC<Props> = ({ openComments }) => {
       return lastPage.hasMore ? allPages.length + 1 : undefined;
     },
   });
+
+  const handleRefresh = useCallback(async () => {
+    setRefreshing(true);
+    await refetch();
+    setRefreshing(false);
+  }, [refetch]);
 
   if (isLoading) {
     return (
@@ -56,7 +64,13 @@ export const SocialPaginatedList: FC<Props> = ({ openComments }) => {
       keyExtractor={(item) => item.post_id.toString()}
       onEndReached={handleLoadMore}
       onEndReachedThreshold={0}
-      ListFooterComponent={(isLoading || isFetchingNextPage) ? <ActivityIndicator size="large" /> : null}
+      ListFooterComponent={isFetchingNextPage ? <ActivityIndicator size="large" /> : null}
+      refreshControl={
+        <RefreshControl
+          refreshing={refreshing}
+          onRefresh={handleRefresh}
+        />
+      }
     />
   );
 };

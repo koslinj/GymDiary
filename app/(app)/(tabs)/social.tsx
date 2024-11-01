@@ -1,5 +1,5 @@
-import React, { useCallback, useRef, useMemo, useState } from "react";
-import { StyleSheet, View, Text, Button, ActivityIndicator, TouchableOpacity } from "react-native";
+import React, { useCallback, useRef, useState } from "react";
+import { View, ActivityIndicator } from "react-native";
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import BottomSheet, { BottomSheetFlatList } from "@gorhom/bottom-sheet";
 import { SocialPaginatedList } from "@/components/pages/social/SocialPaginatedList";
@@ -11,7 +11,7 @@ import { useColor } from "@/hooks/useColor";
 import { getComments } from "@/api/social";
 import { useQuery } from "@tanstack/react-query";
 import { ProfilePhoto } from "@/components/pages/profile/ProfilePhoto";
-import { FontAwesome5 } from "@expo/vector-icons";
+import { FloatingButton } from "@/components/pages/social/FloatingButton";
 
 export default function Social() {
   const styles = useGlobalStyles()
@@ -51,14 +51,7 @@ export default function Social() {
 
   return (
     <GestureHandlerRootView className="bg-white dark:bg-slate-900 flex-1 px-2" style={styles.safeArea}>
-      <TouchableOpacity
-        style={{ elevation: 3 }}
-        className='bg-secondary-400 dark:bg-secondary-700 absolute bottom-[82px] z-50 right-2 w-16 h-16 rounded-full justify-center items-center aspect-square'
-        onPress={() => { router.push('/(app)/(screens)/addPost') }}
-      >
-        <FontAwesome5 name="plus" size={30} color={borderColor} />
-      </TouchableOpacity>
-
+      <FloatingButton />
       <SocialPaginatedList openComments={openComments} />
 
       <BottomSheet
@@ -68,6 +61,7 @@ export default function Social() {
         enablePanDownToClose={true}
         index={-1}
         backgroundStyle={{ backgroundColor: bgColor }}
+        containerStyle={{ zIndex: 51 }}
         style={{ borderWidth: 2, borderColor: borderColor, borderRadius: 16 }}
         handleIndicatorStyle={{ backgroundColor: borderColor }}
       >

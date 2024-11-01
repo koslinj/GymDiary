@@ -11,6 +11,7 @@ import { useColor } from "@/hooks/useColor";
 import { getComments } from "@/api/social";
 import { useQuery } from "@tanstack/react-query";
 import { ProfilePhoto } from "@/components/pages/profile/ProfilePhoto";
+import { FontAwesome5 } from "@expo/vector-icons";
 
 export default function Social() {
   const styles = useGlobalStyles()
@@ -27,7 +28,6 @@ export default function Social() {
           <ThemedText className="opacity-60">{item.nickname}</ThemedText>
           <ThemedText className="text-lg">{item.description}</ThemedText>
         </View>
-
       </View>
     ),
     []
@@ -51,10 +51,14 @@ export default function Social() {
 
   return (
     <GestureHandlerRootView className="bg-white dark:bg-slate-900 flex-1 px-2" style={styles.safeArea}>
-      <TouchableOpacity className='bg-slate-200 dark:bg-slate-700 p-4 mb-4 rounded-xl' onPress={() => { router.push('/(app)/(screens)/inviteUser') }}>
-        <ThemedText className='text-2xl text-center'>Add post</ThemedText>
+      <TouchableOpacity
+        style={{ elevation: 3 }}
+        className='bg-secondary-400 dark:bg-secondary-700 absolute bottom-[82px] z-50 right-2 w-16 h-16 rounded-full justify-center items-center aspect-square'
+        onPress={() => { router.push('/(app)/(screens)/addPost') }}
+      >
+        <FontAwesome5 name="plus" size={30} color={borderColor} />
       </TouchableOpacity>
-      
+
       <SocialPaginatedList openComments={openComments} />
 
       <BottomSheet

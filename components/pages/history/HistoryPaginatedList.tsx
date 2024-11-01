@@ -33,7 +33,9 @@ export const HistoryPaginatedList = () => {
       contentContainerStyle={{ paddingBottom: 40 }}
       data={data?.pages.flatMap((page) => page.workouts)}
       renderItem={({ item }) => (
-        <HistoryCard key={item.workoutId} workout={item} />
+        <TouchableOpacity key={item.workoutId} onPress={() => router.push(`/workout/${item.workoutId}`)}>
+          <HistoryCard workout={item} />
+        </TouchableOpacity>
       )}
       keyExtractor={(item) => item.workoutId.toString()}
       onEndReached={handleLoadMore}

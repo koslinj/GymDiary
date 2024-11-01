@@ -110,6 +110,18 @@ const AppLayout = () => {
           </ThemedView>
         )
       }} />
+      <Stack.Screen name='(screens)/pending' options={{
+        header: () => (
+          <ThemedView lightClassName='bg-slate-300' darkClassName='bg-slate-800' style={[{ padding: 12 }, styles.safeArea]}>
+            <View>
+              <TouchableOpacity className="absolute z-10" onPress={() => { router.back() }}>
+                <AntDesign color={theme === "light" ? "black" : "white"} name='arrowleft' size={42} />
+              </TouchableOpacity>
+              <ThemedText className='text-3xl text-center font-poppinsBold translate-y-1'>Pending</ThemedText>
+            </View>
+          </ThemedView>
+        )
+      }} />
       <Stack.Screen name='(screens)/addPost' options={{
         header: () => (
           <ThemedView lightClassName='bg-slate-300' darkClassName='bg-slate-800' style={[{ padding: 12 }, styles.safeArea]}>

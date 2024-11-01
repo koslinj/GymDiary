@@ -26,5 +26,15 @@ export const sendInvitation = async (friendId: number) => {
       friend_id: friendId
     }
   );
-  console.log(response.data)
+};
+
+export const fetchPendingInvitations = async () => {
+  const response = await axios.get("/shared/getPendingUsers")
+  return response.data.pendingUsers;
+};
+
+export const acceptInvitation = async (friendId: number) => {
+  const response = await axios.post("/shared/acceptInvitation",
+    { friend_id: friendId }
+  );
 };

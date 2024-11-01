@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { ThemedText, ThemedView } from '../../../components/ThemedComponents';
 import axios from "@/config/axiosConfig"
-import { ActivityIndicator, RefreshControl, ScrollView, TouchableOpacity } from 'react-native';
+import { ActivityIndicator, RefreshControl, ScrollView, TouchableOpacity, View } from 'react-native';
 import { useFocusEffect, useRouter } from 'expo-router';
 import { FriendItem } from '@/components/pages/friends/FriendItem';
 
@@ -34,9 +34,15 @@ export default function Friends() {
   return (
     <ThemedView className="flex-1 px-1">
 
-      <TouchableOpacity className='bg-slate-200 dark:bg-slate-700 p-4 my-4 rounded-xl' onPress={() => { router.push('/(app)/(screens)/inviteUser') }}>
-        <ThemedText className='text-2xl text-center'>Invite users</ThemedText>
-      </TouchableOpacity>
+      <View className='flex-row justify-around items-center flex-wrap space-y-2 py-2'>
+        <TouchableOpacity className='bg-slate-200 dark:bg-slate-700 p-3 rounded-xl w-40' onPress={() => { router.push('/(app)/(screens)/inviteUser') }}>
+          <ThemedText className='text-xl text-center'>Invite</ThemedText>
+        </TouchableOpacity>
+
+        <TouchableOpacity className='bg-slate-200 dark:bg-slate-700 p-3 rounded-xl w-40' onPress={() => { router.push('/(app)/(screens)/pending') }}>
+          <ThemedText className='text-xl text-center'>Pending</ThemedText>
+        </TouchableOpacity>
+      </View>
 
       <ScrollView
         contentContainerStyle={{ flexGrow: 1 }}

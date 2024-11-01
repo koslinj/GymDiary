@@ -1,5 +1,15 @@
 import axios from "@/config/axiosConfig";
 
+export const addPost = async (workoutId: number, desc: string) => {
+  const response = await axios.post("/shared/post",
+    {
+      gym_workout_id: workoutId,
+      run_workout_id: null,
+      description: desc,
+    }
+  );
+};
+
 export const getAllPostsInfinite = async ({ pageParam = 1 }) => {
   const response = await axios.get("/shared/post/getAll", {
     params: {

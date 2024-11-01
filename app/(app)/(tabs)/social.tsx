@@ -1,5 +1,5 @@
 import React, { useCallback, useRef, useMemo, useState } from "react";
-import { StyleSheet, View, Text, Button, ActivityIndicator } from "react-native";
+import { StyleSheet, View, Text, Button, ActivityIndicator, TouchableOpacity } from "react-native";
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import BottomSheet, { BottomSheetFlatList } from "@gorhom/bottom-sheet";
 import { SocialPaginatedList } from "@/components/pages/social/SocialPaginatedList";
@@ -27,7 +27,7 @@ export default function Social() {
           <ThemedText className="opacity-60">{item.nickname}</ThemedText>
           <ThemedText className="text-lg">{item.description}</ThemedText>
         </View>
-        
+
       </View>
     ),
     []
@@ -51,6 +51,10 @@ export default function Social() {
 
   return (
     <GestureHandlerRootView className="bg-white dark:bg-slate-900 flex-1 px-2" style={styles.safeArea}>
+      <TouchableOpacity className='bg-slate-200 dark:bg-slate-700 p-4 mb-4 rounded-xl' onPress={() => { router.push('/(app)/(screens)/inviteUser') }}>
+        <ThemedText className='text-2xl text-center'>Add post</ThemedText>
+      </TouchableOpacity>
+      
       <SocialPaginatedList openComments={openComments} />
 
       <BottomSheet

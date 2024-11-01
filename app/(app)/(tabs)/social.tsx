@@ -12,6 +12,7 @@ import { getComments } from "@/api/social";
 import { useQuery } from "@tanstack/react-query";
 import { ProfilePhoto } from "@/components/pages/profile/ProfilePhoto";
 import { FloatingButton } from "@/components/pages/social/FloatingButton";
+import { CommentInput } from "@/components/pages/social/CommentInput";
 
 export default function Social() {
   const styles = useGlobalStyles()
@@ -19,6 +20,7 @@ export default function Social() {
   const borderColor = useBlackOrWhite()
   const bgColor = useColor(Colors.slate200, Colors.slate800)
   const [currentPost, setCurrentPost] = useState<Post>()
+  const [newComment, setNewComment] = useState("")
 
   const renderItem = useCallback(
     ({ item }: { item: PostComment }) => (
@@ -65,8 +67,10 @@ export default function Social() {
         style={{ borderWidth: 2, borderColor: borderColor, borderRadius: 16 }}
         handleIndicatorStyle={{ backgroundColor: borderColor }}
       >
+        <CommentInput newComment={newComment} setNewComment={setNewComment} currentPost={currentPost} />
+
         {isLoading ? (
-          <ThemedView className='my-2 justify-center items-center bg-slate-200 dark:bg-slate-800'>
+          <ThemedView className="my-2 justify-center items-center bg-slate-200 dark:bg-slate-800">
             <ActivityIndicator size="large" />
           </ThemedView>
         ) : (
@@ -80,4 +84,4 @@ export default function Social() {
       </BottomSheet>
     </GestureHandlerRootView>
   );
-};
+}

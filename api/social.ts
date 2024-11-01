@@ -1,5 +1,14 @@
 import axios from "@/config/axiosConfig";
 
+export const addComment = async (postId: number, newComment: string) => {
+  const response = await axios.post("/shared/comment",
+    {
+      post_id: postId,
+      description: newComment,
+    }
+  );
+}
+
 export const addPost = async (workoutId: number, desc: string) => {
   const response = await axios.post("/shared/post",
     {

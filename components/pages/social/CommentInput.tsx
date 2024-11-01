@@ -1,0 +1,50 @@
+import { FC } from "react";
+import { Alert, TextInput, TouchableOpacity, View } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useBlackOrWhite } from "@/hooks/useBlackOrWhite";
+import { addComment } from "@/api/social";
+import { useQueryClient } from "@tanstack/react-query";
+import { useColor } from "@/hooks/useColor";
+
+interface Props {
+  newComment: string
+  setNewComment: React.Dispatch<React.SetStateAction<string>>
+  currentPost: Post | undefined
+}
+
+export const CommentInput: FC<Props> = ({ newComment, setNewComment, currentPost }) => {
+  const iconColor = useBlackOrWhite()
+  const placeholderColor = useColor('#00000066', '#ffffff66')
+  const queryClient = useQueryClient()
+
+  const handleAddComment = async () => {
+    if (!newComment.trim()) {
+      Alert.alert("Comment cannot be empty.");
+      return;
+    }
+
+    try {
+      await addComment(currentPost?.post_id as number, newComment.trim())
+      setNewComment("")
+      queryClient.invalidateQueries({ queryKey: ['postComments', currentPost?.post_id] })
+    } catch (err) {
+      Alert.alert("Error adding comment", err?.toString());
+    }
+  };
+
+  return (
+    <View>
+      <TextInput
+        onSubmitEditing={handleAddComment}
+        placeholder="Write a comment..."
+        value={newComment}
+        onChangeText={setNewComment}
+        placeholderTextColor={placeholderColor}
+        className="p-2 bg-white dark:bg-slate-700 rounded-md mb-2 text-black dark:text-white mx-3 text-lg"
+      />
+      <TouchableOpacity onPress={handleAddComment} className="absolute right-5 top-[7px]">
+        <MaterialCommunityIcons name="send" size={30} color={iconColor} />
+      </TouchableOpacity>
+    </View>
+  )
+};

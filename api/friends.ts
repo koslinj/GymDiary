@@ -4,7 +4,6 @@ export const removeFriend = async (friendId: number) => {
   const response = await axios.delete("/shared/deleteFriend",
     { data: { friend_id: friendId } }
   );
-  console.log(response.data)
 };
 
 export const fetchFriendInfo = async (friendId: number) => {

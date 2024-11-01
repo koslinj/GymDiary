@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { ThemedText, ThemedView } from '../../../components/ThemedComponents';
 import axios from "@/config/axiosConfig"
 import { ActivityIndicator, RefreshControl, ScrollView, TouchableOpacity } from 'react-native';
-import { useRouter } from 'expo-router';
+import { useFocusEffect, useRouter } from 'expo-router';
 import { FriendItem } from '@/components/pages/friends/FriendItem';
 
 export default function Friends() {
@@ -18,9 +18,11 @@ export default function Friends() {
     setLoading(false)
   }
 
-  useEffect(() => {
-    fetchData()
-  }, [])
+  useFocusEffect(
+    useCallback(() => {
+      fetchData()
+    }, [])
+  );
 
   const onRefresh = async () => {
     setRefreshing(true);
@@ -32,7 +34,7 @@ export default function Friends() {
   return (
     <ThemedView className="flex-1 px-1">
 
-      <TouchableOpacity className='bg-slate-200 dark:bg-slate-700 p-4 my-4 rounded-xl' onPress={() => {router.push('/(app)/(screens)/inviteUser')}}>
+      <TouchableOpacity className='bg-slate-200 dark:bg-slate-700 p-4 my-4 rounded-xl' onPress={() => { router.push('/(app)/(screens)/inviteUser') }}>
         <ThemedText className='text-2xl text-center'>Invite users</ThemedText>
       </TouchableOpacity>
 

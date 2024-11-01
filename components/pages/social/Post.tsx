@@ -30,6 +30,7 @@ export const Post: FC<Props> = ({ post, openComments }) => {
         <ProfilePhoto size="ICON" uri={post.profile_photo} />
         <ThemedText className="text-lg">{post.nickname}</ThemedText>
       </View>
+      <ThemedText className='text-center text-xl mb-3 italic'>{post.description}</ThemedText>
       <DataPart post={post} />
       <RatingPart rating={post.workout.rating} />
     </ThemedView>
@@ -44,6 +45,7 @@ export const Post: FC<Props> = ({ post, openComments }) => {
         <ProfilePhoto size="ICON" uri={post.profile_photo} />
         <ThemedText className="text-lg">{post.nickname}</ThemedText>
       </View>
+      <ThemedText className='text-center text-xl mb-3 italic'>{post.description}</ThemedText>
       <DataPart post={post} />
       <RatingPart rating={post.workout.rating} />
       <IconsPart openComments={openComments} post={post} />

@@ -9,7 +9,7 @@ export default function PostDetail() {
 
   return (
     <ThemedView className='flex-1'>
-      <Post post={parsed} isDetailsPage={true} />
+      <Post post={parsed} />
     </ThemedView>
   );
 }

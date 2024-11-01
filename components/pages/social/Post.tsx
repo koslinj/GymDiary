@@ -9,11 +9,10 @@ import { DataPart } from "./post/DataPart";
 
 interface Props {
   post: Post
-  isDetailsPage?: boolean
-  openComments: (post: Post) => void
+  openComments?: (post: Post) => void
 }
 
-export const Post: FC<Props> = ({ post, isDetailsPage = false, openComments }) => {
+export const Post: FC<Props> = ({ post, openComments }) => {
 
   const formattedDate = new Date(post.creation_time).toLocaleString('en-GB', {
     dateStyle: 'long',
@@ -21,7 +20,7 @@ export const Post: FC<Props> = ({ post, isDetailsPage = false, openComments }) =
   });
   const formattedTime = new Date(post.creation_time).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })
 
-  return isDetailsPage ? (
+  return !openComments ? (
     <ThemedView className="bg-transparent rounded-xl p-3">
       <View className="flex-row justify-center space-x-3">
         <ThemedText className="text-lg">{formattedDate}</ThemedText>

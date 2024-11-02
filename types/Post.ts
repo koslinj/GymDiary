@@ -5,7 +5,7 @@ type Post = {
   run_workout_id: number | null;
   description: string;
   creation_time: string;
-  workout: GymWorkoutPost;
+  workout: GymWorkout;
   type: "gym" | "run";
   nickname: string;
   profile_photo: string;

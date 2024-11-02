@@ -31,15 +31,3 @@ type GymWorkout = {
   totalVolume: number
   workoutData: GymWorkoutDetail[]
 }
-
-type GymWorkoutPost = {
-  workoutId: number;
-  planName: string;
-  duration: string;
-  date: string;
-  note: string;
-  rating: number;
-  totalSets: number;
-  totalVolume: number;
-  workoutData: GymWorkoutDetail[];
-};

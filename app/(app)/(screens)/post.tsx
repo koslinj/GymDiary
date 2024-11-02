@@ -1,4 +1,3 @@
-import { SimpleHistoryCard } from '@/components/pages/history/SimpleHistoryCard';
 import { WorkoutDataAccordion } from '@/components/pages/history/WorkoutDataAccordion';
 import { Post } from '@/components/pages/social/Post';
 import { ThemedText, ThemedView } from '@/components/ThemedComponents';

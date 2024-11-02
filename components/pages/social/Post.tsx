@@ -31,7 +31,7 @@ export const Post: FC<Props> = ({ post, openComments }) => {
         <ThemedText className="text-lg">{post.nickname}</ThemedText>
       </View>
       <ThemedText className='text-center text-xl mb-3 italic'>{post.description}</ThemedText>
-      <DataPart post={post} />
+      <DataPart workout={post.workout} />
       <RatingPart rating={post.workout.rating} />
     </ThemedView>
   ) : (
@@ -46,7 +46,7 @@ export const Post: FC<Props> = ({ post, openComments }) => {
         <ThemedText className="text-lg">{post.nickname}</ThemedText>
       </View>
       <ThemedText className='text-center text-xl mb-3 italic'>{post.description}</ThemedText>
-      <DataPart post={post} />
+      <DataPart workout={post.workout} />
       <RatingPart rating={post.workout.rating} />
       <IconsPart openComments={openComments} post={post} />
     </ThemedView>

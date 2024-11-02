@@ -28,7 +28,13 @@ export const MyToast = ({ openToast, setOpenToast, children, duration = 3000 }) 
         toValue: 300, // Move it off the screen
         duration: 200,
         useNativeDriver: true,
-      }).start(() => setOpenToast(false));
+      }).start(() => {
+        setOpenToast(false)
+        Animated.spring(translateY, {
+          toValue: 0,
+          useNativeDriver: true,
+        }).start();
+      });
     } else {
       // Reset the position if not swiped enough
       Animated.spring(translateY, {

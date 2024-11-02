@@ -1,0 +1,1 @@
+type Duration = 'hour' | 'minute' | 'second'

@@ -4,7 +4,7 @@ type AddGymWorkoutDetail = {
 };
 
 type AddGymWorkout = {
-  date: string;
+  date: Date;
   duration: string;
   note: string;
   rating: number;

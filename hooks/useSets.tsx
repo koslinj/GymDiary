@@ -34,7 +34,7 @@ export const SetsProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       if(copiedSet.reps === '' || copiedSet.weight === '') return prev
 
       const targetIndex = currentSets.findIndex(
-        (set) => set.reps === '' && set.weight === ''
+        (set) => set.reps === '' || set.weight === ''
       );
 
     const updatedSets = targetIndex !== -1

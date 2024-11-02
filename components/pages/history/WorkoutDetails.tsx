@@ -4,7 +4,9 @@ import { ExerciseIcon } from "@/components/ExerciseIcon";
 import { ThemedText, ThemedView } from "@/components/ThemedComponents"
 import { useQuery } from "@tanstack/react-query";
 import { FC } from "react"
-import { ActivityIndicator, ScrollView } from "react-native";
+import { ActivityIndicator, ScrollView, View } from "react-native";
+import { DataPart } from "../social/post/DataPart";
+import { RatingPart } from "./parts/RatingPart";
 
 interface Props {
   workoutId: number
@@ -49,13 +51,19 @@ export const WorkoutDetails: FC<Props> = ({ workoutId }) => {
   const formattedTime = new Date(workout.date).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })
 
   return (
-    <ThemedView className="flex-1">
-      <ThemedView className="flex-row justify-center space-x-4">
-        <ThemedText className="text-lg">{formattedDate}</ThemedText>
-        <ThemedText className="text-lg">{formattedTime}</ThemedText>
-      </ThemedView>
+    <ThemedView className="flex-1 px-3">
       <ScrollView>
-        <ThemedView className="bg-slate-200 dark:bg-slate-700 m-3 mt-0 p-3 rounded-xl">
+        <ThemedView className="flex-row justify-center space-x-4 mb-3">
+          <ThemedText className="text-lg">{formattedDate}</ThemedText>
+          <ThemedText className="text-lg">{formattedTime}</ThemedText>
+        </ThemedView>
+        <ThemedText className="text-center text-2xl font-poppinsBold">{workout.planName}</ThemedText>
+        {workout.note && <ThemedText className="text-center my-2" darkClassName="text-slate-400" lightClassName="text-slate-500">{workout.note}</ThemedText>}
+        <DataPart workout={workout} />
+        <View className="my-4">
+          <RatingPart rating={workout.rating} />
+        </View>
+        <ThemedView className="bg-slate-200 dark:bg-slate-700 my-3 mt-0 p-3 rounded-xl">
           <Accordion accordionData={accordionData} />
         </ThemedView>
       </ScrollView>

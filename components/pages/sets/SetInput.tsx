@@ -9,10 +9,16 @@ interface SetInputProps {
   weight: string;
   onRepsChange: (text: string) => void;
   onWeightChange: (text: string) => void;
+  onCopy: () => void;
 }
 
-export const SetInput = memo(({ reps, weight, onRepsChange, onWeightChange }: SetInputProps) => {
+export const SetInput = memo(({ reps, weight, onRepsChange, onWeightChange, onCopy }: SetInputProps) => {
   const placeholderColor = useColor('#00000066', '#ffffff66')
+
+  const calculateSum = () => {
+    let value = parseFloat(reps) * parseFloat(weight)
+    return isNaN(value) ? 0 : value
+  }
 
   return (
     <View className="mb-4 flex-row items-center space-x-2">
@@ -38,10 +44,10 @@ export const SetInput = memo(({ reps, weight, onRepsChange, onWeightChange }: Se
       </View>
       <ThemedText className='font-poppinsBold text-lg pl-1'>=</ThemedText>
       <ThemedView className='border-b-2 dark:border-white flex-grow flex-row items-end justify-end space-x-1'>
-        <ThemedText className='text-2xl'>{parseFloat(reps) * parseFloat(weight)}</ThemedText>
+        <ThemedText className='text-2xl'>{calculateSum()}</ThemedText>
         <ThemedText style={{color: placeholderColor}}>kg</ThemedText>
       </ThemedView>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={onCopy}>
         <MaterialIcons name="content-copy" size={30} color={placeholderColor} />
       </TouchableOpacity>
     </View>

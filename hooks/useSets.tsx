@@ -8,6 +8,7 @@ interface SetData {
 interface SetsContextType {
   setsData: { [key: string]: SetData[] };
   handleAddSet: (routeKey: string) => void;
+  handleCopySet: (routeKey: string, index: number) => void;
   handleRemoveSet: (routeKey: string) => void;
   handleUpdateSet: (routeKey: string, setIndex: number, field: 'reps' | 'weight', value: string) => void;
 }
@@ -23,6 +24,30 @@ export const SetsProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       [routeKey]: [...(prev[routeKey] || []), { reps: '', weight: '' }],
     }));
   };
+
+  const handleCopySet = (routeKey: string, index: number) => {
+    setSetsData((prev) => {
+      const currentSets = prev[routeKey] || [];
+      if (index < 0 || index >= currentSets.length) return prev;
+
+      const copiedSet = { ...currentSets[index] };
+      if(copiedSet.reps === '' || copiedSet.weight === '') return prev
+
+      const targetIndex = currentSets.findIndex(
+        (set) => set.reps === '' && set.weight === ''
+      );
+
+    const updatedSets = targetIndex !== -1
+      ? currentSets.map((set, idx) => (idx === targetIndex ? copiedSet : set))
+      : [...currentSets, copiedSet];
+
+    return {
+      ...prev,
+      [routeKey]: updatedSets,
+    };
+    });
+  };
+
 
   const handleRemoveSet = (routeKey: string) => {
     setSetsData((prev) => ({
@@ -43,7 +68,7 @@ export const SetsProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   };
 
   return (
-    <SetsContext.Provider value={{ setsData, handleAddSet, handleRemoveSet, handleUpdateSet }}>
+    <SetsContext.Provider value={{ setsData, handleAddSet, handleCopySet, handleRemoveSet, handleUpdateSet }}>
       {children}
     </SetsContext.Provider>
   );

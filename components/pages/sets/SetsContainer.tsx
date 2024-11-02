@@ -6,6 +6,7 @@ import { useColor } from '@/hooks/useColor';
 import { Colors } from '@/constants/Colors';
 import { SetScene } from './SetScene';
 import { useBlackOrWhite } from '@/hooks/useBlackOrWhite';
+import { SubmitScene } from './SubmitScene';
 
 interface Props {
   routes: {
@@ -16,18 +17,25 @@ interface Props {
 
 export const SetsContainer: FC<Props> = ({ routes }) => {
   const bgColor = useColor('#ffffff', Colors.slate800);
-  const textColor = useBlackOrWhite()
+  const textColor = useBlackOrWhite();
   const indicatorColor = useColor("#ffbf1b", "#bb4f02");
   const layout = useWindowDimensions();
   const [index, setIndex] = useState(0);
 
+  const allRoutes = useMemo(
+    () => [...routes, { key: 'submit', title: 'Submit' }],
+    [routes]
+  );
+
   const renderScene = useMemo(() => {
-    return SceneMap(
-      routes.reduce<{ [key: string]: () => JSX.Element }>((scenes, route) => {
-        scenes[route.key] = () => <SetScene routeKey={route.key} />;
-        return scenes;
-      }, {})
-    );
+    const sceneMap = routes.reduce<{ [key: string]: () => JSX.Element }>((scenes, route) => {
+      scenes[route.key] = () => <SetScene routeKey={route.key} />;
+      return scenes;
+    }, {});
+
+    sceneMap['submit'] = () => <SubmitScene />;
+
+    return SceneMap(sceneMap);
   }, [routes]);
 
   const renderTabBar = (props: any) => (
@@ -44,7 +52,7 @@ export const SetsContainer: FC<Props> = ({ routes }) => {
   return (
     <ThemedView className="flex-1">
       <TabView
-        navigationState={{ index, routes }}
+        navigationState={{ index, routes: allRoutes }}
         renderScene={renderScene}
         onIndexChange={setIndex}
         initialLayout={{ width: layout.width }}

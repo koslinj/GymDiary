@@ -11,3 +11,10 @@ export const formatDate = (str) => {
   const formattedStr = date.toLocaleDateString('pl-PL');
   return formattedStr
 }
+
+export const transformToAddGymWorkoutDetail = (data) => {
+  return Object.entries(data).map(([name_exercise, sets]) => ({
+    name_exercise,
+    sets,
+  }));
+};

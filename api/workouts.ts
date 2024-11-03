@@ -38,3 +38,11 @@ export const addRoutine = async (routineName: string, exercises: string[]) => {
     { routine_name: routineName, exercises: exercises }
   );
 }
+
+export const getRoutineExercises = async (gym_routine_id: number): Promise<Exercise[]> => {
+  const response = await axios.get(`gym/routine/exercises`, {
+    params: { gym_routine_id: gym_routine_id },
+  });
+
+  return response.data.exercises;
+}

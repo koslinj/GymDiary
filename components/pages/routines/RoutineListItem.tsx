@@ -3,6 +3,8 @@ import { FC } from 'react';
 import { ThemedText, ThemedView } from '@/components/ThemedComponents';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { useBlackOrWhite } from '@/hooks/useBlackOrWhite';
+import { useRouter } from 'expo-router';
+import { getRoutineExercises } from '@/api/workouts';
 
 interface Props {
   item: Routine
@@ -13,9 +15,17 @@ interface Props {
 
 export const RoutineListItem: FC<Props> = ({ item, removing, routinesToRemove, setRoutinesToRemove }) => {
   const iconColor = useBlackOrWhite()
+  const router = useRouter()
 
-  const handlePressRoutine = () => {
-    // show next page
+  const handlePressRoutine = async () => {
+    let exercises = await getRoutineExercises(item.gym_routine_id)
+    let exerciseNames = exercises.map(e => e.name_exercise)
+
+    const serializedExercises = JSON.stringify(exerciseNames);
+    router.push({
+      pathname: '/(app)/(screens)/sets',
+      params: { selectedExercises: serializedExercises },
+    });
   }
 
   const toggleRoutineRemoval = (routine: Routine) => {

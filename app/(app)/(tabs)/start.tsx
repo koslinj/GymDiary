@@ -49,7 +49,10 @@ export default function Start() {
 
       <ThemedView className='flex-row mb-4 pt-4 border-t-2 dark:border-white justify-center'>
         <ThemedView className='basis-1/2'>
-          <TouchableOpacity className='mx-3 bg-slate-200 dark:bg-slate-700 items-center p-3 rounded-3xl'>
+          <TouchableOpacity
+            onPress={() => router.push('/(screens)/routines')}
+            className='mx-3 bg-slate-200 dark:bg-slate-700 items-center p-3 rounded-3xl'
+          >
             <FontAwesome5 name="clipboard-list" size={70} color={iconColor} />
             <ThemedText className='mt-2 text-xl'>Routine</ThemedText>
           </TouchableOpacity>

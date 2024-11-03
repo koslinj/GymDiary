@@ -32,3 +32,9 @@ export const fetchRoutines = async () => {
 export const removeRoutine = async (gym_routine_id: number) => {
   const response = await axios.delete(`/gym/routine/${gym_routine_id}`)
 }
+
+export const addRoutine = async (routineName: string, exercises: string[]) => {
+  const response = await axios.post("/gym/routine",
+    { routine_name: routineName, exercises: exercises }
+  );
+}

@@ -50,7 +50,7 @@ export default function Profile() {
         <UserInfoPage userInfo={userInfo} setOpenModal={setOpenPageModal} />
       </PageModal>
       <View className="w-full flex-row relative mb-14">
-        <TouchableOpacity className='absolute left-3 top-1' onPress={() => setOpenPageModal(true)}>
+        <TouchableOpacity className='absolute left-3 top-1 z-10' onPress={() => setOpenPageModal(true)}>
           <ProfilePhoto uri={userInfo?.profile_photo} size='ICON' />
         </TouchableOpacity>
 

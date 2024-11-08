@@ -44,7 +44,9 @@ export default function Routines() {
     setOpenModal(false)
     setRemoving(false)
     setRoutinesToRemove([])
-    routinesToRemove.forEach(async routine => await removeRoutine(routine.gym_routine_id))
+    await Promise.all(
+      routinesToRemove.map(routine => removeRoutine(routine.gym_routine_id))
+    )
     await queryClient.invalidateQueries({ queryKey: ['routines'] })
   }
 

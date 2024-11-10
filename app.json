@@ -3,7 +3,7 @@
     "backgroundColor": "#0F172A",
     "name": "GymDiary",
     "slug": "gymdiary",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "gymdiary",
@@ -26,7 +26,8 @@
         "googleMaps": {
           "apiKey": "AIzaSyAUtcTuc9WSR7J2Sfq85U5Z-S90Ozhe4MU"
         }
-      }
+      },
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "bundler": "metro",

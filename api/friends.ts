@@ -38,3 +38,15 @@ export const acceptInvitation = async (friendId: number) => {
     { friend_id: friendId }
   );
 };
+
+
+export const fetchNumberOfWorkoutsChart = async (friendId: string) => {
+  const friendResponse = await axios.get("/shared/numberOfWorkouts", {
+    params: { friend_id: friendId }
+  });
+  const friendGymData = friendResponse.data.data.gym
+
+  const myResponse = await axios.get("/shared/numberOfWorkouts");
+  const myGymData = myResponse.data.data.gym
+  return { friend: friendGymData, my: myGymData };
+};

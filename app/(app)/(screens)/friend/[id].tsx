@@ -1,13 +1,21 @@
 import { fetchFriendInfo, removeFriend } from '@/api/friends';
+import { NumberOfWorkoutsChart } from '@/components/charts/NumberOfWorkoutsChart';
+import { PageModal } from '@/components/PageModal';
 import { FriendPageGeneralInfo } from '@/components/pages/friends/FriendPageGeneralInfo';
 import { ThemedText, ThemedView } from '@/components/ThemedComponents';
+import { useColor } from '@/hooks/useColor';
+import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { useQuery } from '@tanstack/react-query';
 import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useState } from 'react';
 import { ActivityIndicator, ScrollView, TouchableOpacity, View } from 'react-native';
 
 export default function FriendDetail() {
   const router = useRouter()
   const { id } = useLocalSearchParams();
+  const iconColor = useColor("black", "white")
+
+  const [openNumberOfWorkoutsChart, setOpenNumberOfWorkoutsChart] = useState(false)
 
   const handleRemoveFriend = async () => {
     await removeFriend(parseInt(id as string));
@@ -41,10 +49,39 @@ export default function FriendDetail() {
 
   return (
     <ThemedView className='flex-1'>
+      <PageModal
+        openModal={openNumberOfWorkoutsChart}
+        setOpenModal={setOpenNumberOfWorkoutsChart}
+      >
+        <NumberOfWorkoutsChart friend={friend} friendId={id as string} />
+      </PageModal>
+
       <ScrollView contentContainerStyle={{ padding: 8 }}>
         <FriendPageGeneralInfo friend={friend} />
         <View className='mt-3'>
           <ThemedText className='text-center font-poppinsBold text-5xl leading-[70px] -mb-4'>VS</ThemedText>
+
+          <ThemedView className="flex-row">
+            <ThemedView className="flex-1 aspect-square p-4">
+              <TouchableOpacity
+                onPress={() => { setOpenNumberOfWorkoutsChart(true) }}
+                className="bg-slate-200 dark:bg-slate-700 flex-1 rounded-xl justify-center items-center"
+              >
+                <FontAwesome name="check-square-o" size={70} color={iconColor} />
+                <ThemedText className="text-xl absolute bottom-1">Workouts</ThemedText>
+              </TouchableOpacity>
+            </ThemedView>
+
+            <ThemedView className="flex-1 aspect-square p-4">
+              <TouchableOpacity
+                //onPress={() => { setOpenDistanceChart(true) }}
+                className="bg-slate-200 dark:bg-slate-700 flex-1 rounded-xl justify-center items-center"
+              >
+                <Ionicons name="body" size={70} color={iconColor} />
+                <ThemedText className="text-xl absolute bottom-1">Muscles</ThemedText>
+              </TouchableOpacity>
+            </ThemedView>
+          </ThemedView>
 
         </View>
         <TouchableOpacity

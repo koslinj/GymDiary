@@ -1,5 +1,6 @@
 import { fetchFriendInfo, removeFriend } from '@/api/friends';
 import { DurationChart } from '@/components/charts/DurationChart';
+import { MusclesChart } from '@/components/charts/MusclesChart';
 import { NumberOfWorkoutsChart } from '@/components/charts/NumberOfWorkoutsChart';
 import { PageModal } from '@/components/PageModal';
 import { FriendPageGeneralInfo } from '@/components/pages/friends/FriendPageGeneralInfo';
@@ -17,7 +18,7 @@ export default function FriendDetail() {
   const iconColor = useColor("black", "white")
 
   const [openNumberOfWorkoutsChart, setOpenNumberOfWorkoutsChart] = useState(false)
-
+  const [openMusclesChart, setOpenMusclesChart] = useState(false)
 
   const [openDurationChart, setOpenDurationChart] = useState(false)
 
@@ -60,6 +61,12 @@ export default function FriendDetail() {
         <NumberOfWorkoutsChart friend={friend} friendId={id as string} />
       </PageModal>
       <PageModal
+        openModal={openMusclesChart}
+        setOpenModal={setOpenMusclesChart}
+      >
+        <MusclesChart friend={friend} friendId={id as string} />
+      </PageModal>
+      <PageModal
         openModal={openDurationChart}
         setOpenModal={setOpenDurationChart}
       >
@@ -84,7 +91,7 @@ export default function FriendDetail() {
 
             <ThemedView className="flex-1 aspect-square p-4">
               <TouchableOpacity
-                //onPress={() => { setOpenDistanceChart(true) }}
+                onPress={() => { setOpenMusclesChart(true) }}
                 className="bg-slate-200 dark:bg-slate-700 flex-1 rounded-xl justify-center items-center"
               >
                 <Ionicons name="body" size={70} color={iconColor} />

@@ -65,3 +65,16 @@ export const fetchDurationChart = async (friendId: string) => {
   const myDuration = myData.map((item: { duration: string; }) => item.duration);
   return { friend: friendDuration, my: myDuration };
 };
+
+export const fetchMusclesChart = async (friendId: string) => {
+  const friendResponse = await axios.get("/gym/chart/categories", {
+    params: { friend_id: friendId, range: "all" }
+  });
+  const friendData = friendResponse.data.categories
+
+  const myResponse = await axios.get("/gym/chart/categories", {
+    params: { range: "all" }
+  });
+  const myData = myResponse.data.categories
+  return { friend: friendData, my: myData };
+};

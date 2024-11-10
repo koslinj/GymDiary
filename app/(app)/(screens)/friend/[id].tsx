@@ -2,11 +2,12 @@ import { fetchFriendInfo, removeFriend } from '@/api/friends';
 import { DurationChart } from '@/components/charts/DurationChart';
 import { MusclesChart } from '@/components/charts/MusclesChart';
 import { NumberOfWorkoutsChart } from '@/components/charts/NumberOfWorkoutsChart';
+import { SetsChart } from '@/components/charts/SetsChart';
 import { PageModal } from '@/components/PageModal';
 import { FriendPageGeneralInfo } from '@/components/pages/friends/FriendPageGeneralInfo';
 import { ThemedText, ThemedView } from '@/components/ThemedComponents';
 import { useColor } from '@/hooks/useColor';
-import { FontAwesome, FontAwesome6, Ionicons } from '@expo/vector-icons';
+import { FontAwesome, FontAwesome6, Ionicons, Octicons } from '@expo/vector-icons';
 import { useQuery } from '@tanstack/react-query';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useState } from 'react';
@@ -19,7 +20,7 @@ export default function FriendDetail() {
 
   const [openNumberOfWorkoutsChart, setOpenNumberOfWorkoutsChart] = useState(false)
   const [openMusclesChart, setOpenMusclesChart] = useState(false)
-
+  const [openSetsChart, setOpenSetsChart] = useState(false)
   const [openDurationChart, setOpenDurationChart] = useState(false)
 
   const handleRemoveFriend = async () => {
@@ -67,6 +68,12 @@ export default function FriendDetail() {
         <MusclesChart friend={friend} friendId={id as string} />
       </PageModal>
       <PageModal
+        openModal={openSetsChart}
+        setOpenModal={setOpenSetsChart}
+      >
+        <SetsChart friend={friend} friendId={id as string} />
+      </PageModal>
+      <PageModal
         openModal={openDurationChart}
         setOpenModal={setOpenDurationChart}
       >
@@ -103,11 +110,11 @@ export default function FriendDetail() {
           <ThemedView className="flex-row">
             <ThemedView className="flex-1 aspect-square p-4">
               <TouchableOpacity
-                onPress={() => { setOpenNumberOfWorkoutsChart(true) }}
+                onPress={() => { setOpenSetsChart(true) }}
                 className="bg-slate-200 dark:bg-slate-700 flex-1 rounded-xl justify-center items-center"
               >
-                <FontAwesome name="check-square-o" size={70} color={iconColor} />
-                <ThemedText className="text-xl absolute bottom-1">TODOOO</ThemedText>
+                <Octicons name="number" size={70} color={iconColor} />
+                <ThemedText className="text-xl absolute bottom-1">Sets</ThemedText>
               </TouchableOpacity>
             </ThemedView>
 

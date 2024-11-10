@@ -78,3 +78,18 @@ export const fetchMusclesChart = async (friendId: string) => {
   const myData = myResponse.data.categories
   return { friend: friendData, my: myData };
 };
+
+export const fetchSetsChart = async (friendId: string) => {
+  const friendResponse = await axios.get("/gym/chart/sets", {
+    params: { friend_id: friendId }
+  });
+  const friendData = friendResponse.data.sets
+  friendData.sort((a: { date: string }, b: { date: string }) => new Date(a.date).getTime() - new Date(b.date).getTime());
+  const friendTotalSets = friendData.map((item: { totalSets: number; }) => item.totalSets);
+
+  const myResponse = await axios.get("/gym/chart/sets");
+  const myData = myResponse.data.sets
+  myData.sort((a: { date: string }, b: { date: string }) => new Date(a.date).getTime() - new Date(b.date).getTime());
+  const myTotalSets = myData.map((item: { totalSets: number; }) => item.totalSets);
+  return { friend: friendTotalSets, my: myTotalSets };
+};

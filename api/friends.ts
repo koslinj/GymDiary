@@ -50,3 +50,18 @@ export const fetchNumberOfWorkoutsChart = async (friendId: string) => {
   const myGymData = myResponse.data.data.gym
   return { friend: friendGymData, my: myGymData };
 };
+
+export const fetchDurationChart = async (friendId: string) => {
+  const friendResponse = await axios.get("/gym/chart/duration", {
+    params: { friend_id: friendId }
+  });
+  const friendData = friendResponse.data.data
+  friendData.sort((a: { date: string }, b: { date: string }) => new Date(a.date).getTime() - new Date(b.date).getTime());
+  const friendDuration = friendData.map((item: { duration: string; }) => item.duration);
+
+  const myResponse = await axios.get("/gym/chart/duration");
+  const myData = myResponse.data.data
+  myData.sort((a: { date: string }, b: { date: string }) => new Date(a.date).getTime() - new Date(b.date).getTime());
+  const myDuration = myData.map((item: { duration: string; }) => item.duration);
+  return { friend: friendDuration, my: myDuration };
+};

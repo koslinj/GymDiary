@@ -1,10 +1,11 @@
 import { fetchFriendInfo, removeFriend } from '@/api/friends';
+import { DurationChart } from '@/components/charts/DurationChart';
 import { NumberOfWorkoutsChart } from '@/components/charts/NumberOfWorkoutsChart';
 import { PageModal } from '@/components/PageModal';
 import { FriendPageGeneralInfo } from '@/components/pages/friends/FriendPageGeneralInfo';
 import { ThemedText, ThemedView } from '@/components/ThemedComponents';
 import { useColor } from '@/hooks/useColor';
-import { FontAwesome, Ionicons } from '@expo/vector-icons';
+import { FontAwesome, FontAwesome6, Ionicons } from '@expo/vector-icons';
 import { useQuery } from '@tanstack/react-query';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useState } from 'react';
@@ -16,6 +17,9 @@ export default function FriendDetail() {
   const iconColor = useColor("black", "white")
 
   const [openNumberOfWorkoutsChart, setOpenNumberOfWorkoutsChart] = useState(false)
+
+
+  const [openDurationChart, setOpenDurationChart] = useState(false)
 
   const handleRemoveFriend = async () => {
     await removeFriend(parseInt(id as string));
@@ -55,6 +59,12 @@ export default function FriendDetail() {
       >
         <NumberOfWorkoutsChart friend={friend} friendId={id as string} />
       </PageModal>
+      <PageModal
+        openModal={openDurationChart}
+        setOpenModal={setOpenDurationChart}
+      >
+        <DurationChart friend={friend} friendId={id as string} />
+      </PageModal>
 
       <ScrollView contentContainerStyle={{ padding: 8 }}>
         <FriendPageGeneralInfo friend={friend} />
@@ -79,6 +89,28 @@ export default function FriendDetail() {
               >
                 <Ionicons name="body" size={70} color={iconColor} />
                 <ThemedText className="text-xl absolute bottom-1">Muscles</ThemedText>
+              </TouchableOpacity>
+            </ThemedView>
+          </ThemedView>
+
+          <ThemedView className="flex-row">
+            <ThemedView className="flex-1 aspect-square p-4">
+              <TouchableOpacity
+                onPress={() => { setOpenNumberOfWorkoutsChart(true) }}
+                className="bg-slate-200 dark:bg-slate-700 flex-1 rounded-xl justify-center items-center"
+              >
+                <FontAwesome name="check-square-o" size={70} color={iconColor} />
+                <ThemedText className="text-xl absolute bottom-1">TODOOO</ThemedText>
+              </TouchableOpacity>
+            </ThemedView>
+
+            <ThemedView className="flex-1 aspect-square p-4">
+              <TouchableOpacity
+                onPress={() => { setOpenDurationChart(true) }}
+                className="bg-slate-200 dark:bg-slate-700 flex-1 rounded-xl justify-center items-center"
+              >
+                <FontAwesome6 name="clock-four" size={70} color={iconColor} />
+                <ThemedText className="text-xl absolute bottom-1">Duration</ThemedText>
               </TouchableOpacity>
             </ThemedView>
           </ThemedView>

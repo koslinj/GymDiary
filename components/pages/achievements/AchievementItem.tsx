@@ -21,8 +21,8 @@ export const AchievementItem: FC<Props> = ({ achievement }) => {
   }
 
   let lineColor = Colors.red600;
-  if (achievement?.percent > 40 && achievement?.percent < 80) lineColor = Colors.amber600;
-  if (achievement?.percent >= 80) lineColor = Colors.green600;
+  if (achievement.percent > 40 && achievement.percent < 80) lineColor = Colors.amber600;
+  if (achievement.percent >= 80) lineColor = Colors.green600;
 
   return (
     <ThemedView className="rounded-lg p-3 bg-slate-200 dark:bg-slate-700 mt-3">

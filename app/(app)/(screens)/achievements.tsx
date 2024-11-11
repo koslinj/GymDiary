@@ -49,8 +49,8 @@ export default function Achievements() {
   console.log(gymAchievements, socialAchievements);
 
   return (
-    <ThemedView className="flex-1 px-3">
-      <ScrollView contentContainerStyle={{paddingBottom: 20}}>
+    <ThemedView className="flex-1">
+      <ScrollView contentContainerStyle={{paddingBottom: 20, paddingHorizontal: 12}}>
         <ThemedText className="text-2xl text-center mt-2 font-poppinsBold text-slate-500">Gym</ThemedText>
         {gymAchievements.map((item: GymAchievement) => (
           <AchievementItem

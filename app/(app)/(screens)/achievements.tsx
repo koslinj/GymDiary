@@ -49,14 +49,14 @@ export default function Achievements() {
   return (
     <ThemedView className="flex-1">
       <ScrollView contentContainerStyle={{paddingBottom: 20, paddingHorizontal: 12}}>
-        <ThemedText className="text-2xl text-center mt-2 font-poppinsBold text-slate-500">Gym</ThemedText>
+        <ThemedText className="text-2xl text-center mt-2 font-poppinsBold text-slate-500 dark:text-slate-400">Gym</ThemedText>
         {gymAchievements.map((item: GymAchievement) => (
           <AchievementItem
             key={item.users_gym_achievement_id}
             achievement={item}
           />
         ))}
-        <ThemedText className="text-2xl text-center mt-8 font-poppinsBold text-slate-500">Social</ThemedText>
+        <ThemedText className="text-2xl text-center mt-8 font-poppinsBold text-slate-500 dark:text-slate-400">Social</ThemedText>
         {socialAchievements.map((item: SocialAchievement) => (
           <AchievementItem
             key={item.users_social_achievement_id}

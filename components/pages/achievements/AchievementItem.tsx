@@ -29,9 +29,13 @@ export const AchievementItem: FC<Props> = ({ achievement }) => {
       <ThemedText className="text-xl font-poppinsBold text-center">{achievement.title}</ThemedText>
       <View className="flex-row space-x-4 items-center">
         {icon}
-        <ThemedText className="text-lg flex-shrink">{achievement.goal} {achievement.type}</ThemedText>
+        <ThemedText className="text-xl flex-shrink">{achievement.goal} {achievement.type}</ThemedText>
       </View>
       <View className="py-2">
+        <View className="flex-row justify-between items-center">
+          <ThemedText className="text-slate-500 dark:text-slate-300 text-lg">Progress</ThemedText>
+          <ThemedText className="text-slate-500 dark:text-slate-300 text-lg">{achievement.percent.toFixed(2)}%</ThemedText>
+        </View>
         <Progress.Bar progress={achievement.percent / 100} width={null} height={10} borderRadius={99} color={lineColor} />
       </View>
     </ThemedView>

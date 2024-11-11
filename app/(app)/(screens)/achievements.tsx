@@ -46,8 +46,6 @@ export default function Achievements() {
     return <ThemedText>Error fetching achievements</ThemedText>;
   }
 
-  console.log(gymAchievements, socialAchievements);
-
   return (
     <ThemedView className="flex-1">
       <ScrollView contentContainerStyle={{paddingBottom: 20, paddingHorizontal: 12}}>

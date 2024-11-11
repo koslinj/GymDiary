@@ -36,6 +36,7 @@ export const Colors = {
   red700: "rgb(185 28 28)",
   green600: "rgb(22 163 74)",
   cyan600: "rgb(8 145 178)",
+  amber600: "rgb(217 119 6)",
   heartRate: {
     blue: "rgb(37, 99, 235)",
     green: "rgb(5, 150, 105)",

@@ -11,6 +11,7 @@ import * as Notifications from 'expo-notifications';
 import Constants from 'expo-constants';
 import { Subscription } from "expo-modules-core";
 import { Platform } from "react-native";
+import { useRouter } from "expo-router";
 
 function handleRegistrationError(errorMessage: string) {
   alert(errorMessage);
@@ -86,6 +87,7 @@ interface NotificationProviderProps {
 export const NotificationProvider: React.FC<NotificationProviderProps> = ({
   children,
 }) => {
+  const router = useRouter()
   const [expoPushToken, setExpoPushToken] = useState<string | null>(null);
   const [notification, setNotification] =
     useState<Notifications.Notification | null>(null);
@@ -108,12 +110,17 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({
 
     responseListener.current =
       Notifications.addNotificationResponseReceivedListener((response) => {
-        console.log(
-          "🔔 Notification Response: ",
-          JSON.stringify(response, null, 2),
-          JSON.stringify(response.notification.request.content.data, null, 2)
-        );
         // Handle the notification response here
+        const data = response.notification.request.content.data;
+        console.log(data)
+        if (data.type === 'achievement') {
+          router.push(`/(app)/(screens)/achievements`);
+        }
+        // if (data.page === 'Details' && data.itemId) {
+        //   router.push(`/details/${data.itemId}`);
+        // } else if (data.page === 'Home') {
+        //   router.push('/home');
+        // }
       });
 
     return () => {

@@ -1,11 +1,19 @@
-import { View, Text, useColorScheme } from 'react-native'
-import React from 'react'
+import axios from "@/config/axiosConfig";
+import React, { useEffect } from 'react'
 import { Tabs } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
 import { TabBar } from '@/components/TabBar';
+import { useNotification } from '@/hooks/NotificationContext';
 
 export default function TabLayout() {
-  const isDark = useColorScheme() === 'dark' ? true : false
+  const { expoPushToken } = useNotification()
+
+  useEffect(() => {
+    const updateToken = async () => {
+      const response = await axios.post(`/shared/setPushToken`, {push_token: expoPushToken});
+    }
+
+    updateToken()
+  }, [])
 
   return (
     <Tabs screenOptions={{ headerShown: false }} tabBar={props => <TabBar {...props} />}>

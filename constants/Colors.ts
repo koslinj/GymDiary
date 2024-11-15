@@ -26,6 +26,7 @@ export const Colors = {
   gold: "#F6C324",
   slate200: "rgb(226 232 240)",
   slate300: "rgb(203 213 225)",
+  slate400: "rgb(148 163 184)",
   slate600: "rgb(71 85 105)",
   slate700: "#334155",
   slate800: "rgb(30 41 59)",

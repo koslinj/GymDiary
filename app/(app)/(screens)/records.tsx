@@ -11,15 +11,23 @@ import { Colors } from '@/constants/Colors';
 export default function Records() {
   const router = useRouter();
 
-  const { data: exercises, isLoading, isError, error } = useQuery<Exercise[]>(
+  const { data: exercises, isLoading, isRefetching, isError, error } = useQuery<Exercise[]>(
     {
-      queryKey: ['exercises'],
+      queryKey: ['exercises', "inRecords"],
       queryFn: () => fetchExercises('All'),
       refetchOnWindowFocus: false,
     }
   );
 
   if (isLoading) {
+    return (
+      <ThemedView className="flex-1 justify-center items-center">
+        <ActivityIndicator size="large" />
+      </ThemedView>
+    );
+  }
+
+  if (isRefetching) {
     return (
       <ThemedView className="flex-1 justify-center items-center">
         <ActivityIndicator size="large" />

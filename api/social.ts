@@ -19,6 +19,17 @@ export const addPost = async (workoutId: number, desc: string) => {
   );
 };
 
+export const deletePost = async (id: number) => {
+  const response = await axios.delete("/shared/post",
+    {
+      data: {
+        post_id: id,
+      },
+    }
+  );
+  return response
+};
+
 export const getAllPostsInfinite = async ({ pageParam = 1 }) => {
   const response = await axios.get("/shared/post/getAll", {
     params: {

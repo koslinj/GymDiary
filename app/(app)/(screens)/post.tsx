@@ -1,5 +1,6 @@
 import { WorkoutDataAccordion } from '@/components/pages/history/WorkoutDataAccordion';
 import { Post } from '@/components/pages/social/Post';
+import { DeleteButton } from '@/components/pages/social/post/DeleteButton';
 import { ThemedText, ThemedView } from '@/components/ThemedComponents';
 import { useLocalSearchParams } from 'expo-router';
 import { ScrollView } from 'react-native';
@@ -16,7 +17,7 @@ export default function PostDetail() {
 
   return (
     <ThemedView className='flex-1'>
-      <ScrollView>
+      <ScrollView contentContainerStyle={{ paddingBottom: 32 }}>
         <Post post={parsed} />
         <ThemedText className='text-3xl mt-8 font-poppinsBold text-center'>Workout:</ThemedText>
         <ThemedView className="flex-row justify-center space-x-4">
@@ -26,6 +27,7 @@ export default function PostDetail() {
         <ThemedView className="bg-slate-200 dark:bg-slate-700 m-3 mt-0 p-3 rounded-xl">
           <WorkoutDataAccordion workoutId={parsed.workout.workoutId} />
         </ThemedView>
+        <DeleteButton post={parsed} />
       </ScrollView>
     </ThemedView>
   );

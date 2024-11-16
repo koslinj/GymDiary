@@ -6,4 +6,5 @@ type UserInfo = {
   friends_count: number;
   nickname: string;
   profile_photo: string;
+  user_id: number;
 };

@@ -14,3 +14,8 @@ export const fetchMusclesChart = async (range: TimeRangeFilter) => {
   const data = response.data.categories
   return data
 };
+
+export const fetchUserInfo = async () => {
+  const response = await axios.get("/shared/userInfo");
+  return response.data.data;
+};

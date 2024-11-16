@@ -36,7 +36,8 @@ export const SummaryStats: FC<Props> = ({ range }) => {
   }
 
   return (
-    <View className='mt-4 space-y-3'>
+    <View className='space-y-3'>
+      <ThemedText className='text-center text-3xl font-poppinsBold mt-8'>Summary</ThemedText>
       <View>
         <ThemedText className='text-gray-400'>Total volume</ThemedText>
         <ThemedText className='text-2xl font-poppinsBold -mt-2'>{stats.totalVolume.toFixed(2)} kg</ThemedText>

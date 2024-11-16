@@ -54,8 +54,8 @@ export const MusclesChart: FC<Props> = ({ range }) => {
   const myData = getDataForPieChart(muscles)
 
   return (
-    <ThemedView className='bg-transparent rounded-xl overflow-hidden pb-1'>
-      <ThemedText className='text-center text-3xl my-2 font-poppinsBold'>Muscle groups</ThemedText>
+    <ThemedView className='bg-transparent'>
+      <ThemedText className='text-center text-3xl mb-2 mt-8 font-poppinsBold'>Muscle groups</ThemedText>
 
       <View className='items-center'>
         <PieChart

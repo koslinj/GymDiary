@@ -29,7 +29,7 @@ export const MusclesChart: FC<Props> = ({ range }) => {
 
   const { data: muscles, isLoading, isError, error } = useQuery(
     {
-      queryKey: ['musclesChart'],
+      queryKey: ['musclesChart', range],
       queryFn: () => fetchMusclesChart(range),
       refetchOnWindowFocus: false
     }
@@ -55,7 +55,7 @@ export const MusclesChart: FC<Props> = ({ range }) => {
 
   return (
     <ThemedView className='bg-transparent rounded-xl overflow-hidden pb-1'>
-      <ThemedText className='text-center text-2xl mb-2 font-poppinsBold'>Muscle groups</ThemedText>
+      <ThemedText className='text-center text-3xl my-2 font-poppinsBold'>Muscle groups</ThemedText>
 
       <View className='items-center'>
         <PieChart
@@ -66,10 +66,10 @@ export const MusclesChart: FC<Props> = ({ range }) => {
         <View className='flex-row flex-wrap justify-center gap-x-8 mt-4'>
           {myData.map(item => (
             <View key={item.label} className="flex-row space-x-2 items-center flex-wrap">
-              <View style={{ backgroundColor: item.color }} className="w-6 h-6" />
+              <View style={{ backgroundColor: item.color }} className="w-8 h-8" />
               <View>
-                <ThemedText className='leading-[18px]'>{item.label.split(';')[0]}:</ThemedText>
-                <ThemedText className="font-poppinsBold leading-[18px]">{item.label.split(';')[1]}</ThemedText>
+                <ThemedText className='text-[16px] leading-[20px]'>{item.label.split(';')[0]}:</ThemedText>
+                <ThemedText className="font-poppinsBold text-[16px] leading-[20px]">{item.label.split(';')[1]}</ThemedText>
               </View>
             </View>
           ))}

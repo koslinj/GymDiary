@@ -66,7 +66,7 @@ export default function HomeScreen() {
           <ThemedView className="flex-row mt-4">
             <ThemedView className="flex-1 aspect-square pl-4 pr-2 pb-6">
               <TouchableOpacity
-                onPress={() => router.push("history")}
+                onPress={() => router.push("/(app)/history")}
                 className="bg-slate-200 dark:bg-slate-700 flex-1 rounded-xl justify-center items-center"
               >
                 <FontAwesome5 name="history" size={70} color={iconColor} />
@@ -76,23 +76,13 @@ export default function HomeScreen() {
 
             <ThemedView className="flex-1 aspect-square pl-2 pr-4 pb-6">
               <TouchableOpacity
-                onPress={() => router.push("stats")}
+                onPress={() => router.push("/(app)/stats")}
                 className="bg-slate-200 dark:bg-slate-700 flex-1 rounded-xl justify-center items-center"
               >
                 <Ionicons name="stats-chart" size={70} color={iconColor} />
                 <ThemedText className="text-xl absolute bottom-1">Stats</ThemedText>
               </TouchableOpacity>
             </ThemedView>
-          </ThemedView>
-
-          <ThemedView className="-mt-2 px-4">
-            <TouchableOpacity
-              onPress={() => router.push("stats")}
-              className="bg-slate-200 dark:bg-slate-700 flex-row rounded-xl justify-between items-center p-8"
-            >
-              <MaterialCommunityIcons name="chart-line" size={90} color={iconColor} />
-              <ThemedText className="text-xl flex-1 text-center">Progress</ThemedText>
-            </TouchableOpacity>
           </ThemedView>
 
           <StatusBar style="auto" />

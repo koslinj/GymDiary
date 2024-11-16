@@ -1,8 +1,8 @@
 import { fetchFriendInfo, removeFriend } from '@/api/friends';
-import { DurationChart } from '@/components/charts/DurationChart';
-import { MusclesChart } from '@/components/charts/MusclesChart';
-import { NumberOfWorkoutsChart } from '@/components/charts/NumberOfWorkoutsChart';
-import { SetsChart } from '@/components/charts/SetsChart';
+import { DurationChart } from '@/components/charts/compare/DurationChart';
+import { MusclesChart } from '@/components/charts/compare/MusclesChart';
+import { NumberOfWorkoutsChart } from '@/components/charts/compare/NumberOfWorkoutsChart';
+import { SetsChart } from '@/components/charts/compare/SetsChart';
 import { PageModal } from '@/components/PageModal';
 import { FriendPageGeneralInfo } from '@/components/pages/friends/FriendPageGeneralInfo';
 import { ThemedText, ThemedView } from '@/components/ThemedComponents';

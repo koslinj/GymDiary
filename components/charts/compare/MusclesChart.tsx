@@ -1,6 +1,6 @@
 import { ActivityIndicator, View } from 'react-native'
 import React, { FC } from 'react'
-import { ThemedText, ThemedView } from '../ThemedComponents'
+import { ThemedText, ThemedView } from '../../ThemedComponents'
 import { useColor } from '@/hooks/useColor'
 import { useQuery } from '@tanstack/react-query'
 import { fetchMusclesChart } from '@/api/friends'

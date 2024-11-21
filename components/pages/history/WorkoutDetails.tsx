@@ -1,12 +1,12 @@
 import { fetchWorkoutDetails } from "@/api/workouts";
 import { Accordion } from "@/components/Accordion";
-import { ExerciseIcon } from "@/components/ExerciseIcon";
 import { ThemedText, ThemedView } from "@/components/ThemedComponents"
 import { useQuery } from "@tanstack/react-query";
 import { FC } from "react"
 import { ActivityIndicator, ScrollView, View } from "react-native";
 import { DataPart } from "../social/post/DataPart";
 import { RatingPart } from "./parts/RatingPart";
+import { WorkoutDeleteButton } from "./WorkoutDeleteButton";
 
 interface Props {
   workoutId: number
@@ -66,6 +66,7 @@ export const WorkoutDetails: FC<Props> = ({ workoutId }) => {
         <ThemedView className="bg-slate-200 dark:bg-slate-700 my-3 mt-0 p-3 rounded-xl">
           <Accordion accordionData={accordionData} />
         </ThemedView>
+        <WorkoutDeleteButton workout={workout} />
       </ScrollView>
     </ThemedView>
   )

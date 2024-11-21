@@ -14,7 +14,6 @@ export default function HomeScreen() {
   const router = useRouter();
   const styles = useGlobalStyles();
   const iconColor = useColor("black", "white");
-  const queryClient = useQueryClient();
 
   const [refreshing, setRefreshing] = useState(false);
 
@@ -43,7 +42,7 @@ export default function HomeScreen() {
   return (
     <ThemedView style={styles.safeArea} className="flex-1">
       <ScrollView
-        contentContainerStyle={[{ flexGrow: 1}, styles.safeTabBar]}
+        contentContainerStyle={[{ flexGrow: 1 }, styles.safeTabBar]}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }

@@ -24,6 +24,11 @@ export const fetchWorkoutDetails = async (workoutId: number) => {
   return response.data.workout;
 };
 
+export const deleteWorkout = async (id: number) => {
+  const response = await axios.delete(`/gym/workout/${id}`);
+  return response
+};
+
 export const fetchRoutines = async () => {
   const response = await axios.get(`gym/routine/all`)
   return response.data.routines;

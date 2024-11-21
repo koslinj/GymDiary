@@ -1,18 +1,23 @@
-import { FlatList, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { FlatList, ActivityIndicator, TouchableOpacity, RefreshControl } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { fetchWorkouts, fetchWorkoutsInfinite } from '@/api/workouts';
+import { fetchWorkoutsInfinite } from '@/api/workouts';
 import { HistoryCard } from './HistoryCard';
+import { useCallback, useState } from 'react';
+import { ThemedView } from '@/components/ThemedComponents';
 
 export const HistoryPaginatedList = () => {
   const router = useRouter();
+  const [refreshing, setRefreshing] = useState(false);
 
   const {
     data,
     isLoading,
+    isRefetching,
     isFetchingNextPage,
     hasNextPage,
     fetchNextPage,
+    refetch,
   } = useInfiniteQuery({
     initialPageParam: 1,
     queryKey: ['workouts'],
@@ -22,11 +27,25 @@ export const HistoryPaginatedList = () => {
     },
   });
 
+  const handleRefresh = useCallback(async () => {
+    setRefreshing(true);
+    await refetch();
+    setRefreshing(false);
+  }, [refetch]);
+
   const handleLoadMore = () => {
     if (hasNextPage && !isFetchingNextPage) {
       fetchNextPage();
     }
   };
+
+  if (isRefetching) {
+    return (
+      <ThemedView className="flex-1 justify-center items-center">
+        <ActivityIndicator size="large" />
+      </ThemedView>
+    );
+  }
 
   return (
     <FlatList
@@ -41,6 +60,12 @@ export const HistoryPaginatedList = () => {
       onEndReached={handleLoadMore}
       onEndReachedThreshold={0}
       ListFooterComponent={(isLoading || isFetchingNextPage) ? <ActivityIndicator size={'large'} /> : null}
+      refreshControl={
+        <RefreshControl
+          refreshing={refreshing}
+          onRefresh={handleRefresh}
+        />
+      }
     />
   );
 };

@@ -2,11 +2,12 @@ import { ThemedText, ThemedView } from '../../../components/ThemedComponents';
 import CountryFlag from "react-native-country-flag";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useTranslation } from 'react-i18next';
-import { useEffect } from 'react';
-import { TouchableOpacity, View } from 'react-native';
+import { useEffect, useState } from 'react';
+import { ActivityIndicator, TouchableOpacity, View } from 'react-native';
 
 export const LanguagePicker = () => {
   const { i18n, t } = useTranslation();
+  const [isLoading, setIsLoading] = useState(false);
   const currentLanguage = i18n.language;
 
   useEffect(() => {
@@ -20,8 +21,10 @@ export const LanguagePicker = () => {
   }, [i18n]);
 
   const changeLanguage = async (lang: string) => {
-    await AsyncStorage.setItem("language", lang);
-    i18n.changeLanguage(lang);
+    setIsLoading(true)
+    await AsyncStorage.setItem("language", lang)
+    await i18n.changeLanguage(lang)
+    setIsLoading(false)
   };
 
   return (
@@ -34,17 +37,25 @@ export const LanguagePicker = () => {
             onPress={() => changeLanguage('pl-PL')}
           >
             <CountryFlag isoCode="pl" size={40} />
-            <ThemedText className='text-center text-lg max-w-[130px]'>{t('polish')}</ThemedText>
+            {isLoading ? (
+              <ActivityIndicator size="large" />
+            ) : (
+              <ThemedText className='text-center text-lg max-w-[130px]'>{t('polish')}</ThemedText>
+            )}
           </TouchableOpacity>
           <TouchableOpacity
             className={`bg-slate-200 dark:bg-slate-700 py-2 rounded-lg flex-row gap-x-2 items-center dark:border-white mt-4 ${currentLanguage === 'en-GB' && 'border-2'}`}
             onPress={() => changeLanguage('en-GB')}
           >
             <CountryFlag isoCode="gb" size={40} />
-            <ThemedText className='text-center text-lg max-w-[130px]'>{t('english')}</ThemedText>
+            {isLoading ? (
+              <ActivityIndicator size="large" />
+            ) : (
+              <ThemedText className='text-center text-lg max-w-[130px]'>{t('english')}</ThemedText>
+            )}
           </TouchableOpacity>
         </View>
       </View>
-    </ThemedView>
+    </ThemedView >
   );
 }

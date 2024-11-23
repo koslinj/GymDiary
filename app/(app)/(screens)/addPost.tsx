@@ -36,7 +36,7 @@ export default function AddPost() {
         className="p-2 text-lg border-2 rounded-md mb-3 dark:border-white dark:text-white"
         placeholderTextColor={placeholderColor}
         value={desc}
-        placeholder='Description...'
+        placeholder={`${t('description')}...`}
         autoCapitalize='none'
         onChangeText={(text) => setDesc(text)}
       />

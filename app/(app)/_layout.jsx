@@ -4,9 +4,11 @@ import { ThemedText, ThemedView } from '@/components/ThemedComponents'
 import { useGlobalStyles } from '@/hooks/useGlobalStyles'
 import { AntDesign } from '@expo/vector-icons'
 import { Stack, useRouter } from 'expo-router'
+import { useTranslation } from 'react-i18next'
 import { TouchableOpacity, useColorScheme, View } from 'react-native'
 
 const AppLayout = () => {
+  const { t } = useTranslation()
   const styles = useGlobalStyles();
   const theme = useColorScheme()
   const router = useRouter()
@@ -21,7 +23,7 @@ const AppLayout = () => {
               <TouchableOpacity className="absolute z-10" onPress={() => { router.back() }}>
                 <AntDesign color={theme === "light" ? "black" : "white"} name='arrowleft' size={42} />
               </TouchableOpacity>
-              <ThemedText className='text-3xl text-center font-poppinsBold translate-y-1'>Stats</ThemedText>
+              <ThemedText className='text-3xl text-center font-poppinsBold translate-y-1'>{t('stats')}</ThemedText>
             </View>
           </ThemedView>
         )
@@ -33,7 +35,7 @@ const AppLayout = () => {
               <TouchableOpacity className="absolute z-10" onPress={() => { router.back() }}>
                 <AntDesign color={theme === "light" ? "black" : "white"} name='arrowleft' size={42} />
               </TouchableOpacity>
-              <ThemedText className='text-3xl text-center font-poppinsBold translate-y-1'>Friends</ThemedText>
+              <ThemedText className='text-3xl text-center font-poppinsBold translate-y-1'>{t('friends')}</ThemedText>
             </View>
           </ThemedView>
         )
@@ -45,7 +47,7 @@ const AppLayout = () => {
               <TouchableOpacity className="absolute z-10" onPress={() => { router.back() }}>
                 <AntDesign color={theme === "light" ? "black" : "white"} name='arrowleft' size={42} />
               </TouchableOpacity>
-              <ThemedText className='text-3xl text-center font-poppinsBold translate-y-1'>Records</ThemedText>
+              <ThemedText className='text-3xl text-center font-poppinsBold translate-y-1'>{t('records')}</ThemedText>
             </View>
           </ThemedView>
         )
@@ -57,7 +59,7 @@ const AppLayout = () => {
               <TouchableOpacity className="absolute z-10" onPress={() => { router.back() }}>
                 <AntDesign color={theme === "light" ? "black" : "white"} name='arrowleft' size={42} />
               </TouchableOpacity>
-              <ThemedText className='text-3xl text-center font-poppinsBold translate-y-1'>Settings</ThemedText>
+              <ThemedText className='text-3xl text-center font-poppinsBold translate-y-1'>{t('settings')}</ThemedText>
             </View>
           </ThemedView>
         )
@@ -69,7 +71,7 @@ const AppLayout = () => {
               <TouchableOpacity className="absolute z-10" onPress={() => { router.back() }}>
                 <AntDesign color={theme === "light" ? "black" : "white"} name='arrowleft' size={42} />
               </TouchableOpacity>
-              <ThemedText className='text-3xl text-center font-poppinsBold translate-y-1'>Achievements</ThemedText>
+              <ThemedText className='text-3xl text-center font-poppinsBold translate-y-1'>{t('achievements')}</ThemedText>
             </View>
           </ThemedView>
         )
@@ -81,7 +83,7 @@ const AppLayout = () => {
               <TouchableOpacity className="absolute z-10" onPress={() => { router.back() }}>
                 <AntDesign color={theme === "light" ? "black" : "white"} name='arrowleft' size={42} />
               </TouchableOpacity>
-              <ThemedText className='text-3xl text-center font-poppinsBold translate-y-1'>History</ThemedText>
+              <ThemedText className='text-3xl text-center font-poppinsBold translate-y-1'>{t('history')}</ThemedText>
             </View>
           </ThemedView>
         )
@@ -93,7 +95,7 @@ const AppLayout = () => {
               <TouchableOpacity className="absolute z-10" onPress={() => { router.back() }}>
                 <AntDesign color={theme === "light" ? "black" : "white"} name='arrowleft' size={42} />
               </TouchableOpacity>
-              <ThemedText className='text-3xl text-center font-poppinsBold translate-y-1'>Choose exercises</ThemedText>
+              <ThemedText className='text-3xl text-center font-poppinsBold translate-y-1'>{t('choose_exercises')}</ThemedText>
             </View>
           </ThemedView>
         )
@@ -105,7 +107,7 @@ const AppLayout = () => {
               <TouchableOpacity className="absolute z-10" onPress={() => { router.back() }}>
                 <AntDesign color={theme === "light" ? "black" : "white"} name='arrowleft' size={42} />
               </TouchableOpacity>
-              <ThemedText className='text-3xl text-center font-poppinsBold translate-y-1'>Put sets data</ThemedText>
+              <ThemedText className='text-3xl text-center font-poppinsBold translate-y-1'>{t('put_sets_data')}</ThemedText>
             </View>
           </ThemedView>
         )
@@ -117,7 +119,7 @@ const AppLayout = () => {
               <TouchableOpacity className="absolute z-10" onPress={() => { router.back() }}>
                 <AntDesign color={theme === "light" ? "black" : "white"} name='arrowleft' size={42} />
               </TouchableOpacity>
-              <ThemedText className='text-3xl text-center font-poppinsBold translate-y-1'>Post Details</ThemedText>
+              <ThemedText className='text-3xl text-center font-poppinsBold translate-y-1'>{t('post_details')}</ThemedText>
             </View>
           </ThemedView>
         )
@@ -129,7 +131,7 @@ const AppLayout = () => {
               <TouchableOpacity className="absolute z-10" onPress={() => { router.back() }}>
                 <AntDesign color={theme === "light" ? "black" : "white"} name='arrowleft' size={42} />
               </TouchableOpacity>
-              <ThemedText className='text-3xl text-center font-poppinsBold translate-y-1'>Invite User</ThemedText>
+              <ThemedText className='text-3xl text-center font-poppinsBold translate-y-1'>{t('invite_user')}</ThemedText>
             </View>
           </ThemedView>
         )
@@ -141,7 +143,7 @@ const AppLayout = () => {
               <TouchableOpacity className="absolute z-10" onPress={() => { router.back() }}>
                 <AntDesign color={theme === "light" ? "black" : "white"} name='arrowleft' size={42} />
               </TouchableOpacity>
-              <ThemedText className='text-3xl text-center font-poppinsBold translate-y-1'>Pending</ThemedText>
+              <ThemedText className='text-3xl text-center font-poppinsBold translate-y-1'>{t('pending')}</ThemedText>
             </View>
           </ThemedView>
         )
@@ -153,7 +155,7 @@ const AppLayout = () => {
               <TouchableOpacity className="absolute z-10" onPress={() => { router.dismissAll() }}>
                 <AntDesign color={theme === "light" ? "black" : "white"} name='arrowleft' size={42} />
               </TouchableOpacity>
-              <ThemedText className='text-3xl text-center font-poppinsBold translate-y-1'>Routines</ThemedText>
+              <ThemedText className='text-3xl text-center font-poppinsBold translate-y-1'>{t('routines')}</ThemedText>
             </View>
           </ThemedView>
         )
@@ -165,7 +167,7 @@ const AppLayout = () => {
               <TouchableOpacity className="absolute z-10" onPress={() => { router.back() }}>
                 <AntDesign color={theme === "light" ? "black" : "white"} name='arrowleft' size={42} />
               </TouchableOpacity>
-              <ThemedText className='text-3xl text-center font-poppinsBold translate-y-1'>Choose exercises</ThemedText>
+              <ThemedText className='text-3xl text-center font-poppinsBold translate-y-1'>{t('choose_exercises')}</ThemedText>
             </View>
           </ThemedView>
         )
@@ -177,7 +179,7 @@ const AppLayout = () => {
               <TouchableOpacity className="absolute z-10" onPress={() => { router.back() }}>
                 <AntDesign color={theme === "light" ? "black" : "white"} name='arrowleft' size={42} />
               </TouchableOpacity>
-              <ThemedText className='text-3xl text-center font-poppinsBold translate-y-1'>Add post</ThemedText>
+              <ThemedText className='text-3xl text-center font-poppinsBold translate-y-1'>{t('add_post')}</ThemedText>
             </View>
           </ThemedView>
         )
@@ -218,7 +220,7 @@ const AppLayout = () => {
               <TouchableOpacity className="absolute z-10" onPress={() => { router.back() }}>
                 <AntDesign color={theme === "light" ? "black" : "white"} name='arrowleft' size={42} />
               </TouchableOpacity>
-              <ThemedText className='text-3xl text-center font-poppinsBold translate-y-1'>Workout</ThemedText>
+              <ThemedText className='text-3xl text-center font-poppinsBold translate-y-1'>{t('workout')}</ThemedText>
             </View>
           </ThemedView>
         )

@@ -7,8 +7,10 @@ import { useQuery } from '@tanstack/react-query';
 import { RecordsExerciseItem } from '@/components/pages/records/RecordsExerciseItem';
 import { FontAwesome6 } from '@expo/vector-icons';
 import { Colors } from '@/constants/Colors';
+import { useTranslation } from 'react-i18next';
 
 export default function Records() {
+  const { t } = useTranslation()
   const router = useRouter();
 
   const { data: exercises, isLoading, isRefetching, isError, error } = useQuery<Exercise[]>(
@@ -36,11 +38,11 @@ export default function Records() {
   }
 
   if (isError) {
-    return <ThemedText>Error fetching exercises: {error.message}</ThemedText>;
+    return <ThemedText>{t('error_fetching_exercises')}: {error.message}</ThemedText>;
   }
 
   if (!exercises) {
-    return <ThemedText>Error fetching exercises</ThemedText>;
+    return <ThemedText>{t('error_fetching_exercises')}</ThemedText>;
   }
 
   return (
@@ -48,7 +50,7 @@ export default function Records() {
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <ThemedView className='border-2 border-slate-400 rounded-xl p-3 mx-3 mt-2 mb-6 flex-row justify-center items-center space-x-6'>
           <FontAwesome6 name="circle-info" size={36} color={Colors.slate400} />
-          <ThemedText className='text-lg text-slate-400'>Pick an exercise to see your records</ThemedText>
+          <ThemedText className='text-lg text-slate-400'>{t('pick_an_exercise_to_see_your_records')}</ThemedText>
         </ThemedView>
         {exercises.map((item) => (
           <TouchableOpacity onPress={() => router.push(`/record/${item.name_exercise}`)} key={item.gym_exercise_id}>

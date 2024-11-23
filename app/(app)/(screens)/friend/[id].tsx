@@ -11,9 +11,11 @@ import { FontAwesome, FontAwesome6, Ionicons, Octicons } from '@expo/vector-icon
 import { useQuery } from '@tanstack/react-query';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, ScrollView, TouchableOpacity, View } from 'react-native';
 
 export default function FriendDetail() {
+  const { t } = useTranslation()
   const router = useRouter()
   const { id } = useLocalSearchParams();
   const iconColor = useColor("black", "white")
@@ -46,11 +48,11 @@ export default function FriendDetail() {
   }
 
   if (isError) {
-    return <ThemedText>Error fetching friend info: {error.message}</ThemedText>
+    return <ThemedText>{t('error_fetching_friend_info')}: {error.message}</ThemedText>
   }
 
   if (!friend) {
-    return <ThemedText>Error fetching friend info</ThemedText>
+    return <ThemedText>{t('error_fetching_friend_info')}</ThemedText>
   }
 
   return (
@@ -83,7 +85,7 @@ export default function FriendDetail() {
       <ScrollView contentContainerStyle={{ padding: 8 }}>
         <FriendPageGeneralInfo friend={friend} />
         <View className='mt-3'>
-          <ThemedText className='text-center font-poppinsBold text-5xl leading-[70px] -mb-4'>VS</ThemedText>
+          <ThemedText className='text-center font-poppinsBold text-5xl leading-[70px] -mb-4'>{t('vs')}</ThemedText>
 
           <ThemedView className="flex-row">
             <ThemedView className="flex-1 aspect-square p-4">
@@ -92,7 +94,7 @@ export default function FriendDetail() {
                 className="bg-slate-200 dark:bg-slate-700 flex-1 rounded-xl justify-center items-center"
               >
                 <FontAwesome name="check-square-o" size={70} color={iconColor} />
-                <ThemedText className="text-xl absolute bottom-1">Workouts</ThemedText>
+                <ThemedText className="text-xl absolute bottom-1">{t('workouts')}</ThemedText>
               </TouchableOpacity>
             </ThemedView>
 
@@ -102,7 +104,7 @@ export default function FriendDetail() {
                 className="bg-slate-200 dark:bg-slate-700 flex-1 rounded-xl justify-center items-center"
               >
                 <Ionicons name="body" size={70} color={iconColor} />
-                <ThemedText className="text-xl absolute bottom-1">Muscles</ThemedText>
+                <ThemedText className="text-xl absolute bottom-1">{t('muscles')}</ThemedText>
               </TouchableOpacity>
             </ThemedView>
           </ThemedView>
@@ -114,7 +116,7 @@ export default function FriendDetail() {
                 className="bg-slate-200 dark:bg-slate-700 flex-1 rounded-xl justify-center items-center"
               >
                 <Octicons name="number" size={70} color={iconColor} />
-                <ThemedText className="text-xl absolute bottom-1">Sets</ThemedText>
+                <ThemedText className="text-xl absolute bottom-1">{t('sets')}</ThemedText>
               </TouchableOpacity>
             </ThemedView>
 
@@ -124,7 +126,7 @@ export default function FriendDetail() {
                 className="bg-slate-200 dark:bg-slate-700 flex-1 rounded-xl justify-center items-center"
               >
                 <FontAwesome6 name="clock-four" size={70} color={iconColor} />
-                <ThemedText className="text-xl absolute bottom-1">Duration</ThemedText>
+                <ThemedText className="text-xl absolute bottom-1">{t('duration')}</ThemedText>
               </TouchableOpacity>
             </ThemedView>
           </ThemedView>
@@ -134,7 +136,7 @@ export default function FriendDetail() {
           onPress={handleRemoveFriend}
           className="m-4 bg-red-500 rounded-xl p-3 justify-center items-center"
         >
-          <ThemedText className="text-lg">Remove Friend</ThemedText>
+          <ThemedText className="text-lg">{t('remove_friend')}</ThemedText>
         </TouchableOpacity>
       </ScrollView>
     </ThemedView>

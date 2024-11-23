@@ -9,8 +9,10 @@ import { UploadFile } from '@/components/auth/UploadFile';
 import { MyToast } from '@/components/MyToast';
 import { AuthTextInput } from '@/components/auth/AuthTextInput';
 import { PickDate } from '@/components/auth/PickDate';
+import { useTranslation } from 'react-i18next';
 
 const SignUp = () => {
+  const { t } = useTranslation()
   const styles = useGlobalStyles();
   const router = useRouter();
   const { register, uploadProfileImage } = useAuth();
@@ -76,8 +78,8 @@ const SignUp = () => {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
           <ThemedView style={styles.safeArea} className="p-8 flex-grow justify-center">
-            <ThemedText className="mt-2 py-2 text-5xl font-poppinsBold text-center">GymDiary</ThemedText>
-            <ThemedText className="py-2 text-3xl font-poppinsBold text-center">Join Us!</ThemedText>
+            <ThemedText className="mt-2 py-2 text-5xl font-poppinsBold text-center">{t('gymdiary')}</ThemedText>
+            <ThemedText className="py-2 text-3xl font-poppinsBold text-center">{t('join_us_')}</ThemedText>
 
             <AuthTextInput
               placeholder="Email"
@@ -111,7 +113,7 @@ const SignUp = () => {
               onPress={() => router.push('signIn')}
               className="bg-secondary-400/60 dark:bg-secondary-700/60 p-2 rounded-md mt-4 w-40 mx-auto"
             >
-              <ThemedText className="text-lg text-center">Sign in</ThemedText>
+              <ThemedText className="text-lg text-center">{t('sign_in')}</ThemedText>
             </TouchableOpacity>
           </ThemedView>
         </ScrollView>
@@ -123,12 +125,12 @@ const SignUp = () => {
         duration={4000}
       >
         <>
-          <ThemedText className="text-2xl mb-2 font-poppinsBold text-center">Successfully Registered</ThemedText>
-          <ThemedText className="text-lg text-center mb-8">You can now sign in.</ThemedText>
+          <ThemedText className="text-2xl mb-2 font-poppinsBold text-center">{t('successfully_registered')}</ThemedText>
+          <ThemedText className="text-lg text-center mb-8">{t('you_can_now_sign_in_')}</ThemedText>
           <TouchableOpacity
             onPress={() => router.push('signIn')}
           >
-            <ThemedText className="text-3xl font-poppinsBold text-center underline">Go to sign in</ThemedText>
+            <ThemedText className="text-3xl font-poppinsBold text-center underline">{t('go_to_sign_in')}</ThemedText>
           </TouchableOpacity>
         </>
       </MyToast>

@@ -9,8 +9,10 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { fetchWorkouts } from '@/api/workouts';
 import { HistoryCard } from '@/components/pages/history/HistoryCard';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export default function HomeScreen() {
+  const { t } = useTranslation()
   const router = useRouter();
   const styles = useGlobalStyles();
   const iconColor = useColor("black", "white");
@@ -32,7 +34,7 @@ export default function HomeScreen() {
   };
 
   if (isError) {
-    return <ThemedText>Error fetching workouts: {error.message}</ThemedText>;
+    return <ThemedText>{t('error_fetching_workouts')}: {error.message}</ThemedText>;
   }
 
   const latest = workouts?.reduce((latestItem, currentItem) => {
@@ -58,7 +60,7 @@ export default function HomeScreen() {
             </TouchableOpacity>
           ) : (
             <ThemedView className="mx-4 p-4 h-[240px] rounded-xl justify-center items-center" lightClassName="bg-slate-200" darkClassName="bg-slate-700">
-              <ThemedText className="text-3xl text-center">There will appear your last training!</ThemedText>
+              <ThemedText className="text-3xl text-center">{t('there_will_appear_your_last_training_')}</ThemedText>
             </ThemedView>
           )}
 
@@ -69,7 +71,7 @@ export default function HomeScreen() {
                 className="bg-slate-200 dark:bg-slate-700 flex-1 rounded-xl justify-center items-center"
               >
                 <FontAwesome5 name="history" size={70} color={iconColor} />
-                <ThemedText className="text-xl absolute bottom-1">History</ThemedText>
+                <ThemedText className="text-xl absolute bottom-1">{t('history')}</ThemedText>
               </TouchableOpacity>
             </ThemedView>
 
@@ -79,7 +81,7 @@ export default function HomeScreen() {
                 className="bg-slate-200 dark:bg-slate-700 flex-1 rounded-xl justify-center items-center"
               >
                 <Ionicons name="stats-chart" size={70} color={iconColor} />
-                <ThemedText className="text-xl absolute bottom-1">Stats</ThemedText>
+                <ThemedText className="text-xl absolute bottom-1">{t('stats')}</ThemedText>
               </TouchableOpacity>
             </ThemedView>
           </ThemedView>

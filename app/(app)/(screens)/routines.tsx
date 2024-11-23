@@ -3,13 +3,13 @@ import { ThemedText, ThemedView } from '../../../components/ThemedComponents';
 import { useRouter } from 'expo-router';
 import { fetchRoutines, removeRoutine } from '@/api/workouts';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { useBlackOrWhite } from '@/hooks/useBlackOrWhite';
-import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { useState } from 'react';
 import { ConfirmationModal } from '@/components/ConfirmationModal';
 import { RoutineListItem } from '@/components/pages/routines/RoutineListItem';
+import { useTranslation } from 'react-i18next';
 
 export default function Routines() {
+  const { t } = useTranslation()
   const router = useRouter()
   const [openModal, setOpenModal] = useState(false)
   const [removing, setRemoving] = useState(false)
@@ -33,11 +33,11 @@ export default function Routines() {
   }
 
   if (isError) {
-    return <ThemedText>Error fetching routines: {error.message}</ThemedText>;
+    return <ThemedText>{t('error_fetching_routines')}: {error.message}</ThemedText>;
   }
 
   if (!routines) {
-    return <ThemedText>Error fetching routines</ThemedText>;
+    return <ThemedText>{t('error_fetching_routines')}</ThemedText>;
   }
 
   const handleRemove = async () => {
@@ -62,15 +62,15 @@ export default function Routines() {
 
       <ThemedView className='px-3 flex-grow flex-shrink'>
         <TouchableOpacity className='bg-slate-200 dark:bg-slate-700 my-3 p-3 rounded-xl' onPress={() => { router.push('/(app)/(screens)/addRoutine') }}>
-          <ThemedText className='text-xl text-center'>Add routine</ThemedText>
+          <ThemedText className='text-xl text-center'>{t('add_routine')}</ThemedText>
         </TouchableOpacity>
         {removing ? (
           <TouchableOpacity className='bg-red-500 dark:bg-red-800 mb-8 p-3 rounded-xl' onPress={() => { setRemoving(false) }}>
-            <ThemedText className='text-xl text-center'>Cancel</ThemedText>
+            <ThemedText className='text-xl text-center'>{t('cancel')}</ThemedText>
           </TouchableOpacity>
         ) : (
           <TouchableOpacity className='bg-slate-200 dark:bg-slate-700 mb-8 p-3 rounded-xl' onPress={() => { setRemoving(true) }}>
-            <ThemedText className='text-xl text-center'>Remove routine</ThemedText>
+            <ThemedText className='text-xl text-center'>{t('remove_routine')}</ThemedText>
           </TouchableOpacity>
         )}
         <ScrollView>
@@ -78,11 +78,11 @@ export default function Routines() {
             routines.map(item => <RoutineListItem key={item.gym_routine_id} item={item} removing={removing} routinesToRemove={routinesToRemove} setRoutinesToRemove={setRoutinesToRemove} />)
           ) : (
             <>
-              <ThemedText className='text-2xl text-center mt-4'>You don't have any routines.</ThemedText>
+              <ThemedText className='text-2xl text-center mt-4'>{t('you_don_t_have_any_routines_')}</ThemedText>
               <TouchableOpacity
                 onPress={() => router.push('/(app)/(screens)/addRoutine')}
               >
-                <ThemedText className='text-2xl text-center mt-4 font-poppinsBold underline'>You can add some here</ThemedText>
+                <ThemedText className='text-2xl text-center mt-4 font-poppinsBold underline'>{t('you_can_add_some_here')}</ThemedText>
               </TouchableOpacity>
             </>
           )}
@@ -91,7 +91,7 @@ export default function Routines() {
 
       {removing && (
         <TouchableOpacity className='bg-slate-300 dark:bg-slate-800 border-t-2 border-slate-500' disabled={routinesToRemove.length === 0} onPress={() => setOpenModal(true)}>
-          <ThemedText className={`text-2xl p-4 font-poppinsBold text-center ${routinesToRemove.length === 0 && 'opacity-30'}`}>Remove</ThemedText>
+          <ThemedText className={`text-2xl p-4 font-poppinsBold text-center ${routinesToRemove.length === 0 && 'opacity-30'}`}>{t('remove')}</ThemedText>
         </TouchableOpacity>
       )}
     </ThemedView>

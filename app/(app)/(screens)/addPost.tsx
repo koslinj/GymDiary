@@ -8,8 +8,10 @@ import { FontAwesome5 } from "@expo/vector-icons"
 import { useBlackOrWhite } from "@/hooks/useBlackOrWhite"
 import { addPost } from "@/api/social"
 import { useQueryClient } from "@tanstack/react-query"
+import { useTranslation } from "react-i18next"
 
 export default function AddPost() {
+  const { t } = useTranslation()
   const { desc: persistedDesc, workout } = useLocalSearchParams();
   const parsedWorkout: GymWorkoutSummary = workout ? JSON.parse(workout as string) : null
 
@@ -29,7 +31,7 @@ export default function AddPost() {
 
   return (
     <ThemedView className="flex-1 px-3">
-      <ThemedText className="text-2xl pt-4 mr-14">Put a description</ThemedText>
+      <ThemedText className="text-2xl pt-4 mr-14">{t('put_a_description')}</ThemedText>
       <TextInput
         className="p-2 text-lg border-2 rounded-md mb-3 dark:border-white dark:text-white"
         placeholderTextColor={placeholderColor}
@@ -41,7 +43,7 @@ export default function AddPost() {
       {parsedWorkout ? (
         <View>
           <View className="flex-row justify-between items-center -mb-10 pt-4">
-            <ThemedText className="text-2xl">Picked workout</ThemedText>
+            <ThemedText className="text-2xl">{t('picked_workout')}</ThemedText>
             <TouchableOpacity
               onPress={() => {
                 router.push({
@@ -57,7 +59,7 @@ export default function AddPost() {
         </View>
       ) : (
         <View>
-          <ThemedText className="text-2xl pt-4 mr-14">Pick a workout</ThemedText>
+          <ThemedText className="text-2xl pt-4 mr-14">{t('pick_a_workout')}</ThemedText>
           <TouchableOpacity
             style={{ borderColor: placeholderColor }}
             className="border-2 rounded-md p-4"
@@ -71,9 +73,7 @@ export default function AddPost() {
             <ThemedText
               style={{ color: placeholderColor }}
               className="text-center text-lg"
-            >
-              Press here to pick a workout
-            </ThemedText>
+            >{t('press_here_to_pick_a_workout')}</ThemedText>
           </TouchableOpacity>
         </View >
       )}
@@ -84,7 +84,7 @@ export default function AddPost() {
           disabled={!parsedWorkout}
           className={`bg-secondary-400 dark:bg-secondary-700 ${!parsedWorkout && 'bg-secondary-400/50 dark:bg-secondary-700/50'} p-4 rounded-xl`}
         >
-          <ThemedText className={`font-poppinsBold text-2xl text-center ${!parsedWorkout && 'opacity-50'}`}>Submit</ThemedText>
+          <ThemedText className={`font-poppinsBold text-2xl text-center ${!parsedWorkout && 'opacity-50'}`}>{t('submit')}</ThemedText>
         </TouchableOpacity>
       </ThemedView>
 

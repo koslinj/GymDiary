@@ -11,8 +11,10 @@ import { addRoutine } from '@/api/workouts';
 import { PageModal } from '@/components/PageModal';
 import { useColor } from '@/hooks/useColor';
 import { useRouter } from 'expo-router';
+import { useTranslation } from 'react-i18next';
 
 export default function AddRoutine() {
+  const { t } = useTranslation()
   const placeholderColor = useColor('#00000066', '#ffffff66')
   const iconColor = useBlackOrWhite();
   const [openModal, setOpenModal] = useState(false);
@@ -59,11 +61,11 @@ export default function AddRoutine() {
   }
 
   if (isError) {
-    return <ThemedText>Error fetching exercises: {error.message}</ThemedText>;
+    return <ThemedText>{t('error_fetching_exercises')}: {error.message}</ThemedText>;
   }
 
   if (!exercises) {
-    return <ThemedText>Error fetching exercises</ThemedText>;
+    return <ThemedText>{t('error_fetching_exercises')}</ThemedText>;
   }
 
   return (
@@ -72,8 +74,8 @@ export default function AddRoutine() {
         openModal={openPageModal}
         setOpenModal={setOpenPageModal}
       >
-        <ThemedText className='text-2xl font-poppinsBold text-center mb-3'>New routine</ThemedText>
-        <ThemedText className='text-xl text-slate-400 italic'>Name of routine:</ThemedText>
+        <ThemedText className='text-2xl font-poppinsBold text-center mb-3'>{t('new_routine')}</ThemedText>
+        <ThemedText className='text-xl text-slate-400 italic'>{t('name_of_routine_')}</ThemedText>
         <TextInput
           className="p-2 text-lg border-2 rounded-md mb-3 dark:border-white dark:text-white"
           placeholderTextColor={placeholderColor}
@@ -82,11 +84,11 @@ export default function AddRoutine() {
           autoCapitalize='none'
           onChangeText={(text) => setName(text)}
         />
-        <ThemedText className='text-xl text-slate-400 italic mt-2'>Selected Exercises:</ThemedText>
+        <ThemedText className='text-xl text-slate-400 italic mt-2'>{t('selected_exercises_')}</ThemedText>
         {selectedExercises.length > 6 ? (
           <>
             {selectedExercises.slice(0, 6).map(e => <ThemedText key={e} className='text-xl mt-1'>{e}</ThemedText>)}
-            <ThemedText className='text-xl italic text-center mt-1 text-slate-400'>And more...</ThemedText>
+            <ThemedText className='text-xl italic text-center mt-1 text-slate-400'>{t('and_more_')}</ThemedText>
           </>
         ) : (
           selectedExercises.map(e => <ThemedText key={e} className='text-xl mt-1'>{e}</ThemedText>)
@@ -95,7 +97,7 @@ export default function AddRoutine() {
           className="bg-secondary-400 dark:bg-secondary-700 p-3 mt-3 rounded-md w-full mx-auto"
           onPress={handleSubmit}
         >
-          <ThemedText className='text-xl text-center font-poppinsBold'>Submit</ThemedText>
+          <ThemedText className='text-xl text-center font-poppinsBold'>{t('submit')}</ThemedText>
         </TouchableOpacity>
       </PageModal>
 
@@ -120,7 +122,7 @@ export default function AddRoutine() {
       </ThemedView>
 
       <TouchableOpacity className='bg-slate-300 dark:bg-slate-800' disabled={selectedExercises.length === 0} onPress={showRoutineSubmitModal}>
-        <ThemedText className={`text-2xl p-4 font-poppinsBold text-center ${selectedExercises.length === 0 && 'opacity-30'}`}>Proceed routine creation</ThemedText>
+        <ThemedText className={`text-2xl p-4 font-poppinsBold text-center ${selectedExercises.length === 0 && 'opacity-30'}`}>{t('proceed_routine_creation')}</ThemedText>
       </TouchableOpacity>
     </>
   )

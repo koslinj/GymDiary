@@ -3,9 +3,11 @@ import { Post } from '@/components/pages/social/Post';
 import { DeleteButton } from '@/components/pages/social/post/DeleteButton';
 import { ThemedText, ThemedView } from '@/components/ThemedComponents';
 import { useLocalSearchParams } from 'expo-router';
+import { useTranslation } from 'react-i18next';
 import { ScrollView } from 'react-native';
 
 export default function PostDetail() {
+  const { t } = useTranslation()
   const { post } = useLocalSearchParams();
   const parsed: Post = JSON.parse(post as string)
 
@@ -19,7 +21,7 @@ export default function PostDetail() {
     <ThemedView className='flex-1'>
       <ScrollView contentContainerStyle={{ paddingBottom: 32 }}>
         <Post post={parsed} />
-        <ThemedText className='text-3xl mt-8 font-poppinsBold text-center'>Workout:</ThemedText>
+        <ThemedText className='text-3xl mt-8 font-poppinsBold text-center'>{t('workout')}:</ThemedText>
         <ThemedView className="flex-row justify-center space-x-4">
           <ThemedText className="text-lg">{formattedDate}</ThemedText>
           <ThemedText className="text-lg">{formattedTime}</ThemedText>

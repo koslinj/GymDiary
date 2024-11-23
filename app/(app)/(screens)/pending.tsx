@@ -3,8 +3,10 @@ import { ActivityIndicator } from "react-native"
 import { useQuery } from "@tanstack/react-query"
 import { fetchPendingInvitations } from "@/api/friends"
 import { PendingItem } from "@/components/pages/friends/PendingItem"
+import { useTranslation } from "react-i18next"
 
 export default function Pending() {
+  const { t } = useTranslation()
 
   const { data: invitations, isLoading, isError, error } = useQuery<Friend[]>(
     {
@@ -23,11 +25,11 @@ export default function Pending() {
   }
 
   if (isError) {
-    return <ThemedText>Error fetching invitations: {error.message}</ThemedText>
+    return <ThemedText>{t('error_fetching_invitations')}: {error.message}</ThemedText>
   }
 
   if (!invitations) {
-    return <ThemedText>Error fetching invitations</ThemedText>
+    return <ThemedText>{t('error_fetching_invitations')}</ThemedText>
   }
 
   return (

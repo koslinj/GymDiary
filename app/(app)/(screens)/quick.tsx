@@ -8,8 +8,10 @@ import { AntDesign } from "@expo/vector-icons";
 import { useBlackOrWhite } from "@/hooks/useBlackOrWhite";
 import { useRouter } from 'expo-router';
 import { ExerciseItem } from '@/components/pages/quick/ExerciseItem';
+import { useTranslation } from 'react-i18next';
 
 export default function Quick() {
+  const { t } = useTranslation()
   const iconColor = useBlackOrWhite();
   const [openModal, setOpenModal] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -50,11 +52,11 @@ export default function Quick() {
   }
 
   if (isError) {
-    return <ThemedText>Error fetching exercises: {error.message}</ThemedText>;
+    return <ThemedText>{t('error_fetching_exercises')}: {error.message}</ThemedText>;
   }
 
   if (!exercises) {
-    return <ThemedText>Error fetching exercises</ThemedText>;
+    return <ThemedText>{t('error_fetching_exercises')}</ThemedText>;
   }
 
   return (
@@ -80,7 +82,7 @@ export default function Quick() {
       </ThemedView>
 
       <TouchableOpacity className='bg-slate-300 dark:bg-slate-800' disabled={selectedExercises.length === 0} onPress={goToNextPage}>
-        <ThemedText className={`text-2xl p-4 font-poppinsBold text-center ${selectedExercises.length === 0 && 'opacity-30'}`}>Next</ThemedText>
+        <ThemedText className={`text-2xl p-4 font-poppinsBold text-center ${selectedExercises.length === 0 && 'opacity-30'}`}>{t('next')}</ThemedText>
       </TouchableOpacity>
     </>
   )

@@ -2,9 +2,11 @@ import { fetchGymAchievements, fetchSocialAchievements } from "@/api/achievement
 import { AchievementItem } from "@/components/pages/achievements/AchievementItem";
 import { ThemedText, ThemedView } from "@/components/ThemedComponents"
 import { useQueries } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 import { ActivityIndicator, ScrollView } from "react-native";
 
 export default function Achievements() {
+  const { t } = useTranslation()
 
   const results = useQueries({
     queries: [
@@ -39,24 +41,24 @@ export default function Achievements() {
   }
 
   if (isError) {
-    return <ThemedText>Error fetching achievements: {errorMessages}</ThemedText>;
+    return <ThemedText>{t('error_fetching_achievements')}: {errorMessages}</ThemedText>;
   }
 
   if (!gymAchievements || !socialAchievements) {
-    return <ThemedText>Error fetching achievements</ThemedText>;
+    return <ThemedText>{t('error_fetching_achievements')}</ThemedText>;
   }
 
   return (
     <ThemedView className="flex-1">
       <ScrollView contentContainerStyle={{paddingBottom: 20, paddingHorizontal: 12}}>
-        <ThemedText className="text-2xl text-center mt-2 font-poppinsBold text-slate-500 dark:text-slate-400">Gym</ThemedText>
+        <ThemedText className="text-2xl text-center mt-2 font-poppinsBold text-slate-500 dark:text-slate-400">{t('gym')}</ThemedText>
         {gymAchievements.map((item: GymAchievement) => (
           <AchievementItem
             key={item.users_gym_achievement_id}
             achievement={item}
           />
         ))}
-        <ThemedText className="text-2xl text-center mt-8 font-poppinsBold text-slate-500 dark:text-slate-400">Social</ThemedText>
+        <ThemedText className="text-2xl text-center mt-8 font-poppinsBold text-slate-500 dark:text-slate-400">{t('social')}</ThemedText>
         {socialAchievements.map((item: SocialAchievement) => (
           <AchievementItem
             key={item.users_social_achievement_id}

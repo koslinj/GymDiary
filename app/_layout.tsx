@@ -8,6 +8,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import * as Notifications from 'expo-notifications';
 import * as TaskManager from "expo-task-manager";
 import { NotificationProvider } from "@/hooks/NotificationContext";
+import "@/config/i18nConfig"
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({

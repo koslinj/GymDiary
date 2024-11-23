@@ -3,9 +3,11 @@ import React, { useEffect } from 'react'
 import { Tabs } from 'expo-router';
 import { TabBar } from '@/components/navigation/TabBar';
 import { useNotification } from '@/hooks/NotificationContext';
+import { useTranslation } from "react-i18next";
 
 export default function TabLayout() {
   const { expoPushToken } = useNotification()
+  const { t } = useTranslation()
 
   useEffect(() => {
     const updateToken = async () => {
@@ -20,25 +22,25 @@ export default function TabLayout() {
       <Tabs.Screen
         name="start"
         options={{
-          title: "Start"
+          title: t('start')
         }}
       />
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
+          title: t('home')
         }}
       />
       <Tabs.Screen
         name="social"
         options={{
-          title: 'Social',
+          title: t('social')
         }}
       />
       <Tabs.Screen
         name="profile"
         options={{
-          title: "Profile"
+          title: t('profile')
         }}
       />
     </Tabs>

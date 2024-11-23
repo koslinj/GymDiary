@@ -1,7 +1,7 @@
 import axios from "@/config/axiosConfig";
 import React, { useEffect } from 'react'
 import { Tabs } from 'expo-router';
-import { TabBar } from '@/components/TabBar';
+import { TabBar } from '@/components/navigation/TabBar';
 import { useNotification } from '@/hooks/NotificationContext';
 
 export default function TabLayout() {

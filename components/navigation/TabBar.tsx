@@ -1,9 +1,8 @@
-import { View, Text, TouchableOpacity, StyleSheet, LayoutChangeEvent } from 'react-native';
+import { View, StyleSheet, LayoutChangeEvent } from 'react-native';
 import { BottomTabBarProps } from "@react-navigation/bottom-tabs"
-import { Feather } from '@expo/vector-icons';
 import TabBarButton from './TabBarButton';
 import { useEffect, useState } from 'react';
-import Animated, { ReduceMotion, useAnimatedStyle, useSharedValue, withSpring, withTiming } from 'react-native-reanimated';
+import Animated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
 import { useColor } from '@/hooks/useColor';
 import { Colors } from '@/constants/Colors';
 

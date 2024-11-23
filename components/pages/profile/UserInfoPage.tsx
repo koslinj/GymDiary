@@ -6,6 +6,7 @@ import { useBlackOrWhite } from "@/hooks/useBlackOrWhite";
 import { TouchableOpacity, View } from "react-native";
 import { useColor } from "@/hooks/useColor";
 import { formatDate } from "@/utils/formating";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   userInfo: UserInfo
@@ -13,6 +14,7 @@ interface Props {
 }
 
 export const UserInfoPage: FC<Props> = ({ userInfo, setOpenModal }) => {
+  const { t } = useTranslation()
 
   return (
     <ThemedView className="bg-transparent pt-2 items-center gap-y-3">
@@ -21,26 +23,26 @@ export const UserInfoPage: FC<Props> = ({ userInfo, setOpenModal }) => {
       </TouchableOpacity>
       <ProfilePhoto uri={userInfo.profile_photo} size="BIG" />
       <View className="items-center">
-        <ThemedText className={`-mb-2 ${useColor("text-slate-500", "text-slate-300")}`}>Nickname</ThemedText>
+        <ThemedText className={`-mb-2 ${useColor("text-slate-500", "text-slate-300")}`}>{t('nickname')}</ThemedText>
         <ThemedText className="font-poppinsBold text-3xl">{userInfo.nickname}</ThemedText>
       </View>
       <View className="items-center">
-        <ThemedText className={`-mb-2 ${useColor("text-slate-500", "text-slate-300")}`}>Email</ThemedText>
+        <ThemedText className={`-mb-2 ${useColor("text-slate-500", "text-slate-300")}`}>{t('email')}</ThemedText>
         <ThemedText className="text-2xl">{userInfo.email}</ThemedText>
       </View>
       <View className="items-center">
-        <ThemedText className={`-mb-2 ${useColor("text-slate-500", "text-slate-300")}`}>Description</ThemedText>
+        <ThemedText className={`-mb-2 ${useColor("text-slate-500", "text-slate-300")}`}>{t('description')}</ThemedText>
         <ThemedText className="italic text-2xl">{userInfo.description}</ThemedText>
       </View>
       <View className="items-center">
-        <ThemedText className={`-mb-2 ${useColor("text-slate-500", "text-slate-300")}`}>Date of birth</ThemedText>
+        <ThemedText className={`-mb-2 ${useColor("text-slate-500", "text-slate-300")}`}>{t('date_of_birth')}</ThemedText>
         <ThemedText className="text-xl">{formatDate(userInfo.date_of_birth)}</ThemedText>
       </View>
       <View className="items-center">
-        <ThemedText className={`-mb-2 ${useColor("text-slate-500", "text-slate-300")}`}>Friends count</ThemedText>
+        <ThemedText className={`-mb-2 ${useColor("text-slate-500", "text-slate-300")}`}>{t('friends_count')}</ThemedText>
         <ThemedText className=" font-poppinsBold text-2xl">{userInfo.friends_count}</ThemedText>
       </View>
-      <ThemedText className={`-mb-2 ${useColor("text-slate-500", "text-slate-300")}`}>Created at {formatDate(userInfo.created_at)}</ThemedText>
+      <ThemedText className={`-mb-2 ${useColor("text-slate-500", "text-slate-300")}`}>{t('created_at_')} {formatDate(userInfo.created_at)}</ThemedText>
     </ThemedView>
   )
 }

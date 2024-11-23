@@ -5,6 +5,7 @@ import { ActivityIndicator, View } from "react-native";
 import { fetchHeaviestWeightChart } from "@/api/records";
 import { LineChart } from "react-native-gifted-charts";
 import { useColor } from "@/hooks/useColor";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   name_exercise: string
@@ -12,6 +13,7 @@ interface Props {
 }
 
 export const HeaviestWeight: FC<Props> = ({ name_exercise, setNoData }) => {
+  const { t } = useTranslation()
   const textColor = useColor("black", "white")
   const chartColor = useColor("#ffbf1b", "#bb4f02")
 
@@ -33,11 +35,11 @@ export const HeaviestWeight: FC<Props> = ({ name_exercise, setNoData }) => {
   }
 
   if (isError) {
-    return <ThemedText>Error fetching weights info: {error.message}</ThemedText>
+    return <ThemedText>{t('error_fetching_weights_info')}: {error.message}</ThemedText>
   }
 
   if (!weights) {
-    return <ThemedText>Error fetching weights info</ThemedText>
+    return <ThemedText>{t('error_fetching_weights_info')}</ThemedText>
   }
 
   if(weights.length === 0){
@@ -62,7 +64,7 @@ export const HeaviestWeight: FC<Props> = ({ name_exercise, setNoData }) => {
 
   return (
     <ThemedView className="bg-slate-200 dark:bg-slate-700 m-3 rounded-xl">
-      <ThemedText className="text-center text-2xl m-2">Heaviest weight in a set</ThemedText>
+      <ThemedText className="text-center text-2xl m-2">{t('heaviest_weight_in_a_set')}</ThemedText>
       <View className="mx-auto">
         <LineChart
           data={chartData}

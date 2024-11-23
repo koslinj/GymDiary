@@ -1,21 +1,17 @@
 import { ThemedText, ThemedView } from "@/components/ThemedComponents"
-import { FC, useState } from "react"
-import { ActivityIndicator, FlatList, TextInput, TouchableOpacity } from "react-native"
-import { AntDesign } from "@expo/vector-icons"
-import { useBlackOrWhite } from "@/hooks/useBlackOrWhite"
-import { useColor } from "@/hooks/useColor"
+import { FC } from "react"
+import { ActivityIndicator, FlatList } from "react-native"
 import { useQuery } from "@tanstack/react-query"
 import { fetchUsersToInvite } from "@/api/friends"
-import { FriendItem } from "./FriendItem"
 import { UserToInviteItem } from "./UserToInviteItem"
-import { ScrollView } from "react-native-gesture-handler"
+import { useTranslation } from "react-i18next"
 
 interface Props {
   search: string
 }
 
 export const UsersToInviteList: FC<Props> = ({ search }) => {
-
+  const { t } = useTranslation()
   const { data: users, isLoading, isError, error } = useQuery<Friend[]>(
     {
       queryKey: ['usersToInvite', search],
@@ -34,7 +30,7 @@ export const UsersToInviteList: FC<Props> = ({ search }) => {
   }
 
   if (isError) {
-    return <ThemedText>Error fetching friend info: {error.message}</ThemedText>
+    return <ThemedText>{t('error_fetching_friend_info')}: {error.message}</ThemedText>
   }
 
   return (

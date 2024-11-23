@@ -6,6 +6,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useQuery, useQueryClient } from "@tanstack/react-query"
 import { useRouter } from "expo-router";
 import { FC, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ActivityIndicator, TouchableOpacity, View } from "react-native"
 
 interface Props {
@@ -13,6 +14,7 @@ interface Props {
 }
 
 export const DeleteButton: FC<Props> = ({ post }) => {
+  const { t } = useTranslation()
   const router = useRouter()
   const iconColor = useBlackOrWhite()
   const queryClient = useQueryClient()
@@ -35,11 +37,11 @@ export const DeleteButton: FC<Props> = ({ post }) => {
   }
 
   if (isError) {
-    return <ThemedText>Error fetching user info: {error.message}</ThemedText>
+    return <ThemedText>{t('error_fetching_user_info')}: {error.message}</ThemedText>
   }
 
   if (!userInfo) {
-    return <ThemedText>Error fetching user info</ThemedText>
+    return <ThemedText>{t('error_fetching_user_info')}</ThemedText>
   }
 
   const handleDelete = async () => {
@@ -61,7 +63,7 @@ export const DeleteButton: FC<Props> = ({ post }) => {
       onPress={handleDelete}
       className={`${removing && "opacity-50"} p-3 mt-12 mx-auto rounded-xl bg-red-500 flex-row space-x-4 items-center`}
     >
-      <ThemedText className='text-2xl flex-shrink'>Delete this post</ThemedText>
+      <ThemedText className='text-2xl flex-shrink'>{t('delete_this_post')}</ThemedText>
       {removing ? (
         <ActivityIndicator size="large" color={iconColor} />
       ) : (

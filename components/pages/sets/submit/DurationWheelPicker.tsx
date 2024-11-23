@@ -2,6 +2,7 @@ import { ThemedText, ThemedView } from "@/components/ThemedComponents";
 import { Colors } from "@/constants/Colors";
 import { useColor } from "@/hooks/useColor";
 import { FC } from "react";
+import { useTranslation } from "react-i18next";
 import { TouchableOpacity, useColorScheme, View } from "react-native";
 import WheelPickerExpo from "react-native-wheel-picker-expo";
 
@@ -19,11 +20,12 @@ interface Props {
 }
 
 export const DurationWheelPicker: FC<Props> = ({ duration, onChange, setOpenPageModal }) => {
+  const { t } = useTranslation()
   const isDark = useColorScheme() === 'dark'
 
   return (
     <View>
-      <ThemedText className="text-center font-poppinsBold text-xl mb-2">Set duration</ThemedText>
+      <ThemedText className="text-center font-poppinsBold text-xl mb-2">{t('set_duration')}</ThemedText>
       <ThemedView className='flex-row justify-around bg-transparent'>
         {(['hour', 'minute', 'second'] as Duration[]).map((type) => (
           <View key={type}>

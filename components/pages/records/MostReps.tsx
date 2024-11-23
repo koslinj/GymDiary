@@ -5,6 +5,7 @@ import { ActivityIndicator, View } from "react-native";
 import { fetchMostRepsChart } from "@/api/records";
 import { LineChart } from "react-native-gifted-charts";
 import { useColor } from "@/hooks/useColor";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   name_exercise: string
@@ -12,6 +13,7 @@ interface Props {
 }
 
 export const MostReps: FC<Props> = ({ name_exercise, setNoData }) => {
+  const { t } = useTranslation()
   const textColor = useColor("black", "white")
   const chartColor = useColor("#ffbf1b", "#bb4f02")
 
@@ -33,11 +35,11 @@ export const MostReps: FC<Props> = ({ name_exercise, setNoData }) => {
   }
 
   if (isError) {
-    return <ThemedText>Error fetching reps info: {error.message}</ThemedText>
+    return <ThemedText>{t('error_fetching_reps_info')}: {error.message}</ThemedText>
   }
 
   if (!reps) {
-    return <ThemedText>Error fetching reps info</ThemedText>
+    return <ThemedText>{t('error_fetching_reps_info')}</ThemedText>
   }
 
   if(reps.length === 0){
@@ -62,7 +64,7 @@ export const MostReps: FC<Props> = ({ name_exercise, setNoData }) => {
 
   return (
     <ThemedView className="bg-slate-200 dark:bg-slate-700 m-3 rounded-xl">
-      <ThemedText className="text-center text-2xl my-2">Most reps in a set</ThemedText>
+      <ThemedText className="text-center text-2xl my-2">{t('most_reps_in_a_set')}</ThemedText>
       <View className="mx-auto">
         <LineChart
           data={chartData}

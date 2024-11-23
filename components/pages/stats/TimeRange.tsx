@@ -1,5 +1,6 @@
 import { ThemedText } from "@/components/ThemedComponents"
 import { Dispatch, FC, SetStateAction } from "react"
+import { useTranslation } from "react-i18next"
 import { TouchableOpacity, View } from "react-native"
 
 interface Props {
@@ -8,6 +9,7 @@ interface Props {
 }
 
 export const TimeRange: FC<Props> = ({ range, setRange }) => {
+  const { t } = useTranslation()
 
   const getStyle = (localRange: TimeRangeFilter) => {
     return range === localRange
@@ -19,16 +21,16 @@ export const TimeRange: FC<Props> = ({ range, setRange }) => {
   return (
     <View className="flex-row gap-2 justify-between flex-wrap mt-2">
       <TouchableOpacity onPress={() => setRange("week")} className={`p-2 ${getStyle("week")} rounded-lg`}>
-        <ThemedText className="text-xl">Week</ThemedText>
+        <ThemedText className="text-xl">{t('week')}</ThemedText>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => setRange("month")} className={`p-2 ${getStyle("month")} rounded-lg`}>
-        <ThemedText className="text-xl">Month</ThemedText>
+        <ThemedText className="text-xl">{t('month')}</ThemedText>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => setRange("year")} className={`p-2 ${getStyle("year")} rounded-lg`}>
-        <ThemedText className="text-xl">Year</ThemedText>
+        <ThemedText className="text-xl">{t('year')}</ThemedText>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => setRange("all")} className={`p-2 ${getStyle("all")} rounded-lg`}>
-        <ThemedText className="text-xl">All time</ThemedText>
+        <ThemedText className="text-xl">{t('all_time')}</ThemedText>
       </TouchableOpacity>
     </View>
   )

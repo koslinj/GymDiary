@@ -12,10 +12,12 @@ import { RatingInput } from "./submit/RatingInput";
 import { NoteInput } from "./submit/NoteInput";
 import { DateInput } from "./submit/DateInput";
 import { TimeInput } from "./submit/TimeInput";
+import { useTranslation } from "react-i18next";
 
 const MemoizedDurationWheelPicker = memo(DurationWheelPicker);
 
 export const SubmitScene = () => {
+  const { t } = useTranslation()
   const { setsData } = useSets();
 
   const [note, setNote] = useState('')
@@ -69,7 +71,7 @@ export const SubmitScene = () => {
             className='my-4 p-4 rounded-xl bg-secondary-400 dark:bg-secondary-700'
             onPress={handleSubmit}
           >
-            <ThemedText className='text-2xl text-center font-poppinsBold'>Submit</ThemedText>
+            <ThemedText className='text-2xl text-center font-poppinsBold'>{t('submit')}</ThemedText>
           </TouchableOpacity>
         </ScrollView>
       </ThemedView>
@@ -80,7 +82,7 @@ export const SubmitScene = () => {
         duration={4000}
       >
         <>
-          <ThemedText className="text-2xl mb-2 font-poppinsBold text-center">Error</ThemedText>
+          <ThemedText className="text-2xl mb-2 font-poppinsBold text-center">{t('error')}</ThemedText>
           <ThemedText className="text-2xl mt-3 text-center">{toastMessage}</ThemedText>
         </>
       </MyToast>

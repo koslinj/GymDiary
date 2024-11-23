@@ -5,6 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useQueryClient } from "@tanstack/react-query"
 import { useRouter } from "expo-router";
 import { FC, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ActivityIndicator, TouchableOpacity } from "react-native"
 
 interface Props {
@@ -12,6 +13,7 @@ interface Props {
 }
 
 export const WorkoutDeleteButton: FC<Props> = ({ workout }) => {
+  const { t } = useTranslation()
   const router = useRouter()
   const iconColor = useBlackOrWhite()
   const queryClient = useQueryClient()
@@ -34,7 +36,7 @@ export const WorkoutDeleteButton: FC<Props> = ({ workout }) => {
       onPress={handleDelete}
       className={`${removing && "opacity-50"} p-3 mt-12 mx-auto rounded-xl bg-red-500 flex-row space-x-4 items-center`}
     >
-      <ThemedText className='text-2xl flex-shrink'>Delete this workout</ThemedText>
+      <ThemedText className='text-2xl flex-shrink'>{t('delete_this_workout')}</ThemedText>
       {removing ? (
         <ActivityIndicator size="large" color={iconColor} />
       ) : (

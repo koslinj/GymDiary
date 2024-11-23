@@ -7,13 +7,14 @@ import { ActivityIndicator, ScrollView, View } from "react-native";
 import { DataPart } from "../social/post/DataPart";
 import { RatingPart } from "./parts/RatingPart";
 import { WorkoutDeleteButton } from "./WorkoutDeleteButton";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   workoutId: number
 }
 
 export const WorkoutDetails: FC<Props> = ({ workoutId }) => {
-
+  const { t } = useTranslation()
   const { data: workout, isLoading, isError, error } = useQuery<GymWorkout>(
     {
       queryKey: ['workoutDetails', workoutId],
@@ -31,11 +32,11 @@ export const WorkoutDetails: FC<Props> = ({ workoutId }) => {
   }
 
   if (isError) {
-    return <ThemedText>Error fetching workout: {error.message}</ThemedText>
+    return <ThemedText>{t('error_fetching_workout')}: {error.message}</ThemedText>
   }
 
   if (!workout) {
-    return <ThemedText>Error fetching workout</ThemedText>
+    return <ThemedText>{t('error_fetching_workout')}</ThemedText>
   }
 
   const accordionData = workout.workoutData.map(ex => ({

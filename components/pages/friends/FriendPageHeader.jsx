@@ -4,8 +4,10 @@ import { ThemedText, ThemedView } from '@/components/ThemedComponents';
 import { useGlobalStyles } from '@/hooks/useGlobalStyles';
 import { useQuery } from '@tanstack/react-query'; // Import useQuery
 import { fetchFriendInfo } from '@/api/friends';
+import { useTranslation } from 'react-i18next';
 
 export function FriendPageHeader({ id, theme, router }) {
+  const { t } = useTranslation()
   const styles = useGlobalStyles();
 
   const { data: friend, isLoading, isError, error } = useQuery(
@@ -28,7 +30,7 @@ export function FriendPageHeader({ id, theme, router }) {
   if (isError) {
     return (
       <ThemedView lightClassName='bg-slate-300' darkClassName='bg-slate-800' style={[{ padding: 12 }, styles.safeArea]}>
-        <ThemedText>Error fetching friend info: {error.message}</ThemedText>
+        <ThemedText>{t('error_fetching_friend_info')}: {error.message}</ThemedText>
       </ThemedView>
     );
   }

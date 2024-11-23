@@ -3,6 +3,7 @@ import { Colors } from "@/constants/Colors";
 import { useBlackOrWhite } from "@/hooks/useBlackOrWhite";
 import { FontAwesome6 } from "@expo/vector-icons";
 import { FC } from "react";
+import { useTranslation } from "react-i18next";
 import { View } from "react-native";
 import * as Progress from 'react-native-progress';
 
@@ -11,6 +12,7 @@ interface Props {
 }
 
 export const AchievementItem: FC<Props> = ({ achievement }) => {
+  const { t } = useTranslation()
   const iconColor = useBlackOrWhite()
 
   let icon = <FontAwesome6 name="medal" size={40} color={iconColor} />
@@ -33,7 +35,7 @@ export const AchievementItem: FC<Props> = ({ achievement }) => {
       </View>
       <View className="py-2">
         <View className="flex-row justify-between items-center">
-          <ThemedText className="text-slate-500 dark:text-slate-300 text-lg">Progress</ThemedText>
+          <ThemedText className="text-slate-500 dark:text-slate-300 text-lg">{t('progress')}</ThemedText>
           <ThemedText className="text-slate-500 dark:text-slate-300 text-lg">{achievement.percent.toFixed(2)}%</ThemedText>
         </View>
         <Progress.Bar progress={achievement.percent / 100} width={null} height={10} borderRadius={99} color={lineColor} />

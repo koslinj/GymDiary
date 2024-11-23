@@ -4,6 +4,7 @@ import { ExerciseIcon } from "@/components/ExerciseIcon";
 import { ThemedText, ThemedView } from "@/components/ThemedComponents"
 import { useQuery } from "@tanstack/react-query";
 import { FC } from "react"
+import { useTranslation } from "react-i18next";
 import { ActivityIndicator } from "react-native";
 
 interface Props {
@@ -11,7 +12,7 @@ interface Props {
 }
 
 export const WorkoutDataAccordion: FC<Props> = ({ workoutId }) => {
-
+  const { t } = useTranslation()
   const { data: workout, isLoading, isError, error } = useQuery<GymWorkout>(
     {
       queryKey: ['workoutDetails', workoutId],
@@ -29,11 +30,11 @@ export const WorkoutDataAccordion: FC<Props> = ({ workoutId }) => {
   }
 
   if (isError) {
-    return <ThemedText>Error fetching workout: {error.message}</ThemedText>
+    return <ThemedText>{t('error_fetching_workout')}: {error.message}</ThemedText>
   }
 
   if (!workout) {
-    return <ThemedText>Error fetching workout</ThemedText>
+    return <ThemedText>{t('error_fetching_workout')}</ThemedText>
   }
 
   const accordionData = workout.workoutData.map(ex => ({

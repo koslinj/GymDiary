@@ -1,6 +1,7 @@
 import { ThemedText } from '@/components/ThemedComponents';
 import { useColor } from '@/hooks/useColor';
 import React, { useState, FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import { TextInput, View } from 'react-native';
 
 interface Props {
@@ -9,10 +10,11 @@ interface Props {
 }
 
 export const NoteInput: FC<Props> = ({ note, setNote }) => {
+  const { t } = useTranslation()
 
   return (
     <View className="my-4">
-      <ThemedText className="text-center font-poppinsBold text-xl">Note</ThemedText>
+      <ThemedText className="text-center font-poppinsBold text-xl">{t('note')}</ThemedText>
       <TextInput
         multiline={true}
         numberOfLines={4}

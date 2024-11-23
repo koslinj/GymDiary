@@ -2,6 +2,7 @@ import { ThemedText, ThemedView } from "@/components/ThemedComponents"
 import { FC } from "react"
 import { WorkoutDataAccordion } from "./WorkoutDataAccordion";
 import { ScrollView } from "react-native";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   workout: GymWorkoutSummary
@@ -9,7 +10,10 @@ interface Props {
 }
 
 export const SimpleHistoryCard: FC<Props> = ({ workout, isStartPage = false }) => {
-  const formattedDate = new Date(workout.date).toLocaleString('en-GB', {
+  const { i18n } = useTranslation()
+  const currentLanguage = i18n.language;
+
+  const formattedDate = new Date(workout.date).toLocaleString(currentLanguage, {
     dateStyle: 'long',
     timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
   });

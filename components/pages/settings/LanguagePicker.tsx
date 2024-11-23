@@ -37,8 +37,8 @@ export const LanguagePicker = () => {
             <ThemedText className='text-center text-lg max-w-[130px]'>{t('polish')}</ThemedText>
           </TouchableOpacity>
           <TouchableOpacity
-            className={`bg-slate-200 dark:bg-slate-700 py-2 rounded-lg flex-row gap-x-2 items-center dark:border-white mt-4 ${currentLanguage === 'en-US' && 'border-2'}`}
-            onPress={() => changeLanguage('en-US')}
+            className={`bg-slate-200 dark:bg-slate-700 py-2 rounded-lg flex-row gap-x-2 items-center dark:border-white mt-4 ${currentLanguage === 'en-GB' && 'border-2'}`}
+            onPress={() => changeLanguage('en-GB')}
           >
             <CountryFlag isoCode="gb" size={40} />
             <ThemedText className='text-center text-lg max-w-[130px]'>{t('english')}</ThemedText>

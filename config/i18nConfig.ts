@@ -2,12 +2,12 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import * as Localization from "expo-localization";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import translationEn from "./locales/en-US/translation.json";
+import translationEn from "./locales/en-GB/translation.json";
 import translationPl from "./locales/pl-PL/translation.json";
 
 const resources = {
   "pl-PL": { translation: translationPl },
-  "en-US": { translation: translationEn },
+  "en-GB": { translation: translationEn },
 };
 
 const initI18n = async () => {
@@ -21,7 +21,7 @@ const initI18n = async () => {
     compatibilityJSON: "v4",
     resources,
     lng: savedLanguage,
-    fallbackLng: "en-US",
+    fallbackLng: "en-GB",
     interpolation: {
       escapeValue: false,
     },

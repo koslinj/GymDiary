@@ -14,7 +14,9 @@ interface Props {
 }
 
 export const WorkoutDetails: FC<Props> = ({ workoutId }) => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const currentLanguage = i18n.language;
+
   const { data: workout, isLoading, isError, error } = useQuery<GymWorkout>(
     {
       queryKey: ['workoutDetails', workoutId],
@@ -45,7 +47,7 @@ export const WorkoutDetails: FC<Props> = ({ workoutId }) => {
     ),
     content: ex.sets.map(set => `${set.reps} x ${set.weight}`)
   }))
-  const formattedDate = new Date(workout.date).toLocaleString('en-GB', {
+  const formattedDate = new Date(workout.date).toLocaleString(currentLanguage, {
     dateStyle: 'long',
     timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
   });

@@ -7,11 +7,12 @@ import { useTranslation } from 'react-i18next';
 import { ScrollView } from 'react-native';
 
 export default function PostDetail() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const currentLanguage = i18n.language;
   const { post } = useLocalSearchParams();
   const parsed: Post = JSON.parse(post as string)
 
-  const formattedDate = new Date(parsed.workout.date).toLocaleString('en-GB', {
+  const formattedDate = new Date(parsed.workout.date).toLocaleString(currentLanguage, {
     dateStyle: 'long',
     timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
   });

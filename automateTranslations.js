@@ -2,7 +2,7 @@ const fs = require('fs');
 const glob = require('glob');
 
 const SOURCE_FOLDER = './components'; // Source folder to scan
-const LOCALE_FILE = './config/locales/en-US/translation.json'; // Path to the English translation JSON
+const LOCALE_FILE = './config/locales/en-GB/translation.json'; // Path to the English translation JSON
 
 const ignorePatterns = [
   'className', // Ignore className attributes

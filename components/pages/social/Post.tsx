@@ -6,6 +6,7 @@ import { IconsPart } from "./post/IconsPart";
 import { RatingPart } from "./post/RatingPart";
 import { LinkPart } from "./post/LinkPart";
 import { DataPart } from "./post/DataPart";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   post: Post
@@ -13,8 +14,10 @@ interface Props {
 }
 
 export const Post: FC<Props> = ({ post, openComments }) => {
+  const { i18n } = useTranslation();
+  const currentLanguage = i18n.language;
 
-  const formattedDate = new Date(post.creation_time).toLocaleString('en-GB', {
+  const formattedDate = new Date(post.creation_time).toLocaleString(currentLanguage, {
     dateStyle: 'long',
     timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
   });

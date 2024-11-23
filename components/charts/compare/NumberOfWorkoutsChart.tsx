@@ -52,7 +52,7 @@ export const NumberOfWorkoutsChart: FC<Props> = ({ friend, friendId }) => {
     // Add a bar for 'friend'
     barData.push({
       value: friendItem.count,
-      label: new Date(friendItem.month).toLocaleString('en-US', { month: "2-digit" }),
+      label: new Date(friendItem.month).toLocaleString('en-GB', { month: "2-digit" }),
       spacing: 2,
       labelWidth: 26,
       labelTextStyle: { color: textColor },

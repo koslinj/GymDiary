@@ -10,7 +10,8 @@ interface Props {
 }
 
 export const DateInput: FC<Props> = ({ date, setDate }) => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const currentLanguage = i18n.language;
   const [showDatePicker, setShowDatePicker] = useState(false);
   const isDark = useColorScheme() === 'dark'
 
@@ -28,7 +29,7 @@ export const DateInput: FC<Props> = ({ date, setDate }) => {
         onPress={() => setShowDatePicker(true)}
         className="p-2 border-2 rounded-md mb-3 dark:border-white"
       >
-        <ThemedText>{date.toLocaleDateString('en-GB', { dateStyle: 'full' })}</ThemedText>
+        <ThemedText>{date.toLocaleDateString(currentLanguage, { dateStyle: 'full' })}</ThemedText>
       </TouchableOpacity>
       {showDatePicker && (
         <DateTimePicker

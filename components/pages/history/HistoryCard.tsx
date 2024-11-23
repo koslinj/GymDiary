@@ -3,6 +3,7 @@ import { FC } from "react"
 import { View } from "react-native";
 import { DataPart } from "./parts/DataPart";
 import { RatingPart } from "./parts/RatingPart";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   workout: GymWorkoutSummary
@@ -10,7 +11,10 @@ interface Props {
 }
 
 export const HistoryCard: FC<Props> = ({ workout, homeScreen }) => {
-  const formattedDate = new Date(workout.date).toLocaleString('en-GB', {
+  const { i18n } = useTranslation()
+  const currentLanguage = i18n.language;
+
+  const formattedDate = new Date(workout.date).toLocaleString(currentLanguage, {
     dateStyle: 'long',
     timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
   });

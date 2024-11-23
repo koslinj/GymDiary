@@ -1,7 +1,7 @@
 const fs = require('fs');
 const glob = require('glob');
 
-const SOURCE_FOLDER = './components/pages'; // Source folder to scan
+const SOURCE_FOLDER = './components'; // Source folder to scan
 const LOCALE_FILE = './config/locales/en-US/translation.json'; // Path to the English translation JSON
 
 const ignorePatterns = [

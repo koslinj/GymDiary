@@ -1,7 +1,10 @@
 import { View, Modal, Pressable, TouchableWithoutFeedback, TouchableOpacity } from 'react-native'
 import { ThemedText } from './ThemedComponents'
+import { useTranslation } from 'react-i18next'
 
 export const ConfirmationModal = ({ openModal, setOpenModal, title, desc, onConfirm }) => {
+  const { t } = useTranslation()
+
   return (
     <Modal
       visible={openModal}
@@ -21,7 +24,7 @@ export const ConfirmationModal = ({ openModal, setOpenModal, title, desc, onConf
                 <ThemedText className='text-center text-xl font-poppinsBold'>OK</ThemedText>
               </TouchableOpacity>
               <TouchableOpacity className="flex-1 p-2 bg-slate-200 dark:bg-slate-900 rounded-md" onPress={() => setOpenModal(false)}>
-                <ThemedText className='text-center text-xl font-poppinsBold'>Close</ThemedText>
+                <ThemedText className='text-center text-xl font-poppinsBold'>{t('close')}</ThemedText>
               </TouchableOpacity>
             </View>
           </View>

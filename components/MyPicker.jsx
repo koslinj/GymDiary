@@ -1,12 +1,15 @@
-import { View, Text, Modal, Pressable, TouchableWithoutFeedback, TouchableOpacity } from 'react-native'
-import { useState } from 'react'
+import { View, Modal, Pressable, TouchableWithoutFeedback, TouchableOpacity } from 'react-native'
 import { ThemedText } from './ThemedComponents'
+import { useTranslation } from 'react-i18next'
 
 export const MyPicker = ({ openModal, setOpenModal, title, options, setOption }) => {
+  const { t } = useTranslation()
+
   const handlePressOption = (opt) => {
     setOption(opt)
     setOpenModal(false)
   }
+
   return (
     <Modal
       visible={openModal}
@@ -26,7 +29,7 @@ export const MyPicker = ({ openModal, setOpenModal, title, options, setOption })
               </TouchableOpacity>
             ))}
             <TouchableOpacity className="mt-6 p-2 border-2 dark:border-white rounded-md" onPress={() => setOpenModal(false)}>
-              <ThemedText className='text-center text-xl font-poppinsBold'>Close</ThemedText>
+              <ThemedText className='text-center text-xl font-poppinsBold'>{t('close')}</ThemedText>
             </TouchableOpacity>
           </View>
         </TouchableWithoutFeedback>

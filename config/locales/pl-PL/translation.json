@@ -15,7 +15,7 @@
   "achievements": "Osiągnięcia",
   "history": "Historia",
   "choose_exercises": "Wybierz ćwiczenia",
-  "put_sets_data": "Wprowadź dane serii",
+  "put_sets_data": "Wprowadź dane",
   "post_details": "Szczegóły postu",
   "invite_user": "Zaproś użytkownika",
   "pending": "Oczekujące",
@@ -118,5 +118,6 @@
   "language": "Język",
   "polish": "Polski",
   "english": "Angielski",
-  "close": "Zamknij"
+  "close": "Zamknij",
+  "write_a_comment": "Napisz komentarz..."
 }

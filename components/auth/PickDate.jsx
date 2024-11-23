@@ -1,8 +1,10 @@
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { TouchableOpacity, useColorScheme } from 'react-native';
 import { ThemedText } from '../ThemedComponents';
+import { useTranslation } from 'react-i18next';
 
 export const PickDate = ({ value, show, onChange, setShowDatePicker }) => {
+  const { t } = useTranslation()
   const isDark = useColorScheme() === 'dark'
 
   return (
@@ -14,7 +16,7 @@ export const PickDate = ({ value, show, onChange, setShowDatePicker }) => {
         {value ? (
           <ThemedText>{value.toLocaleDateString('pl-PL')}</ThemedText>
         ) : (
-          <ThemedText className="text-lg opacity-40">Date of birth</ThemedText>
+          <ThemedText className="text-lg opacity-40">{t('date_of_birth')}</ThemedText>
         )}
       </TouchableOpacity>
       {show && (

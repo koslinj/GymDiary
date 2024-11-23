@@ -5,6 +5,7 @@ import { useColor } from '@/hooks/useColor'
 import { useQuery } from '@tanstack/react-query'
 import { fetchNumberOfWorkoutsChart } from '@/api/friends'
 import { BarChart } from 'react-native-gifted-charts'
+import { useTranslation } from 'react-i18next'
 
 interface Props {
   friend: FriendDetails
@@ -12,6 +13,7 @@ interface Props {
 }
 
 export const NumberOfWorkoutsChart: FC<Props> = ({ friend, friendId }) => {
+  const { t } = useTranslation()
   const textColor = useColor("black", "white")
 
   const { data: workouts, isLoading, isError, error } = useQuery(
@@ -32,11 +34,11 @@ export const NumberOfWorkoutsChart: FC<Props> = ({ friend, friendId }) => {
   }
 
   if (isError) {
-    return <ThemedText>Error fetching friend info: {error.message}</ThemedText>
+    return <ThemedText>{t('error_fetching_friend_info')}: {error.message}</ThemedText>
   }
 
   if (!workouts) {
-    return <ThemedText>Error fetching friend info</ThemedText>
+    return <ThemedText>{t('error_fetching_friend_info')}</ThemedText>
   }
 
   const barData: any[] = [];
@@ -66,10 +68,10 @@ export const NumberOfWorkoutsChart: FC<Props> = ({ friend, friendId }) => {
 
   return (
     <ThemedView className='bg-transparent rounded-xl overflow-hidden py-2'>
-      <ThemedText className='text-center text-2xl mb-6 font-poppinsBold'>Number of workouts</ThemedText>
+      <ThemedText className='text-center text-2xl mb-6 font-poppinsBold'>{t('number_of_workouts')}</ThemedText>
       <View className='flex-row justify-center gap-x-10'>
         <View className='flex-row gap-x-2'>
-          <ThemedText>You</ThemedText>
+          <ThemedText>{t('you')}</ThemedText>
           <View className='h-5 w-5 rounded-full bg-[#ED6665]'></View>
         </View>
         <View className='flex-row gap-x-2'>

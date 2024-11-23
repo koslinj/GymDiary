@@ -6,6 +6,7 @@ import { useQuery } from '@tanstack/react-query'
 import { fetchMusclesChart } from '@/api/friends'
 import { PieChart } from 'react-native-gifted-charts'
 import { Colors } from '@/constants/Colors'
+import { useTranslation } from 'react-i18next'
 
 interface Props {
   friend: FriendDetails
@@ -26,7 +27,7 @@ const getDataForPieChart = (data: any) => {
 };
 
 export const MusclesChart: FC<Props> = ({ friend, friendId }) => {
-  const textColor = useColor("black", "white")
+  const { t } = useTranslation()
   const bgColor = useColor(Colors.slate200, Colors.slate700)
 
   const { data: muscles, isLoading, isError, error } = useQuery(
@@ -47,11 +48,11 @@ export const MusclesChart: FC<Props> = ({ friend, friendId }) => {
   }
 
   if (isError) {
-    return <ThemedText>Error fetching friend info: {error.message}</ThemedText>
+    return <ThemedText>{t('error_fetching_friend_info')}: {error.message}</ThemedText>
   }
 
   if (!muscles) {
-    return <ThemedText>Error fetching friend info</ThemedText>
+    return <ThemedText>{t('error_fetching_friend_info')}</ThemedText>
   }
 
   const myData = getDataForPieChart(muscles.my)
@@ -60,10 +61,10 @@ export const MusclesChart: FC<Props> = ({ friend, friendId }) => {
 
   return (
     <ThemedView className='bg-transparent rounded-xl overflow-hidden pb-1'>
-      <ThemedText className='text-center text-2xl mb-2 font-poppinsBold'>Muscle groups</ThemedText>
+      <ThemedText className='text-center text-2xl mb-2 font-poppinsBold'>{t('muscle_groups')}</ThemedText>
       <View className='flex-row justify-between'>
         <View className='flex-shrink'>
-        <ThemedText className='text-center text-lg'>You</ThemedText>
+        <ThemedText className='text-center text-lg'>{t('you')}</ThemedText>
           <PieChart
             innerCircleColor={bgColor}
             radius={70}

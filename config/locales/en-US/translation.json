@@ -61,5 +61,13 @@
   "sets": "Sets",
   "duration": "Duration",
   "remove_friend": "Remove Friend",
-  "welcome_back_": "Welcome Back!"
+  "welcome_back_": "Welcome Back!",
+  "pick_an_image": "Pick an image",
+  "date_of_birth": "Date of birth",
+  "error_fetching_user_info": "Error fetching user info",
+  "muscle_groups": "Muscle groups",
+  "number_of_sets_in_last_workouts": "Number of sets in last workouts",
+  "you": "You",
+  "number_of_workouts": "Number of workouts",
+  "last_workouts_duration": "Last workouts duration"
 }

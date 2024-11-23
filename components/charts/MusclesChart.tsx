@@ -6,6 +6,7 @@ import { PieChart } from 'react-native-gifted-charts'
 import { Colors } from '@/constants/Colors'
 import { fetchMusclesChart } from '@/api/stats'
 import { ThemedText, ThemedView } from '../ThemedComponents'
+import { useTranslation } from 'react-i18next'
 
 const getCategoryColor = (index: number) => {
   const colors = ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF", "#FF9F40", "#8DFF33", "#FF33E4"];
@@ -25,6 +26,7 @@ interface Props {
 }
 
 export const MusclesChart: FC<Props> = ({ range }) => {
+  const { t } = useTranslation()
   const bgColor = useColor(Colors.slate200, Colors.slate700)
 
   const { data: muscles, isLoading, isError, error } = useQuery(
@@ -44,18 +46,18 @@ export const MusclesChart: FC<Props> = ({ range }) => {
   }
 
   if (isError) {
-    return <ThemedText>Error fetching user info: {error.message}</ThemedText>
+    return <ThemedText>{t('error_fetching_user_info')}: {error.message}</ThemedText>
   }
 
   if (!muscles) {
-    return <ThemedText>Error fetching user info</ThemedText>
+    return <ThemedText>{t('error_fetching_user_info')}</ThemedText>
   }
 
   const myData = getDataForPieChart(muscles)
 
   return (
     <ThemedView className='bg-transparent'>
-      <ThemedText className='text-center text-3xl mb-2 mt-8 font-poppinsBold'>Muscle groups</ThemedText>
+      <ThemedText className='text-center text-3xl mb-2 mt-8 font-poppinsBold'>{t('muscle_groups')}</ThemedText>
 
       <View className='items-center'>
         <PieChart

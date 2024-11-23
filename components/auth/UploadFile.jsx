@@ -3,8 +3,10 @@ import { ThemedText, ThemedView } from '../ThemedComponents'
 import { Image, TouchableOpacity } from 'react-native'
 import { AntDesign } from '@expo/vector-icons'
 import * as ImagePicker from 'expo-image-picker';
+import { useTranslation } from 'react-i18next';
 
 export const UploadFile = ({file, setFile}) => {
+  const { t } = useTranslation()
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -32,7 +34,7 @@ export const UploadFile = ({file, setFile}) => {
             className="flex-grow justify-center"
             onPress={pickImage}
           >
-            <ThemedText className="text-lg text-center opacity-40">Pick an image</ThemedText>
+            <ThemedText className="text-lg text-center opacity-40">{t('pick_an_image')}</ThemedText>
           </TouchableOpacity>
         )}
       </ThemedView>

@@ -5,6 +5,7 @@ import { useColor } from '@/hooks/useColor'
 import { useQuery } from '@tanstack/react-query'
 import { fetchSetsChart } from '@/api/friends'
 import { LineChart } from 'react-native-gifted-charts'
+import { useTranslation } from 'react-i18next'
 
 interface Props {
   friend: FriendDetails
@@ -12,6 +13,7 @@ interface Props {
 }
 
 export const SetsChart: FC<Props> = ({ friend, friendId }) => {
+  const { t } = useTranslation()
   const textColor = useColor("black", "white")
 
   const { data: sets, isLoading, isError, error } = useQuery(
@@ -32,11 +34,11 @@ export const SetsChart: FC<Props> = ({ friend, friendId }) => {
   }
 
   if (isError) {
-    return <ThemedText>Error fetching friend info: {error.message}</ThemedText>
+    return <ThemedText>{t('error_fetching_friend_info')}: {error.message}</ThemedText>
   }
 
   if (!sets) {
-    return <ThemedText>Error fetching friend info</ThemedText>
+    return <ThemedText>{t('error_fetching_friend_info')}</ThemedText>
   }
 
 
@@ -69,10 +71,10 @@ export const SetsChart: FC<Props> = ({ friend, friendId }) => {
 
   return (
     <ThemedView className='bg-transparent rounded-xl overflow-hidden py-2'>
-      <ThemedText className='text-center text-2xl mb-6 font-poppinsBold'>Number of sets in last workouts</ThemedText>
+      <ThemedText className='text-center text-2xl mb-6 font-poppinsBold'>{t('number_of_sets_in_last_workouts')}</ThemedText>
       <View className='flex-row justify-center gap-x-10'>
         <View className='flex-row gap-x-2'>
-          <ThemedText>You</ThemedText>
+          <ThemedText>{t('you')}</ThemedText>
           <View className='h-5 w-5 rounded-full bg-[#ED6665]'></View>
         </View>
         <View className='flex-row gap-x-2'>

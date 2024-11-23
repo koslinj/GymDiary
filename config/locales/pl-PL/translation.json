@@ -61,5 +61,13 @@
   "sets": "Serie",
   "duration": "Czas trwania",
   "remove_friend": "Usuń znajomego",
-  "welcome_back_": "Witaj ponownie!"
+  "welcome_back_": "Witaj ponownie!",
+  "pick_an_image": "Wybierz zdjęcie",
+  "date_of_birth": "Data urodzenia",
+  "error_fetching_user_info": "Błąd podczas pobierania informacji o użytkowniku",
+  "muscle_groups": "Grupy mięśniowe",
+  "number_of_sets_in_last_workouts": "Liczba serii w ostatnich treningach",
+  "you": "Ty",
+  "number_of_workouts": "Liczba treningów",
+  "last_workouts_duration": "Czas ostatnich treningów"
 }

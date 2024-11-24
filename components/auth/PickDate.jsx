@@ -4,7 +4,8 @@ import { ThemedText } from '../ThemedComponents';
 import { useTranslation } from 'react-i18next';
 
 export const PickDate = ({ value, show, onChange, setShowDatePicker }) => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const currentLanguage = i18n.language;
   const isDark = useColorScheme() === 'dark'
 
   return (
@@ -14,7 +15,7 @@ export const PickDate = ({ value, show, onChange, setShowDatePicker }) => {
         className="p-2 border-2 rounded-md mb-3 dark:border-white"
       >
         {value ? (
-          <ThemedText>{value.toLocaleDateString('pl-PL')}</ThemedText>
+          <ThemedText>{value.toLocaleDateString(currentLanguage)}</ThemedText>
         ) : (
           <ThemedText className="text-lg opacity-40">{t('date_of_birth')}</ThemedText>
         )}

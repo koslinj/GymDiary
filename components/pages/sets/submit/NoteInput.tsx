@@ -18,7 +18,7 @@ export const NoteInput: FC<Props> = ({ note, setNote }) => {
       <TextInput
         multiline={true}
         numberOfLines={4}
-        placeholder="Note..."
+        placeholder={t('note') + "..."}
         className="p-2 text-lg border-2 rounded-md mb-3 dark:border-white dark:text-white"
         placeholderTextColor={useColor('#00000066', '#ffffff66')}
         value={note?.toString()}

@@ -47,7 +47,7 @@ const SignUp = () => {
   const handleRegister = async () => {
     const { email, password, nickname, description, date } = formData;
     if (!email || !password || !nickname || !description || !date || !file) {
-      Alert.alert('Sign Up', 'All fields are required!');
+      Alert.alert(t('sign_up'), 'All fields are required!');
       return;
     }
 
@@ -67,7 +67,7 @@ const SignUp = () => {
 
       setShowToast(true);
     } catch (error) {
-      Alert.alert('Sign Up', error.message || 'Unexpected error');
+      Alert.alert(t('sign_up'), error.message || 'Unexpected error');
     } finally {
       setLoading(false)
     }
@@ -82,25 +82,25 @@ const SignUp = () => {
             <ThemedText className="py-2 text-3xl font-poppinsBold text-center">{t('join_us_')}</ThemedText>
 
             <AuthTextInput
-              placeholder="Email"
+              placeholder={t('email')}
               value={formData.email}
               field="email"
               onChange={handleInputChange}
             />
             <AuthTextInput
-              placeholder="Password"
+              placeholder={t('password')}
               value={formData.password}
               field="password"
               onChange={handleInputChange}
             />
             <AuthTextInput
-              placeholder="Nickname"
+              placeholder={t('nickname')}
               value={formData.nickname}
               field="nickname"
               onChange={handleInputChange}
             />
             <AuthTextInput
-              placeholder="Description"
+              placeholder={t('description')}
               value={formData.description}
               field="description"
               onChange={handleInputChange}
@@ -108,7 +108,7 @@ const SignUp = () => {
             <PickDate value={formData.date} show={showDatePicker} onChange={onDateChange} setShowDatePicker={setShowDatePicker} />
             <UploadFile file={file} setFile={setFile} />
 
-            <ConfirmButton loading={loading} label="Sign Up!" handlePress={handleRegister} />
+            <ConfirmButton loading={loading} label={t('sign_up') + '!'} handlePress={handleRegister} />
             <TouchableOpacity
               onPress={() => router.push('signIn')}
               className="bg-secondary-400/60 dark:bg-secondary-700/60 p-2 rounded-md mt-4 w-40 mx-auto"

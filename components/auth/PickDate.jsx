@@ -29,7 +29,7 @@ export const PickDate = ({ value, show, onChange, setShowDatePicker }) => {
           display="spinner"
           onChange={onChange}
           positiveButton={{ textColor: isDark && 'white', label: 'OK' }}
-          negativeButton={{ textColor: isDark && 'white', label: 'Cancel' }}
+          negativeButton={{ textColor: isDark && 'white', label: t('cancel') }}
         />
       )}
     </>

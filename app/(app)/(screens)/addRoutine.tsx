@@ -80,7 +80,7 @@ export default function AddRoutine() {
           className="p-2 text-lg border-2 rounded-md mb-3 dark:border-white dark:text-white"
           placeholderTextColor={placeholderColor}
           value={name}
-          placeholder='Routine name...'
+          placeholder={`${t('routine_name')}...`}
           autoCapitalize='none'
           onChangeText={(text) => setName(text)}
         />

@@ -29,7 +29,7 @@ export const InviteFriend: FC<Props> = ({ setOpenModal }) => {
         className="p-2 text-lg border-2 rounded-md mb-3 dark:border-white dark:text-white"
         placeholderTextColor={placeholderColor}
         value={search}
-        placeholder='User nickname...'
+        placeholder={`${t('user_nickname')}...`}
         autoCapitalize='none'
         onChangeText={(text) => setSearch(text)}
       />

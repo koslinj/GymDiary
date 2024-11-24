@@ -5,6 +5,7 @@ import { useBlackOrWhite } from "@/hooks/useBlackOrWhite";
 import { addComment } from "@/api/social";
 import { useQueryClient } from "@tanstack/react-query";
 import { useColor } from "@/hooks/useColor";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   newComment: string
@@ -13,6 +14,7 @@ interface Props {
 }
 
 export const CommentInput: FC<Props> = ({ newComment, setNewComment, currentPost }) => {
+  const { t } = useTranslation()
   const iconColor = useBlackOrWhite()
   const placeholderColor = useColor('#00000066', '#ffffff66')
   const queryClient = useQueryClient()
@@ -36,7 +38,7 @@ export const CommentInput: FC<Props> = ({ newComment, setNewComment, currentPost
     <View>
       <TextInput
         onSubmitEditing={handleAddComment}
-        placeholder="Write a comment..."
+        placeholder={t('write_a_comment')}
         value={newComment}
         onChangeText={setNewComment}
         placeholderTextColor={placeholderColor}

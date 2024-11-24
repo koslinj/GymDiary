@@ -19,7 +19,7 @@ const SignIn = () => {
 
   const handleLogin = async () => {
     if (password === '' || email === '') {
-      Alert.alert('Sign In', 'You need to provide email and password!')
+      Alert.alert(t('sign_in'), 'You need to provide email and password!')
       return
     }
 
@@ -27,7 +27,7 @@ const SignIn = () => {
     const res = await login(email, password)
     setLoading(false)
     if (!res.success) {
-      Alert.alert('Sign In', res.msg)
+      Alert.alert(t('sign_in'), res.msg)
     }
   }
 
@@ -45,7 +45,7 @@ const SignIn = () => {
             className="p-2 text-lg border-2 rounded-md mb-3 dark:border-white dark:text-white"
             placeholderTextColor={isDark ? '#ffffff66' : '#00000066'}
             value={email}
-            placeholder='Email'
+            placeholder={t('email')}
             autoCapitalize='none'
             onChangeText={(text) => setEmail(text)} />
           <TextInput
@@ -53,11 +53,11 @@ const SignIn = () => {
             placeholderTextColor={isDark ? '#ffffff66' : '#00000066'}
             value={password}
             secureTextEntry={true}
-            placeholder='Password'
+            placeholder={t('password')}
             autoCapitalize='none'
             onChangeText={(text) => setPassword(text)} />
 
-          <ConfirmButton loading={loading} label={'Sign In!'} handlePress={handleLogin} />
+          <ConfirmButton loading={loading} label={t('sign_in') + '!'} handlePress={handleLogin} />
 
           <TouchableOpacity
             onPress={() => router.push('signUp')}

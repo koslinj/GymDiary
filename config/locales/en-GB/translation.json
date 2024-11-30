@@ -122,5 +122,14 @@
   "write_a_comment": "Write a comment...",
   "password": "Password",
   "user_nickname": "User nickname",
-  "routine_name": "Routine name"
+  "routine_name": "Routine name",
+  "add_goal": "Add goal",
+  "error_fetching_goals": "Error fetching goals",
+  "of": "of",
+  "sets2": "Sets",
+  "goal": "Goal",
+  "title": "Title",
+  "finish_date": "Finish date",
+  "number_of_sets": "Number of sets",
+  "category": "Category"
 }

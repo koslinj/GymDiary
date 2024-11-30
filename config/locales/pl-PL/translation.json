@@ -122,5 +122,14 @@
   "write_a_comment": "Napisz komentarz...",
   "password": "Hasło",
   "user_nickname": "Nazwa użytkownika",
-  "routine_name": "Nazwa rutyny"
+  "routine_name": "Nazwa rutyny",
+  "add_goal": "Dodaj cel",
+  "error_fetching_goals": "Błąd podczas pobierania informacji o celach",
+  "of": "z",
+  "sets2": "Serii",
+  "goal": "Cel",
+  "title": "Tytuł",
+  "finish_date": "Data zakończenia",
+  "number_of_sets": "Liczba serii",
+  "category": "Kategoria"
 }

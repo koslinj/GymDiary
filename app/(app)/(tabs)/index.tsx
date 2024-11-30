@@ -3,7 +3,7 @@ import { ActivityIndicator, ScrollView, RefreshControl, TouchableOpacity } from 
 import { ThemedText, ThemedView } from '../../../components/ThemedComponents';
 import { useRouter } from 'expo-router';
 import { useGlobalStyles } from '@/hooks/useGlobalStyles';
-import { FontAwesome5, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { Feather, FontAwesome5, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useColor } from '@/hooks/useColor';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { fetchWorkouts } from '@/api/workouts';
@@ -65,7 +65,7 @@ export default function HomeScreen() {
           )}
 
           <ThemedView className="flex-row mt-4">
-            <ThemedView className="flex-1 aspect-square pl-4 pr-2 pb-6">
+            <ThemedView className="flex-1 aspect-square pl-4 pr-2 pb-4">
               <TouchableOpacity
                 onPress={() => router.push("/(app)/history")}
                 className="bg-slate-200 dark:bg-slate-700 flex-1 rounded-xl justify-center items-center"
@@ -75,13 +75,35 @@ export default function HomeScreen() {
               </TouchableOpacity>
             </ThemedView>
 
-            <ThemedView className="flex-1 aspect-square pl-2 pr-4 pb-6">
+            <ThemedView className="flex-1 aspect-square pl-2 pr-4 pb-4">
               <TouchableOpacity
                 onPress={() => router.push("/(app)/stats")}
                 className="bg-slate-200 dark:bg-slate-700 flex-1 rounded-xl justify-center items-center"
               >
                 <Ionicons name="stats-chart" size={70} color={iconColor} />
                 <ThemedText className="text-xl absolute bottom-1">{t('stats')}</ThemedText>
+              </TouchableOpacity>
+            </ThemedView>
+          </ThemedView>
+
+          <ThemedView className="flex-row">
+            <ThemedView className="flex-1 aspect-square pl-4 pr-2 pb-6">
+              <TouchableOpacity
+                onPress={() => router.push("/(app)/(screens)/quick")}
+                className="bg-slate-200 dark:bg-slate-700 flex-1 rounded-xl justify-center items-center"
+              >
+                <FontAwesome5 name="bolt" size={70} color={iconColor} />
+                <ThemedText className="text-xl absolute bottom-1">{t('quick')}</ThemedText>
+              </TouchableOpacity>
+            </ThemedView>
+
+            <ThemedView className="flex-1 aspect-square pl-2 pr-4 pb-6">
+              <TouchableOpacity
+                onPress={() => router.push("/(app)/(screens)/goals")}
+                className="bg-slate-200 dark:bg-slate-700 flex-1 rounded-xl justify-center items-center"
+              >
+                <Feather name="target" size={70} color={iconColor} />
+                <ThemedText className="text-xl absolute bottom-1">{t('goals')}</ThemedText>
               </TouchableOpacity>
             </ThemedView>
           </ThemedView>

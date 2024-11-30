@@ -52,6 +52,30 @@ const AppLayout = () => {
           </ThemedView>
         )
       }} />
+      <Stack.Screen name='(screens)/goals' options={{
+        header: () => (
+          <ThemedView lightClassName='bg-slate-300' darkClassName='bg-slate-800' style={[{ padding: 12 }, styles.safeArea]}>
+            <View>
+              <TouchableOpacity className="absolute z-10" onPress={() => { router.back() }}>
+                <AntDesign color={theme === "light" ? "black" : "white"} name='arrowleft' size={42} />
+              </TouchableOpacity>
+              <ThemedText className='text-3xl text-center font-poppinsBold translate-y-1'>{t('goals')}</ThemedText>
+            </View>
+          </ThemedView>
+        )
+      }} />
+      <Stack.Screen name='(screens)/addGoal' options={{
+        header: () => (
+          <ThemedView lightClassName='bg-slate-300' darkClassName='bg-slate-800' style={[{ padding: 12 }, styles.safeArea]}>
+            <View>
+              <TouchableOpacity className="absolute z-10" onPress={() => { router.back() }}>
+                <AntDesign color={theme === "light" ? "black" : "white"} name='arrowleft' size={42} />
+              </TouchableOpacity>
+              <ThemedText className='text-3xl text-center font-poppinsBold translate-y-1'>{t('add_goal')}</ThemedText>
+            </View>
+          </ThemedView>
+        )
+      }} />
       <Stack.Screen name='(screens)/settings' options={{
         header: () => (
           <ThemedView lightClassName='bg-slate-300' darkClassName='bg-slate-800' style={[{ padding: 12 }, styles.safeArea]}>

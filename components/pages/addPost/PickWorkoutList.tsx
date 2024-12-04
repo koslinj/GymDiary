@@ -21,7 +21,9 @@ export const PickWorkoutList: FC<Props> = ({ desc }) => {
   } = useInfiniteQuery({
     initialPageParam: 1,
     queryKey: ['workouts'],
-    queryFn: fetchWorkoutsInfinite,
+    queryFn: ({ pageParam = 1, queryKey }) => {
+      return fetchWorkoutsInfinite(pageParam)
+    },
     getNextPageParam: (lastPage, allPages) => {
       return lastPage.hasMore ? allPages.length + 1 : undefined;
     },

@@ -1,4 +1,5 @@
 import axios from "@/config/axiosConfig";
+import dayjs from "dayjs";
 
 export const fetchWorkouts = async (currentPage: number) => {
   const response = await axios.get("/gym/workout/all/pageable", {
@@ -9,10 +10,16 @@ export const fetchWorkouts = async (currentPage: number) => {
   return response.data.workouts;
 };
 
-export const fetchWorkoutsInfinite = async ({ pageParam = 1 }) => {
+export const fetchWorkoutsInfinite = async (
+  pageParam: number = 1,
+  startDate: any = undefined,
+  endDate: any = undefined
+) => {
   const response = await axios.get("/gym/workout/all/pageable", {
     params: {
       page: pageParam,
+      startDate: startDate ? dayjs(startDate).startOf('day').format("YYYY-MM-DD HH:mm") : undefined,
+      endDate: endDate ? dayjs(endDate).startOf('day').format("YYYY-MM-DD HH:mm") : undefined,
     },
   });
 

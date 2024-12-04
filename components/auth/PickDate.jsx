@@ -3,7 +3,7 @@ import { TouchableOpacity, useColorScheme } from 'react-native';
 import { ThemedText } from '../ThemedComponents';
 import { useTranslation } from 'react-i18next';
 
-export const PickDate = ({ value, show, onChange, setShowDatePicker }) => {
+export const PickDate = ({ value, show, onChange, setShowDatePicker, customText = "date_of_birth" }) => {
   const { t, i18n } = useTranslation()
   const currentLanguage = i18n.language;
   const isDark = useColorScheme() === 'dark'
@@ -17,14 +17,14 @@ export const PickDate = ({ value, show, onChange, setShowDatePicker }) => {
         {value ? (
           <ThemedText>{value.toLocaleDateString(currentLanguage)}</ThemedText>
         ) : (
-          <ThemedText className="text-lg opacity-40">{t('date_of_birth')}</ThemedText>
+          <ThemedText className="text-lg opacity-40">{t(customText)}</ThemedText>
         )}
       </TouchableOpacity>
       {show && (
         <DateTimePicker
           timeZoneName='GMT0'
           testID="dateTimePicker"
-          value={value || new Date('2000-01-01')}
+          value={value || new Date()}
           mode="date"
           display="spinner"
           onChange={onChange}

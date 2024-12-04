@@ -131,5 +131,7 @@
   "title": "Tytuł",
   "finish_date": "Data zakończenia",
   "number_of_sets": "Liczba serii",
-  "category": "Kategoria"
+  "category": "Kategoria",
+  "start_date": "Data rozpoczęcia",
+  "end_date": "Data zakończenia"
 }

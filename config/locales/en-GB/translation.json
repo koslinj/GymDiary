@@ -133,5 +133,6 @@
   "number_of_sets": "Number of sets",
   "category": "Category",
   "start_date": "Start date",
-  "end_date": "End date"
+  "end_date": "End date",
+  "no_posts": "There is no posts!"
 }

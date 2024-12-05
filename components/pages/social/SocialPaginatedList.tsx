@@ -1,17 +1,23 @@
 import React, { FC, useState, useCallback } from 'react';
-import { FlatList, ActivityIndicator, RefreshControl } from 'react-native';
+import { FlatList, ActivityIndicator, RefreshControl, TextInput } from 'react-native';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { getAllPostsInfinite } from '@/api/social';
 import { Post } from './Post';
 import { useGlobalStyles } from '@/hooks/useGlobalStyles';
-import { ThemedView } from '@/components/ThemedComponents';
+import { ThemedText, ThemedView } from '@/components/ThemedComponents';
+import { useTranslation } from 'react-i18next';
+import { useColor } from '@/hooks/useColor';
 
 interface Props {
   openComments: (post: Post) => void;
 }
 
 export const SocialPaginatedList: FC<Props> = ({ openComments }) => {
+  const { t } = useTranslation()
   const styles = useGlobalStyles();
+  const placeholderColor = useColor('#00000066', '#ffffff66')
+  const [search, setSearch] = useState("")
+
   const [refreshing, setRefreshing] = useState(false);
 
   const {
@@ -23,8 +29,11 @@ export const SocialPaginatedList: FC<Props> = ({ openComments }) => {
     refetch,
   } = useInfiniteQuery({
     initialPageParam: 1,
-    queryKey: ['posts'],
-    queryFn: getAllPostsInfinite,
+    queryKey: ['posts', search],
+    queryFn: ({ pageParam = 1, queryKey }) => {
+      const [_, search] = queryKey
+      return getAllPostsInfinite(pageParam, search)
+    },
     getNextPageParam: (lastPage, allPages) => {
       return lastPage.hasMore ? allPages.length + 1 : undefined;
     },
@@ -36,26 +45,28 @@ export const SocialPaginatedList: FC<Props> = ({ openComments }) => {
     setRefreshing(false);
   }, [refetch]);
 
-  if (isLoading) {
-    return (
-      <ThemedView className="flex-1 justify-center items-center">
-        <ActivityIndicator size="large" />
-      </ThemedView>
-    );
-  }
-
   const handleLoadMore = () => {
     if (hasNextPage && !isFetchingNextPage) {
       fetchNextPage();
     }
   };
 
-  const gymPosts = data?.pages.flatMap((page) => 
+  const gymPosts = data?.pages.flatMap((page) =>
     page.posts.filter((item: any) => item.type === 'gym')
   );
 
   return (
     <FlatList
+      ListHeaderComponent={
+        <TextInput
+          className="p-2 text-lg border-2 rounded-md mb-3 dark:border-white dark:text-white"
+          placeholderTextColor={placeholderColor}
+          value={search}
+          placeholder={`${t('user_nickname')}...`}
+          autoCapitalize='none'
+          onChangeText={(text) => setSearch(text)}
+        />
+      }
       contentContainerStyle={styles.safeTabBar}
       data={gymPosts}
       renderItem={({ item }) => (
@@ -65,6 +76,13 @@ export const SocialPaginatedList: FC<Props> = ({ openComments }) => {
       onEndReached={handleLoadMore}
       onEndReachedThreshold={0}
       ListFooterComponent={isFetchingNextPage ? <ActivityIndicator size="large" /> : null}
+      ListEmptyComponent={
+        isLoading ? (
+          <ActivityIndicator size="large" />
+        ) : (
+          <ThemedText className="text-center text-2xl font-poppinsBold">{t('no_posts')}</ThemedText>
+        )
+      }
       refreshControl={
         <RefreshControl
           refreshing={refreshing}

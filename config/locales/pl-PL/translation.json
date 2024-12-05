@@ -133,5 +133,6 @@
   "number_of_sets": "Liczba serii",
   "category": "Kategoria",
   "start_date": "Data rozpoczęcia",
-  "end_date": "Data zakończenia"
+  "end_date": "Data zakończenia",
+  "no_posts": "Brak postów!"
 }

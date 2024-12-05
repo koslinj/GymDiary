@@ -30,10 +30,14 @@ export const deletePost = async (id: number) => {
   return response
 };
 
-export const getAllPostsInfinite = async ({ pageParam = 1 }) => {
+export const getAllPostsInfinite = async (
+  pageParam: number = 1,
+  search: string
+) => {
   const response = await axios.get("/shared/post/getAll", {
     params: {
       page: pageParam,
+      pattern: search
     },
   });
   return response.data

@@ -47,7 +47,7 @@ const SignUp = () => {
   const handleRegister = async () => {
     const { email, password, nickname, description, date } = formData;
     if (!email || !password || !nickname || !description || !date || !file) {
-      Alert.alert(t('sign_up'), 'All fields are required!');
+      Alert.alert(t('sign_up'), t('all_fields_required'));
       return;
     }
 
@@ -67,7 +67,7 @@ const SignUp = () => {
 
       setShowToast(true);
     } catch (error) {
-      Alert.alert(t('sign_up'), error.message || 'Unexpected error');
+      Alert.alert(t('sign_up'), error.message || t('unexpected_error'));
     } finally {
       setLoading(false)
     }

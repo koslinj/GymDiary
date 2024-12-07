@@ -134,5 +134,10 @@
   "category": "Kategoria",
   "start_date": "Data rozpoczęcia",
   "end_date": "Data zakończenia",
-  "no_posts": "Brak postów!"
+  "no_posts": "Brak postów!",
+  "no_email_and_password": "Musisz podać e-mail i hasło!",
+  "all_fields_required": "Wszystkie pola są wymagane!",
+  "unexpected_error": "Nieoczekiwany błąd",
+  "error_adding_comment": "Błąd podczas dodawania komentarza",
+  "comment_not_empty": "Komentarz nie może być pusty."
 }

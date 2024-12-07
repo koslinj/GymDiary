@@ -19,7 +19,7 @@ const SignIn = () => {
 
   const handleLogin = async () => {
     if (password === '' || email === '') {
-      Alert.alert(t('sign_in'), 'You need to provide email and password!')
+      Alert.alert(t('sign_in'), t('no_email_and_password'))
       return
     }
 

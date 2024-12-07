@@ -134,5 +134,10 @@
   "category": "Category",
   "start_date": "Start date",
   "end_date": "End date",
-  "no_posts": "There is no posts!"
+  "no_posts": "There is no posts!",
+  "no_email_and_password": "You need to provide email and password!",
+  "all_fields_required": "All fields are required!",
+  "unexpected_error": "Unexpected error",
+  "error_adding_comment": "Error adding comment",
+  "comment_not_empty": "Comment cannot be empty."
 }

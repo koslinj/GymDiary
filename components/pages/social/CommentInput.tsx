@@ -21,7 +21,7 @@ export const CommentInput: FC<Props> = ({ newComment, setNewComment, currentPost
 
   const handleAddComment = async () => {
     if (!newComment.trim()) {
-      Alert.alert("Comment cannot be empty.");
+      Alert.alert(t('comment_not_empty'));
       return;
     }
 
@@ -30,7 +30,7 @@ export const CommentInput: FC<Props> = ({ newComment, setNewComment, currentPost
       setNewComment("")
       queryClient.invalidateQueries({ queryKey: ['postComments', currentPost?.post_id] })
     } catch (err) {
-      Alert.alert("Error adding comment", err?.toString());
+      Alert.alert(t('error_adding_comment'), err?.toString());
     }
   };
 

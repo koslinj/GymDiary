@@ -37,7 +37,7 @@ Notifications.registerTaskAsync(BACKGROUND_NOTIFICATION_TASK);
 const queryClient = new QueryClient();
 
 const MainLayout = () => {
-  const { isAuthenticated } = useAuth()
+  const { isAuthenticated, loading } = useAuth()
   const segments = useSegments()
   const router = useRouter()
 
@@ -50,6 +50,8 @@ const MainLayout = () => {
     if (fontsLoaded) SplashScreen.hideAsync()
     else return
 
+    if (loading) return
+
     if (typeof isAuthenticated == 'undefined') return
     const inApp = segments[0] == '(app)'
     if (isAuthenticated && !inApp) {
@@ -57,9 +59,9 @@ const MainLayout = () => {
     } else if (isAuthenticated == false) {
       router.replace('/signIn')
     }
-  }, [isAuthenticated, fontsLoaded])
+  }, [isAuthenticated, fontsLoaded, loading])
 
-  if (!fontsLoaded) {
+  if (!fontsLoaded || loading) {
     return null;
   }
 

@@ -139,5 +139,6 @@
   "all_fields_required": "Wszystkie pola są wymagane!",
   "unexpected_error": "Nieoczekiwany błąd",
   "error_adding_comment": "Błąd podczas dodawania komentarza",
-  "comment_not_empty": "Komentarz nie może być pusty."
+  "comment_not_empty": "Komentarz nie może być pusty.",
+  "error_fetching_posts": "Błąd podczas pobierania informacji o postach"
 }

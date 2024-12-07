@@ -3,7 +3,7 @@
     "backgroundColor": "#0F172A",
     "name": "GymDiary",
     "slug": "gymdiary",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "gymdiary",
@@ -36,7 +36,16 @@
     },
     "plugins": [
       "expo-router",
-      "expo-localization"
+      "expo-localization",
+      [
+        "react-native-localization-settings",
+        {
+          "languages": [
+            "en",
+            "pl"
+          ]
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

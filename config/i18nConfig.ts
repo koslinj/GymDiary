@@ -4,11 +4,14 @@ import * as Localization from "expo-localization";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import translationEn from "./locales/en-GB/translation.json";
 import translationPl from "./locales/pl-PL/translation.json";
+import { createLanguageDetector } from 'react-native-localization-settings';
 
 const resources = {
   "pl-PL": { translation: translationPl },
   "en-GB": { translation: translationEn },
 };
+
+const languageDetector = createLanguageDetector({});
 
 const initI18n = async () => {
   let savedLanguage = await AsyncStorage.getItem("language");
@@ -17,15 +20,18 @@ const initI18n = async () => {
     savedLanguage = Localization.locale;
   }
 
-  i18n.use(initReactI18next).init({
-    compatibilityJSON: "v4",
-    resources,
-    lng: savedLanguage,
-    fallbackLng: "en-GB",
-    interpolation: {
-      escapeValue: false,
-    },
-  });
+  i18n
+    .use(languageDetector)
+    .use(initReactI18next)
+    .init({
+      compatibilityJSON: "v4",
+      resources,
+      lng: savedLanguage,
+      fallbackLng: "en-GB",
+      interpolation: {
+        escapeValue: false,
+      },
+    });
 };
 
 initI18n();

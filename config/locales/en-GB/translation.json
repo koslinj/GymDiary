@@ -139,5 +139,6 @@
   "all_fields_required": "All fields are required!",
   "unexpected_error": "Unexpected error",
   "error_adding_comment": "Error adding comment",
-  "comment_not_empty": "Comment cannot be empty."
+  "comment_not_empty": "Comment cannot be empty.",
+  "error_fetching_posts": "Error fetching posts"
 }

@@ -23,6 +23,7 @@ export const SocialPaginatedList: FC<Props> = ({ openComments }) => {
   const {
     data,
     isLoading,
+    isError,
     isFetchingNextPage,
     hasNextPage,
     fetchNextPage,
@@ -50,6 +51,10 @@ export const SocialPaginatedList: FC<Props> = ({ openComments }) => {
       fetchNextPage();
     }
   };
+
+  if (isError) {
+    return <ThemedText>{t('error_fetching_posts')}</ThemedText>
+  }
 
   const gymPosts = data?.pages.flatMap((page) =>
     page.posts.filter((item: any) => item.type === 'gym')

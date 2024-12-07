@@ -20,18 +20,32 @@ const initI18n = async () => {
     savedLanguage = Localization.locale;
   }
 
-  i18n
-    .use(languageDetector)
-    .use(initReactI18next)
-    .init({
-      compatibilityJSON: "v4",
-      resources,
-      lng: savedLanguage,
-      fallbackLng: "en-GB",
-      interpolation: {
-        escapeValue: false,
-      },
-    });
+  if (__DEV__) {
+    i18n
+      .use(initReactI18next)
+      .init({
+        compatibilityJSON: "v4",
+        resources,
+        lng: savedLanguage,
+        fallbackLng: "en-GB",
+        interpolation: {
+          escapeValue: false,
+        },
+      });
+  } else {
+    i18n
+      .use(languageDetector)
+      .use(initReactI18next)
+      .init({
+        compatibilityJSON: "v4",
+        resources,
+        lng: savedLanguage,
+        fallbackLng: "en-GB",
+        interpolation: {
+          escapeValue: false,
+        },
+      });
+  }
 };
 
 initI18n();

@@ -40,7 +40,7 @@ export default function Goals() {
     <ThemedView className="flex-1">
       <View className='border-b-2 dark:border-white pb-3'>
         <TouchableOpacity
-          className='bg-slate-200 dark:bg-slate-700 p-3 rounded-xl mt-2 flex-row justify-center items-center space-x-4'
+          className='bg-slate-200 dark:bg-slate-700 p-3 rounded-xl mt-2 mx-3 flex-row justify-center items-center space-x-4'
           onPress={() => { router.push('/(app)/(screens)/addGoal') }}
         >
           <ThemedText className='text-xl text-center'>{t('add_goal')}</ThemedText>

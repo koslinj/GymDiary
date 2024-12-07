@@ -22,6 +22,7 @@ export const PickDate = ({ value, show, onChange, setShowDatePicker, customText 
       </TouchableOpacity>
       {show && (
         <DateTimePicker
+          locale={currentLanguage}
           timeZoneName='GMT0'
           testID="dateTimePicker"
           value={value || new Date()}

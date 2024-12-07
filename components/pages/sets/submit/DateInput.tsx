@@ -33,6 +33,7 @@ export const DateInput: FC<Props> = ({ date, setDate }) => {
       </TouchableOpacity>
       {showDatePicker && (
         <DateTimePicker
+          locale={currentLanguage}
           testID="datePicker"
           value={date}
           mode="date"

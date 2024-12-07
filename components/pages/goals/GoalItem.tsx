@@ -79,7 +79,7 @@ export const GoalItem: FC<Props> = ({ goal }) => {
               alt={`${goal.type} icon`}
             />
           </ThemedView>
-          <ThemedText className="text-xl flex-shrink font-poppinsBold">{goal.type}</ThemedText>
+          <ThemedText className="text-xl flex-shrink font-poppinsBold">{t(goal.type)}</ThemedText>
         </View>
         <View className="p-2 px-3 rounded-xl border-2 dark:border-white">
           <View className="flex-row justify-center items-center space-x-2 flex-shrink">
@@ -110,8 +110,8 @@ export const GoalItem: FC<Props> = ({ goal }) => {
       <ConfirmationModal
         openModal={openModal}
         setOpenModal={setOpenModal}
-        title={'Delete goal'}
-        desc={'Are you sure you want to delete this goal?'}
+        title={t('delete_goal')}
+        desc={t('delete_goal_confirmation')}
         onConfirm={handleDelete}
       />
     </ThemedView>

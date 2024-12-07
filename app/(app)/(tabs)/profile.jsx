@@ -41,8 +41,8 @@ export default function Profile() {
       <ConfirmationModal
         openModal={openModal}
         setOpenModal={setOpenModal}
-        title={'Log Out'}
-        desc={'Are you sure you want to log out?'}
+        title={t('log_out')}
+        desc={t('log_out_confirmation')}
         onConfirm={handleLogout}
       />
       <PageModal

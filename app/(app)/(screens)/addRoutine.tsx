@@ -85,13 +85,13 @@ export default function AddRoutine() {
           onChangeText={(text) => setName(text)}
         />
         <ThemedText className='text-xl text-slate-400 italic mt-2'>{t('selected_exercises_')}</ThemedText>
-        {selectedExercises.length > 6 ? (
+        {selectedExercises.length > 5 ? (
           <>
-            {selectedExercises.slice(0, 6).map(e => <ThemedText key={e} className='text-xl mt-1'>{e}</ThemedText>)}
+            {selectedExercises.slice(0, 5).map(e => <ThemedText key={e} className='text-xl mt-1'>{t(e)}</ThemedText>)}
             <ThemedText className='text-xl italic text-center mt-1 text-slate-400'>{t('and_more_')}</ThemedText>
           </>
         ) : (
-          selectedExercises.map(e => <ThemedText key={e} className='text-xl mt-1'>{e}</ThemedText>)
+          selectedExercises.map(e => <ThemedText key={e} className='text-xl mt-1'>{t(e)}</ThemedText>)
         )}
         <TouchableOpacity
           className="bg-secondary-400 dark:bg-secondary-700 p-3 mt-3 rounded-md w-full mx-auto"
@@ -105,7 +105,7 @@ export default function AddRoutine() {
         <TouchableOpacity
           className="flex-row justify-between rounded-md border-2 p-2 dark:border-white"
           onPress={() => setOpenModal(true)}>
-          <ThemedText className="text-2xl">{selectedCategory}</ThemedText>
+          <ThemedText className="text-2xl">{t(selectedCategory)}</ThemedText>
           <AntDesign name="caretdown" size={24} color={iconColor} />
         </TouchableOpacity>
         <CategorySelect

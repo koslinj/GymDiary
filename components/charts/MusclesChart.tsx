@@ -57,7 +57,7 @@ export const MusclesChart: FC<Props> = ({ range, startDate, endDate }) => {
   if (!muscles) {
     return <ThemedText>{t('error_fetching_user_info')}</ThemedText>
   }
-
+  console.log(muscles)
   const myData = getDataForPieChart(muscles)
 
   return (
@@ -65,22 +65,28 @@ export const MusclesChart: FC<Props> = ({ range, startDate, endDate }) => {
       <ThemedText className='text-center text-3xl mb-2 mt-8 font-poppinsBold'>{t('muscle_groups')}</ThemedText>
 
       <View className='items-center'>
-        <PieChart
-          innerCircleColor={bgColor}
-          radius={100}
-          data={myData}
-        />
-        <View className='flex-row flex-wrap justify-center gap-x-8 mt-4'>
-          {myData.map(item => (
-            <View key={item.label} className="flex-row space-x-2 items-center flex-wrap">
-              <View style={{ backgroundColor: item.color }} className="w-8 h-8" />
-              <View>
-                <ThemedText className='text-[16px] leading-[20px]'>{item.label.split(';')[0]}:</ThemedText>
-                <ThemedText className="font-poppinsBold text-[16px] leading-[20px]">{item.label.split(';')[1]}</ThemedText>
-              </View>
+        {myData.length > 0 ? (
+          <>
+            <PieChart
+              innerCircleColor={bgColor}
+              radius={100}
+              data={myData}
+            />
+            <View className='flex-row flex-wrap justify-center gap-x-8 mt-4'>
+              {myData.map(item => (
+                <View key={item.label} className="flex-row space-x-2 items-center flex-wrap">
+                  <View style={{ backgroundColor: item.color }} className="w-8 h-8" />
+                  <View>
+                    <ThemedText className='text-[16px] leading-[20px]'>{t(item.label.split(';')[0])}:</ThemedText>
+                    <ThemedText className="font-poppinsBold text-[16px] leading-[20px]">{item.label.split(';')[1]}</ThemedText>
+                  </View>
+                </View>
+              ))}
             </View>
-          ))}
-        </View>
+          </>
+        ) : (
+          <ThemedText>{t('no_data')}</ThemedText>
+        )}
       </View>
     </ThemedView>
   )

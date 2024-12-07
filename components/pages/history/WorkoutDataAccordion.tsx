@@ -39,9 +39,9 @@ export const WorkoutDataAccordion: FC<Props> = ({ workoutId }) => {
 
   const accordionData = workout.workoutData.map(ex => ({
     title: (
-      <ThemedText className="text-2xl py-2 underline font-poppinsBold flex-shrink">{ex.exerciseName}</ThemedText>
+      <ThemedText className="text-2xl py-2 underline font-poppinsBold flex-shrink">{t(ex.exerciseName)}</ThemedText>
     ),
-    content: ex.sets.map(set => `${set.reps} x ${set.weight}`)
+    content: ex.sets.map(set => `${set.reps} x ${set.weight} kg`)
   }))
 
 

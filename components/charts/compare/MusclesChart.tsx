@@ -64,42 +64,54 @@ export const MusclesChart: FC<Props> = ({ friend, friendId }) => {
       <ThemedText className='text-center text-2xl mb-2 font-poppinsBold'>{t('muscle_groups')}</ThemedText>
       <View className='flex-row justify-between'>
         <View className='flex-shrink'>
-        <ThemedText className='text-center text-lg'>{t('you')}</ThemedText>
-          <PieChart
-            innerCircleColor={bgColor}
-            radius={70}
-            data={myData}
-          />
-          <View>
-            {myData.map(item => (
-              <View key={item.label} className="flex-row space-x-2 items-center flex-wrap">
-                <View style={{ backgroundColor: item.color }} className="w-6 h-6" />
-                <View>
-                  <ThemedText className='leading-[18px]'>{item.label.split(';')[0]}:</ThemedText>
-                  <ThemedText className="font-poppinsBold leading-[18px]">{item.label.split(';')[1]}</ThemedText>
-                </View>
+          <ThemedText className='text-center text-lg'>{t('you')}</ThemedText>
+          {myData.length > 0 ? (
+            <>
+              <PieChart
+                innerCircleColor={bgColor}
+                radius={70}
+                data={myData}
+              />
+              <View>
+                {myData.map(item => (
+                  <View key={item.label} className="flex-row space-x-2 items-center flex-wrap">
+                    <View style={{ backgroundColor: item.color }} className="w-6 h-6" />
+                    <View>
+                      <ThemedText className='leading-[18px]'>{t(item.label.split(';')[0])}:</ThemedText>
+                      <ThemedText className="font-poppinsBold leading-[18px]">{item.label.split(';')[1]}</ThemedText>
+                    </View>
+                  </View>
+                ))}
               </View>
-            ))}
-          </View>
+            </>
+          ) : (
+            <ThemedText>{t('no_data')}</ThemedText>
+          )}
         </View>
         <View className='flex-shrink'>
           <ThemedText className='text-center text-lg'>{friend.nickname}</ThemedText>
-          <PieChart
-            innerCircleColor={bgColor}
-            radius={70}
-            data={friendData}
-          />
-          <View>
-            {friendData.map(item => (
-              <View key={item.label} className="flex-row space-x-2 items-center">
-                <View style={{ backgroundColor: item.color }} className="w-6 h-6" />
-                <View>
-                  <ThemedText className='leading-[18px]'>{item.label.split(';')[0]}:</ThemedText>
-                  <ThemedText className="font-poppinsBold leading-[18px]">{item.label.split(';')[1]}</ThemedText>
-                </View>
+          {friendData.length > 0 ? (
+            <>
+              <PieChart
+                innerCircleColor={bgColor}
+                radius={70}
+                data={friendData}
+              />
+              <View>
+                {friendData.map(item => (
+                  <View key={item.label} className="flex-row space-x-2 items-center">
+                    <View style={{ backgroundColor: item.color }} className="w-6 h-6" />
+                    <View>
+                      <ThemedText className='leading-[18px]'>{t(item.label.split(';')[0])}:</ThemedText>
+                      <ThemedText className="font-poppinsBold leading-[18px]">{item.label.split(';')[1]}</ThemedText>
+                    </View>
+                  </View>
+                ))}
               </View>
-            ))}
-          </View>
+            </>
+          ) : (
+            <ThemedText>{t('no_data')}</ThemedText>
+          )}
         </View>
       </View>
     </ThemedView>

@@ -9,6 +9,7 @@ import shouldersIcon from "@/assets/icons/shouldersIcon.jpg";
 import absIcon from "@/assets/icons/absIcon.jpg";
 import legsIcon from "@/assets/icons/legsIcon.jpg";
 import { Image, TouchableOpacity, View } from "react-native";
+import { useTranslation } from "react-i18next";
 
 const categories = [
   { name: "Chest", icon: chestIcon },
@@ -27,6 +28,7 @@ interface Props {
 }
 
 export const CategoryPicker: FC<Props> = ({ category, setCategory }) => {
+  const { t } = useTranslation()
 
   return (
     <ThemedView className="flex-row flex-wrap justify-center items-start gap-x-5">
@@ -39,7 +41,7 @@ export const CategoryPicker: FC<Props> = ({ category, setCategory }) => {
           <View className="rounded-xl overflow-hidden w-16 h-16 border-2 dark:border-white mx-auto">
             <Image source={cat.icon} alt={cat.name} className='w-full h-full' />
           </View>
-          <ThemedText className={`text-center ${category === cat.name && "font-poppinsBold"}`}>{cat.name}</ThemedText>
+          <ThemedText className={`text-center ${category === cat.name && "font-poppinsBold"}`}>{t(cat.name)}</ThemedText>
         </TouchableOpacity>
       ))}
     </ThemedView>

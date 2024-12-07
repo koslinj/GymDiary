@@ -65,7 +65,7 @@ export default function Quick() {
         <TouchableOpacity
           className="flex-row justify-between rounded-md border-2 p-2 dark:border-white"
           onPress={() => setOpenModal(true)}>
-          <ThemedText className="text-2xl">{selectedCategory}</ThemedText>
+          <ThemedText className="text-2xl">{t(selectedCategory)}</ThemedText>
           <AntDesign name="caretdown" size={24} color={iconColor} />
         </TouchableOpacity>
         <CategorySelect

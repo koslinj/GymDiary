@@ -55,8 +55,8 @@ export default function Routines() {
       <ConfirmationModal
         openModal={openModal}
         setOpenModal={setOpenModal}
-        title={'Removing routines'}
-        desc={'Are you sure you want to remove these routines?'}
+        title={t('removing_routines')}
+        desc={t('removing_routines_confirmation')}
         onConfirm={handleRemove}
       />
 

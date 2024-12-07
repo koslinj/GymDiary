@@ -28,10 +28,10 @@ export const AchievementItem: FC<Props> = ({ achievement }) => {
 
   return (
     <ThemedView className="rounded-lg p-3 bg-slate-200 dark:bg-slate-700 mt-3">
-      <ThemedText className="text-xl font-poppinsBold text-center">{achievement.title}</ThemedText>
+      <ThemedText className="text-xl font-poppinsBold text-center">{t(achievement.title)}</ThemedText>
       <View className="flex-row space-x-4 items-center">
         {icon}
-        <ThemedText className="text-xl flex-shrink">{achievement.goal} {achievement.type}</ThemedText>
+        <ThemedText className="text-xl flex-shrink">{achievement.goal} {t(achievement.type + "2")}</ThemedText>
       </View>
       <View className="py-2">
         <View className="flex-row justify-between items-center">

@@ -7,6 +7,7 @@ import { Colors } from '@/constants/Colors';
 import { SetScene } from './SetScene';
 import { useBlackOrWhite } from '@/hooks/useBlackOrWhite';
 import { SubmitScene } from './SubmitScene';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
   routes: {
@@ -16,6 +17,7 @@ interface Props {
 }
 
 export const SetsContainer: FC<Props> = ({ routes }) => {
+  const { t } = useTranslation()
   const bgColor = useColor('#ffffff', Colors.slate800);
   const textColor = useBlackOrWhite();
   const indicatorColor = useColor("#ffbf1b", "#bb4f02");
@@ -23,7 +25,7 @@ export const SetsContainer: FC<Props> = ({ routes }) => {
   const [index, setIndex] = useState(0);
 
   const allRoutes = useMemo(
-    () => [...routes, { key: 'submit', title: 'Submit' }],
+    () => [...routes, { key: 'submit', title: t('summary') }],
     [routes]
   );
 

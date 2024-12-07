@@ -1,9 +1,9 @@
 import { ExerciseIcon } from "@/components/ExerciseIcon";
-import { MyPicker } from "@/components/MyPicker";
 import { ThemedText, ThemedView } from "@/components/ThemedComponents";
 import { useBlackOrWhite } from "@/hooks/useBlackOrWhite";
 import { FontAwesome6 } from "@expo/vector-icons";
 import { FC } from "react";
+import { useTranslation } from "react-i18next";
 import { TouchableOpacity, View } from "react-native";
 
 interface Props {
@@ -13,6 +13,7 @@ interface Props {
 }
 
 export const ExerciseItem: FC<Props> = ({ exercise, toggleSelectExercise, selected }) => {
+  const { t } = useTranslation()
   const iconColor = useBlackOrWhite()
 
   return (
@@ -23,7 +24,7 @@ export const ExerciseItem: FC<Props> = ({ exercise, toggleSelectExercise, select
     >
       <ExerciseIcon exercise={exercise} />
       <ThemedText className="break-words text-xl flex-shrink">
-        {exercise.name_exercise}
+        {t(exercise.name_exercise)}
       </ThemedText>
       <ThemedView className='bg-transparent absolute right-2'>
         {selected ? (

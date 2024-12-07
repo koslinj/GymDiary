@@ -59,7 +59,7 @@ export function Accordion({ accordionData }) {
           </TouchableOpacity>
           <AccordionItem isExpanded={openState[index]} viewKey={`Accordion-${index}`}>
             {item.content.map((text, idx) => (
-              <ThemedText className='text-lg' key={idx}>{text}</ThemedText>
+              <ThemedText className='text-xl' key={idx}>{text}</ThemedText>
             ))}
           </AccordionItem>
         </ThemedView>

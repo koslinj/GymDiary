@@ -1,1 +1,1 @@
-type TimeRangeFilter = "week" | "month" | "year" | "all"
+type TimeRangeFilter = "week" | "month" | "year" | "all" | "dates"

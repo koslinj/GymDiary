@@ -140,5 +140,6 @@
   "unexpected_error": "Unexpected error",
   "error_adding_comment": "Error adding comment",
   "comment_not_empty": "Comment cannot be empty.",
-  "error_fetching_posts": "Error fetching posts"
+  "error_fetching_posts": "Error fetching posts",
+  "wrong_input": "Wrong input"
 }

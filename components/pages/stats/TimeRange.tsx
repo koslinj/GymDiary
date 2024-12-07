@@ -6,9 +6,11 @@ import { TouchableOpacity, View } from "react-native"
 interface Props {
   range: TimeRangeFilter
   setRange: Dispatch<SetStateAction<TimeRangeFilter>>
+  setStartDate: Dispatch<SetStateAction<Date | undefined>>
+  setEndDate: Dispatch<SetStateAction<Date | undefined>>
 }
 
-export const TimeRange: FC<Props> = ({ range, setRange }) => {
+export const TimeRange: FC<Props> = ({ range, setRange, setStartDate, setEndDate }) => {
   const { t } = useTranslation()
 
   const getStyle = (localRange: TimeRangeFilter) => {
@@ -17,20 +19,27 @@ export const TimeRange: FC<Props> = ({ range, setRange }) => {
       : "border-2 border-secondary-400 dark:border-secondary-700";
   };
 
+  const handleRangeChange = (range: TimeRangeFilter) => {
+    setRange(range);
+    if (range !== "dates") {
+      setStartDate(undefined);
+      setEndDate(undefined);
+    }
+  };
 
   return (
-    <View className="flex-row gap-2 justify-between flex-wrap mt-2">
-      <TouchableOpacity onPress={() => setRange("week")} className={`p-2 ${getStyle("week")} rounded-lg`}>
-        <ThemedText className="text-xl">{t('week')}</ThemedText>
+    <View className="flex-row gap-x-2 gap-y-1 justify-center flex-wrap mt-1">
+      <TouchableOpacity onPress={() => handleRangeChange("week")} className={`p-2 ${getStyle("week")} rounded-lg`}>
+        <ThemedText className="text-lg">{t('week')}</ThemedText>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => setRange("month")} className={`p-2 ${getStyle("month")} rounded-lg`}>
-        <ThemedText className="text-xl">{t('month')}</ThemedText>
+      <TouchableOpacity onPress={() => handleRangeChange("month")} className={`p-2 ${getStyle("month")} rounded-lg`}>
+        <ThemedText className="text-lg">{t('month')}</ThemedText>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => setRange("year")} className={`p-2 ${getStyle("year")} rounded-lg`}>
-        <ThemedText className="text-xl">{t('year')}</ThemedText>
+      <TouchableOpacity onPress={() => handleRangeChange("year")} className={`p-2 ${getStyle("year")} rounded-lg`}>
+        <ThemedText className="text-lg">{t('year')}</ThemedText>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => setRange("all")} className={`p-2 ${getStyle("all")} rounded-lg`}>
-        <ThemedText className="text-xl">{t('all_time')}</ThemedText>
+      <TouchableOpacity onPress={() => handleRangeChange("all")} className={`p-2 ${getStyle("all")} rounded-lg`}>
+        <ThemedText className="text-lg">{t('all_time')}</ThemedText>
       </TouchableOpacity>
     </View>
   )

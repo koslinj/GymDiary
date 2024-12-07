@@ -79,7 +79,7 @@
   "week": "Tydzień",
   "month": "Miesiąc",
   "year": "Rok",
-  "all_time": "Od początku",
+  "all_time": "Całość",
   "error_fetching_stats_info": "Błąd podczas pobierania informacji o statystykach",
   "summary": "Podsumowanie",
   "total_volume": "Całkowita objętość",
@@ -140,5 +140,6 @@
   "unexpected_error": "Nieoczekiwany błąd",
   "error_adding_comment": "Błąd podczas dodawania komentarza",
   "comment_not_empty": "Komentarz nie może być pusty.",
-  "error_fetching_posts": "Błąd podczas pobierania informacji o postach"
+  "error_fetching_posts": "Błąd podczas pobierania informacji o postach",
+  "wrong_input": "Złe dane wejściowe"
 }

@@ -8,15 +8,17 @@ import { ActivityIndicator, View } from "react-native"
 
 interface Props {
   range: TimeRangeFilter
+  startDate: Date | undefined
+  endDate: Date | undefined
 }
 
-export const SummaryStats: FC<Props> = ({ range }) => {
+export const SummaryStats: FC<Props> = ({ range, startDate, endDate }) => {
   const { t } = useTranslation()
 
   const { data: stats, isLoading, isError, error } = useQuery<Stats>(
     {
-      queryKey: ['summaryStats', range],
-      queryFn: () => fetchUserSummaryStats(range),
+      queryKey: ['summaryStats', range, startDate, endDate],
+      queryFn: () => fetchUserSummaryStats(range, startDate, endDate),
       refetchOnWindowFocus: false
     }
   );
@@ -30,6 +32,9 @@ export const SummaryStats: FC<Props> = ({ range }) => {
   }
 
   if (isError) {
+    if ((error as any).response?.status === 500) {
+      return <ThemedText className="text-center">{t('wrong_input')}</ThemedText>;
+    }
     return <ThemedText>{t('error_fetching_stats_info')}: {error.message}</ThemedText>
   }
 

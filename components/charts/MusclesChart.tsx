@@ -23,16 +23,18 @@ const getDataForPieChart = (data: any) => {
 
 interface Props {
   range: TimeRangeFilter
+  startDate: Date | undefined
+  endDate: Date | undefined
 }
 
-export const MusclesChart: FC<Props> = ({ range }) => {
+export const MusclesChart: FC<Props> = ({ range, startDate, endDate }) => {
   const { t } = useTranslation()
   const bgColor = useColor(Colors.slate200, Colors.slate700)
 
   const { data: muscles, isLoading, isError, error } = useQuery(
     {
-      queryKey: ['musclesChart', range],
-      queryFn: () => fetchMusclesChart(range),
+      queryKey: ['musclesChart', range, startDate, endDate],
+      queryFn: () => fetchMusclesChart(range, startDate, endDate),
       refetchOnWindowFocus: false
     }
   );
@@ -46,6 +48,9 @@ export const MusclesChart: FC<Props> = ({ range }) => {
   }
 
   if (isError) {
+    if ((error as any).response?.status === 500) {
+      return <ThemedText className="text-center">{t('wrong_input')}</ThemedText>;
+    }
     return <ThemedText>{t('error_fetching_user_info')}: {error.message}</ThemedText>
   }
 

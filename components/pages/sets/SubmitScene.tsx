@@ -13,6 +13,7 @@ import { NoteInput } from "./submit/NoteInput";
 import { DateInput } from "./submit/DateInput";
 import { TimeInput } from "./submit/TimeInput";
 import { useTranslation } from "react-i18next";
+import React from "react";
 
 const MemoizedDurationWheelPicker = memo(DurationWheelPicker);
 

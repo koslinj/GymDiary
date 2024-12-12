@@ -230,7 +230,7 @@ const AppLayout = () => {
                   <TouchableOpacity className="absolute z-10" onPress={() => { router.back() }}>
                     <AntDesign color={theme === "light" ? "black" : "white"} name='arrowleft' size={42} />
                   </TouchableOpacity>
-                  <ThemedText className='text-3xl text-center font-poppinsBold translate-y-1 pl-8'>{decodeURIComponent(name_exercise)}</ThemedText>
+                  <ThemedText className='text-3xl text-center font-poppinsBold translate-y-1 pl-8'>{t(decodeURIComponent(name_exercise))}</ThemedText>
                 </View>
               </ThemedView>
             ),

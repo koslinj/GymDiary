@@ -199,5 +199,8 @@
   "network_champion_title": "Network Champion",
   "workouts2": "trainings",
   "friends2": "friends",
-  "no_data": "There is no data"
+  "no_data": "There is no data",
+  "hour": "Hour",
+  "minute": "Minute",
+  "second": "Second"
 }

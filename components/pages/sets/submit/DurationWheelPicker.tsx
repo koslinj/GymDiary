@@ -29,7 +29,7 @@ export const DurationWheelPicker: FC<Props> = ({ duration, onChange, setOpenPage
       <ThemedView className='flex-row justify-around bg-transparent'>
         {(['hour', 'minute', 'second'] as Duration[]).map((type) => (
           <View key={type}>
-            <ThemedText className='text-center'>{type.charAt(0).toUpperCase() + type.slice(1)}</ThemedText>
+            <ThemedText className='text-center'>{t(type)}</ThemedText>
             <WheelPickerExpo
               key={isDark ? `${type}dark` : `${type}light`}
               backgroundColor={useColor("#FFFFFF", Colors.slate700)}

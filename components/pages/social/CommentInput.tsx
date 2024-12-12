@@ -28,7 +28,8 @@ export const CommentInput: FC<Props> = ({ newComment, setNewComment, currentPost
     try {
       await addComment(currentPost?.post_id as number, newComment.trim())
       setNewComment("")
-      queryClient.invalidateQueries({ queryKey: ['postComments', currentPost?.post_id] })
+      await queryClient.invalidateQueries({ queryKey: ['postComments', currentPost?.post_id] })
+      await queryClient.invalidateQueries({ queryKey: ['posts'] })
     } catch (err) {
       Alert.alert(t('error_adding_comment'), err?.toString());
     }

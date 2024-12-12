@@ -199,5 +199,8 @@
   "network_champion_title": "Mistrz Sieci",
   "workouts2": "treningów",
   "friends2": "znajomych",
-  "no_data": "Brak danych"
+  "no_data": "Brak danych",
+  "hour": "Godzina",
+  "minute": "Minuta",
+  "second": "Sekunda"
 }

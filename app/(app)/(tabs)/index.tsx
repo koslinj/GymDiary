@@ -39,7 +39,7 @@ export default function HomeScreen() {
 
   const latest = workouts?.reduce((latestItem, currentItem) => {
     return new Date(currentItem.date) > new Date(latestItem.date) ? currentItem : latestItem;
-  });
+  }, workouts[0] || null);
 
   return (
     <ThemedView style={styles.safeArea} className="flex-1">
